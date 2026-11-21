@@ -204,7 +204,7 @@ function pocketEl(c, opts) {
       <div class="persp">${cardImg(card, card.name, false, false)}</div>
       <div class="meta">
         <span class="en">${name}</span>
-        <small>${num}${card.quantity > 1 ? " · ×" + card.quantity : ""}</small>${langChip(card)}
+        <small>${num}${card.quantity > 1 ? " · ×" + card.quantity : ""}</small>${langChip(card)}${card.needs_confirm ? ' <span class="chip warn">Check</span>' : ""}
         <div class="val">${valueLabel(card.value)}</div>
         ${storageChips(card)}
       </div>`;
