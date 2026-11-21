@@ -519,7 +519,7 @@ function jumpToSet(id) {
   closeWish();
   closeValue();
   closeTrade();
-  closePack();
+  closePack(); closeCenter();
 }
 
 function jumpToCard(id) {
@@ -530,7 +530,7 @@ function jumpToCard(id) {
   closeWish();
   closeValue();
   closeTrade();
-  closePack();
+  closePack(); closeCenter();
   closeToc();
   if (idx == null) return;
   pageFlip.turnToPage(idx);
@@ -575,7 +575,7 @@ function openToc() {
   closeWish();
   closeValue();
   closeTrade();
-  closePack();
+  closePack(); closeCenter();
   toc.hidden = false;
   $("contentsBtn").setAttribute("aria-expanded", "true");
 }
@@ -623,7 +623,7 @@ function openHits() {
   closeWish();
   closeValue();
   closeTrade();
-  closePack();
+  closePack(); closeCenter();
   renderHits();
   el.hidden = false;
   hitsOpen = true;
@@ -636,6 +636,20 @@ function closeHits() {
   el.hidden = true;
   hitsOpen = false;
   if ($("hitsBtn")) $("hitsBtn").setAttribute("aria-expanded", "false");
+}
+
+function closeCenter() {
+  if (window.CenteringTool) window.CenteringTool.close();
+}
+function openCenter(opts) {
+  closeToc();
+  closeHits();
+  closeWish();
+  closeValue();
+  closeTrade();
+  closePack();
+  if (typeof closeFocus === "function" && focusOpen) closeFocus();
+  if (window.CenteringTool) window.CenteringTool.open(opts || {});
 }
 
 
@@ -752,7 +766,7 @@ function openWish() {
   closeHits();
   closeValue();
   closeTrade();
-  closePack();
+  closePack(); closeCenter();
   renderWish();
   el.hidden = false;
   wishOpen = true;
@@ -896,7 +910,7 @@ function renderValue() {
 function openValue() {
   const el = $("value");
   if (!el) return;
-  closeToc(); closeHits(); closeWish(); closeTrade(); closePack();
+  closeToc(); closeHits(); closeWish(); closeTrade(); closePack(); closeCenter();
   renderValue();
   el.hidden = false;
   valueOpen = true;
@@ -1007,7 +1021,7 @@ function renderTrade() {
 function openTrade() {
   const el = $("trade");
   if (!el) return;
-  closeToc(); closeHits(); closeWish(); closeValue(); closePack();
+  closeToc(); closeHits(); closeWish(); closeValue(); closePack(); closeCenter();
   renderTrade();
   el.hidden = false;
   tradeOpen = true;
@@ -1324,7 +1338,7 @@ function confirmPackCard(shot, card, fromEl) {
   shot.confirmed = card.name || card.id;
   renderHud();
   const art = card.art || shot.url;
-  closePack();
+  closePack(); closeCenter();
   flyIntoAlbum(art, () => {
     albumPages = buildAlbumPages();
     const idx = cardStarts[card.id] != null ? cardStarts[card.id] : (pageFlip ? pageFlip.getCurrentPageIndex() : 0);
@@ -1344,7 +1358,7 @@ function dropAdd(index) {
 function openPack() {
   const el = $("pack");
   if (!el) return;
-  closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack();
+  closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); closeCenter();
   renderPack();
   el.hidden = false;
   packOpen = true;
@@ -1426,7 +1440,10 @@ function fillFocus(c) {
     ${storageNote(c) ? `<p class="set-stats">${storageChips(c)} ${storageNote(c)}</p>` : ""}
     ${c.quantity > 1 ? `<p class="set-stats">Copies in the collection: ×${c.quantity}</p>` : ""}
     ${c.id_note_he ? `<p class="set-stats">${escapeHtml(c.id_note_he)}</p>` : ""}
-    ${cardStarts[c.id] != null ? `<div class="focus-actions"><button type="button" class="hud-btn" data-jump-card="${escapeHtml(c.id)}">Show in album</button></div>` : ""}
+    <div class="focus-actions">
+      <button type="button" class="hud-btn gold" data-center-card="${escapeHtml(c.id)}">Measure centering</button>
+      ${cardStarts[c.id] != null ? `<button type="button" class="hud-btn" data-jump-card="${escapeHtml(c.id)}">Show in album</button>` : ""}
+    </div>
   `;
 }
 function openFocus(c) {
@@ -1492,6 +1509,9 @@ function applyQueryJump() {
     if (q.get("pack") === "1" || q.get("pack") === "true" || location.hash === "#pack") {
       setTimeout(openPack, 200);
     }
+    if (q.get("center") === "1" || q.get("center") === "true" || q.get("centering") === "1" || location.hash === "#center") {
+      setTimeout(() => openCenter(), 200);
+    }
   } catch (e) {}
 }
 
@@ -1532,7 +1552,7 @@ function init() {
   document.addEventListener("keydown", ev => {
     if (focusOpen) return;
     if (ev.target.matches && ev.target.matches("input,select,textarea,button")) {
-      if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); }
+      if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); closeCenter(); }
       return;
     }
     if (hitsOpen) {
@@ -1548,12 +1568,12 @@ function init() {
       return;
     }
     if (tradeOpen) {
-      if (ev.key === "Escape") { ev.preventDefault(); closeTrade(); closePack(); }
+      if (ev.key === "Escape") { ev.preventDefault(); closeTrade(); closePack(); closeCenter(); }
       return;
     }
     if (ev.key === "ArrowRight" || ev.key === "PageDown") { ev.preventDefault(); nextPage(); }
     if (ev.key === "ArrowLeft" || ev.key === "PageUp") { ev.preventDefault(); prevPage(); }
-    if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); }
+    if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); closeCenter(); }
   });
 
   $("contentsBtn").addEventListener("click", () => $("toc").hidden ? openToc() : closeToc());
@@ -1564,6 +1584,7 @@ function init() {
     if (jump) { ev.preventDefault(); jumpToSet(jump.dataset.jump); }
   });
 
+  if (window.CenteringTool) window.CenteringTool.bind();
   if ($("hitsBtn")) $("hitsBtn").addEventListener("click", () => $("hits").hidden ? openHits() : closeHits());
   if ($("hitsClose")) $("hitsClose").addEventListener("click", closeHits);
   if ($("hitsBackdrop")) $("hitsBackdrop").addEventListener("click", closeHits);
@@ -1707,9 +1728,20 @@ function init() {
       return;
     }
     const go = ev.target.closest("[data-jump-card]");
-    if (go) { ev.preventDefault(); ev.stopPropagation(); jumpToCard(go.dataset.jumpCard); }
+    if (go) { ev.preventDefault(); ev.stopPropagation(); jumpToCard(go.dataset.jumpCard); return; }
+    const measure = ev.target.closest("[data-center-card]");
+    if (measure) {
+      ev.preventDefault(); ev.stopPropagation();
+      const card = cardById(measure.dataset.centerCard);
+      openCenter({ card: card || { id: measure.dataset.centerCard } });
+    }
   });
-  document.addEventListener("keydown", ev => { if (ev.key === "Escape" && focusOpen) closeFocus(); });
+  document.addEventListener("keydown", ev => {
+    if (ev.key === "Escape" && window.CenteringTool && window.CenteringTool.state.open) {
+      ev.preventDefault(); closeCenter(); return;
+    }
+    if (ev.key === "Escape" && focusOpen) closeFocus();
+  });
   window.addEventListener("popstate", () => { if (focusOpen) closeFocus(true); });
 
   let resizeTimer = 0;

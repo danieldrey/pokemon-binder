@@ -26,6 +26,7 @@
       <button type="button" class="hud-btn" id="valueBtn" aria-expanded="false">Value</button>
       <button type="button" class="hud-btn" id="tradeBtn" aria-expanded="false">Trade</button>
       <button type="button" class="hud-btn" id="packBtn" aria-expanded="false">Pack</button>
+      <button type="button" class="hud-btn" id="centerBtn" aria-expanded="false">Center</button>
       <button type="button" class="hud-btn" id="contentsBtn" aria-expanded="false">Contents</button>
     </div>
   </header>
@@ -156,6 +157,63 @@
     <button type="button" class="hits-backdrop" id="hitsBackdrop" aria-label="Close Top Hits"></button>
   </aside>
 
+
+  <aside id="center" class="hits center-pane" hidden>
+    <div class="hits-panel" role="dialog" aria-modal="true" aria-labelledby="centerHeading">
+      <div class="hits-head">
+        <div>
+          <p class="eyebrow">Daniel’s Binder</p>
+          <h2 id="centerHeading">Centering</h2>
+          <p class="hits-sub" id="centerCardLabel">Upload a flat photo of the card. Drag the guides if the auto-detect is off.</p>
+        </div>
+        <button type="button" class="focus-x small" id="centerClose" aria-label="Close centering tool">✕</button>
+      </div>
+      <div class="center-toolbar">
+        <label class="hud-btn gold center-file">Take a photo
+          <input type="file" id="centerCamera" accept="image/*" capture="environment">
+        </label>
+        <label class="hud-btn center-file">Upload photo
+          <input type="file" id="centerUpload" accept="image/*">
+        </label>
+        <label class="center-card-pick">
+          <span>Link to a card</span>
+          <select id="centerCardSelect"></select>
+        </label>
+      </div>
+      <p class="center-hint" id="centerBackHint" hidden></p>
+      <div class="center-empty" id="centerEmpty">
+        <p>Photograph or upload the front of a card. Green lines are the outer edges, gold lines are the inner frame. Left/right and top/bottom are the border split.</p>
+      </div>
+      <div class="center-work" id="centerWork" hidden>
+        <div class="center-layout">
+          <div class="center-stage" id="centerStage">
+            <canvas id="centerCanvas" width="800" height="600" aria-label="Card photo with centering guides"></canvas>
+          </div>
+          <div>
+            <div class="center-side" role="tablist" aria-label="Card side">
+              <button type="button" class="hud-btn" id="centerSideFront" aria-pressed="true">Front</button>
+              <button type="button" class="hud-btn" id="centerSideBack" aria-pressed="false">Back</button>
+            </div>
+            <div class="center-metrics" id="centerMetrics"></div>
+            <div id="centerGrades"></div>
+            <div class="center-tools">
+              <button type="button" class="hud-btn" id="centerAuto">Re-detect edges</button>
+              <button type="button" class="hud-btn" id="centerRotLeft" aria-label="Rotate left">⟲</button>
+              <button type="button" class="hud-btn" id="centerRotRight" aria-label="Rotate right">⟳</button>
+              <button type="button" class="hud-btn" id="centerResetZoom">Reset zoom</button>
+              <button type="button" class="hud-btn gold" id="centerSave">Save to this card</button>
+              <button type="button" class="hud-btn" id="centerExport">Export JSON</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <p class="center-disclaimer">Centering-only estimate, not surface, corners, or edges, and not an official PSA, BGS, CGC, or TAG grade. Graders also look at the physical card. Back centering is required only for cards that might be worth grading; the combined prediction uses each company’s front and back tolerances (PSA and CGC are more lenient on the back; BGS is stricter — a BGS 10 needs about 50/50 on the front and 55/45 on the back).</p>
+      <div class="center-saved" id="centerSaved"></div>
+    </div>
+    <button type="button" class="hits-backdrop" id="centerBackdrop" aria-label="Close centering tool"></button>
+  </aside>
+  <p class="center-toast" id="centerToast" hidden>Saved on this device</p>
+
   <div id="focus" hidden>
     <div class="backdrop" id="focusBackdrop"></div>
     <div class="focus-panel" role="dialog" aria-modal="true" aria-labelledby="focusHeading">
@@ -167,6 +225,7 @@
 
   <script src="data.js"></script>
   <script src="vendor/page-flip.browser.js"></script>
+  <script src="centering.js"></script>
   <script src="album-en.js"></script>
 </body>
 </html>
