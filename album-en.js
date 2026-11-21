@@ -143,6 +143,17 @@ function buildAlbumPages() {
   return pages;
 }
 
+function langLabel(c) {
+  if (!c || !c.lang) return "";
+  if (c.lang === "ja") return "Japanese";
+  if (c.lang === "en") return "English";
+  return c.lang;
+}
+function langChip(c) {
+  if (!c || !c.lang) return "";
+  const lab = c.lang === "ja" ? "JP" : (c.lang === "en" ? "EN" : c.lang.toUpperCase());
+  return ` <span class="chip lang">${lab}</span>`;
+}
 function cardArt(c, wantHigh) {
   if (!c) return "";
   if (wantHigh) return c.art_high || c.art || "";
@@ -193,7 +204,7 @@ function pocketEl(c, opts) {
       <div class="persp">${cardImg(card, card.name, false, false)}</div>
       <div class="meta">
         <span class="en">${name}</span>
-        <small>${num}${card.quantity > 1 ? " · ×" + card.quantity : ""}</small>
+        <small>${num}${card.quantity > 1 ? " · ×" + card.quantity : ""}</small>${langChip(card)}
         <div class="val">${valueLabel(card.value)}</div>
         ${storageChips(card)}
       </div>`;
@@ -1429,6 +1440,7 @@ function fillFocus(c) {
     <h3 id="focusHeading">${escapeHtml(c.name || "")}</h3>
     <div class="kv">
       <span>Set</span><b>${escapeHtml(c.set_name || "")} · ${escapeHtml(c.number || "")}</b>
+      <span>Language</span><b>${escapeHtml(langLabel(c) || "—")}</b>
       <span>Condition</span><b>${c.grade ? `${c.grade_company || ""} ${c.grade}` : (c.condition || "NM")}${c.toploader ? " · Toploader" : ""}${c.sleeve ? " · Sleeve" : ""}</b>
       <span>Collection value</span><b>${valueLabel(c.value)}</b>
       <span>Raw NM</span><b>${raw && raw.ils != null ? money(raw.ils, raw.usd) : "—"}</b>
