@@ -246,7 +246,7 @@ body.focus-lock{overflow:hidden;position:fixed;left:0;right:0;width:100%;touch-a
   .dock-nav{display:flex}
   .hud-btn{padding:6px 11px;font-size:12px}
   .hud-btn.gold{font-size:11px;letter-spacing:.05em;padding:6px 10px}
-  .hud-actions{flex:1 0 100%;justify-content:flex-end;gap:5px;order:3;overflow-x:auto;
+  .hud-actions{flex:1 0 100%;justify-content:flex-start;gap:5px;order:3;overflow-x:auto;
     -webkit-overflow-scrolling:touch;scrollbar-width:none}
   .hud-actions::-webkit-scrollbar{display:none}
 }
