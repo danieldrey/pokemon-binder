@@ -238,8 +238,24 @@ function renderWishlist(){
 }
 renderWishlist();
 
-function openFocus(c){
-  const box=document.getElementById("focus");
+const focusBox=document.getElementById("focus");
+const focusBackdrop=document.getElementById("focusBackdrop");
+const focusCloseBtn=document.getElementById("focusClose");
+let focusOpen=false;
+let focusScrollY=0;
+
+function lockBody(){
+  focusScrollY=window.scrollY||window.pageYOffset||0;
+  document.body.classList.add("focus-lock");
+  document.body.style.top=`-${focusScrollY}px`;
+}
+function unlockBody(){
+  document.body.classList.remove("focus-lock");
+  document.body.style.top="";
+  window.scrollTo(0, focusScrollY);
+}
+
+function fillFocus(c){
   const card=document.getElementById("bigCard");
   card.className="card big";
   card.innerHTML = `<div class="face"><img src="${c.art||""}" alt="${c.name||""}"></div><div class="foil"></div><div class="sparkle"></div><div class="glare"></div><div class="edge"></div>`;
@@ -248,7 +264,7 @@ function openFocus(c){
   const g = c.graded_prices||{};
   const wg = c.worth_grading||{};
   document.getElementById("focusMeta").innerHTML = `
-    <h3>${c.name||""}</h3>
+    <h3 id="focusHeading">${c.name||""}</h3>
     <div class="kv">
       <span>סט</span><b>${c.set_name||""} · ${c.number||""}</b>
       <span>מצב</span><b>${c.grade? (c.grade_company+" "+c.grade) : (c.condition||"NM")}</b>
@@ -262,10 +278,43 @@ function openFocus(c){
     <p class="set-stats">${wg.detail_he||""}</p>
     ${c.manual_value_note? `<p class="set-stats">${c.manual_value_note}</p>`:""}
   `;
-  box.hidden=false;
 }
-document.getElementById("focusClose").onclick=()=>document.getElementById("focus").hidden=true;
-document.addEventListener("keydown", ev=>{ if(ev.key==="Escape") document.getElementById("focus").hidden=true; });
+
+function openFocus(c){
+  fillFocus(c);
+  if(!focusOpen){
+    lockBody();
+    focusBox.hidden=false;
+    focusOpen=true;
+    history.pushState({binderFocus:true, id:c.id||c.name||""}, "", "#card");
+    focusCloseBtn.focus();
+  }
+}
+
+function closeFocus(fromPop){
+  if(!focusOpen) return;
+  focusOpen=false;
+  focusBox.hidden=true;
+  unlockBody();
+  if(!fromPop && history.state && history.state.binderFocus){
+    history.back();
+  }
+}
+
+focusCloseBtn.addEventListener("click", ev=>{ ev.preventDefault(); ev.stopPropagation(); closeFocus(); });
+focusBackdrop.addEventListener("click", ev=>{ ev.preventDefault(); closeFocus(); });
+focusBackdrop.addEventListener("pointerup", ev=>{
+  if(ev.target===focusBackdrop) closeFocus();
+});
+document.addEventListener("keydown", ev=>{
+  if(ev.key==="Escape" && focusOpen){ ev.preventDefault(); closeFocus(); }
+});
+window.addEventListener("popstate", ()=>{
+  if(focusOpen) closeFocus(true);
+});
+if(location.hash==="#card"){
+  history.replaceState(null, "", location.pathname + location.search);
+}
 
 /* tools tab copy */
 document.getElementById("gradedCard").innerHTML = `
