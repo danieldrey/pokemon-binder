@@ -1,0 +1,38 @@
+name: Refresh card prices
+
+on:
+  schedule:
+    # Monday 08:00 UTC = 10:00 Asia/Jerusalem in winter, 11:00 in summer.
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Refresh TCGdex prices and append a snapshot
+        run: node scripts/refresh-prices.mjs
+
+      - name: Commit and push if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.js data.json data/snapshots.json
+          if git diff --cached --quiet; then
+            echo "No price changes."
+            exit 0
+          fi
+          git commit -m "Refresh weekly card prices and append a value snapshot."
+          git push

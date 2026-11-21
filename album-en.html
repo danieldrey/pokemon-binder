@@ -23,6 +23,7 @@
     <div class="hud-actions">
       <button type="button" class="hud-btn gold" id="hitsBtn" aria-expanded="false">Top Hits</button>
       <button type="button" class="hud-btn" id="wishBtn" aria-expanded="false">Wishlist</button>
+      <button type="button" class="hud-btn" id="valueBtn" aria-expanded="false">Value</button>
       <button type="button" class="hud-btn" id="contentsBtn" aria-expanded="false">Contents</button>
     </div>
   </header>
@@ -53,6 +54,24 @@
       <div id="tocList"></div>
     </div>
     <button type="button" class="toc-backdrop" id="tocBackdrop" aria-label="Close contents"></button>
+  </aside>
+
+  <aside id="value" class="hits value-pane" hidden>
+    <div class="hits-panel value-panel" role="dialog" aria-modal="true" aria-labelledby="valueHeading">
+      <div class="hits-head">
+        <div>
+          <p class="eyebrow">Daniel’s Binder</p>
+          <h2 id="valueHeading">Collection value</h2>
+          <p class="hits-sub" id="valueSub"></p>
+        </div>
+        <button type="button" class="focus-x small" id="valueClose" aria-label="Close collection value">✕</button>
+      </div>
+      <div class="value-hero" id="valueHero"></div>
+      <div class="value-chart-wrap" id="valueChartWrap"></div>
+      <p class="value-note" id="valueNote"></p>
+      <div class="value-sets" id="valueSets"></div>
+    </div>
+    <button type="button" class="hits-backdrop" id="valueBackdrop" aria-label="Close collection value"></button>
   </aside>
 
   <aside id="wish" class="hits wish" hidden>

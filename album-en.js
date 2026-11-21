@@ -494,6 +494,7 @@ function jumpToSet(id) {
   closeToc();
   closeHits();
   closeWish();
+  closeValue();
 }
 
 function jumpToCard(id) {
@@ -502,6 +503,7 @@ function jumpToCard(id) {
   closeFocus();
   closeHits();
   closeWish();
+  closeValue();
   closeToc();
   if (idx == null) return;
   pageFlip.turnToPage(idx);
@@ -544,6 +546,7 @@ function openToc() {
   if (!toc) return;
   closeHits();
   closeWish();
+  closeValue();
   toc.hidden = false;
   $("contentsBtn").setAttribute("aria-expanded", "true");
 }
@@ -589,6 +592,7 @@ function openHits() {
   if (!el) return;
   closeToc();
   closeWish();
+  closeValue();
   renderHits();
   el.hidden = false;
   hitsOpen = true;
@@ -715,6 +719,7 @@ function openWish() {
   if (!el) return;
   closeToc();
   closeHits();
+  closeValue();
   renderWish();
   el.hidden = false;
   wishOpen = true;
@@ -727,6 +732,142 @@ function closeWish() {
   el.hidden = true;
   wishOpen = false;
   if ($("wishBtn")) $("wishBtn").setAttribute("aria-expanded", "false");
+}
+
+
+/* ---------- Collection value over time ---------- */
+let valueOpen = false;
+let valueTipIndex = -1;
+
+function snapshots() {
+  return (B.snapshots || []).slice().sort((a, b) => String(a.date).localeCompare(String(b.date)));
+}
+
+function formatDay(isoDate) {
+  if (!isoDate) return "";
+  const [y, m, d] = String(isoDate).split("-");
+  const months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  const mi = Number(m) - 1;
+  return `${Number(d)} ${months[mi] || m} ${y}`;
+}
+
+function valueDelta(curr, prev) {
+  if (prev == null || curr == null) return null;
+  return Math.round((Number(curr) - Number(prev)) * 100) / 100;
+}
+
+function renderValueChart(snaps) {
+  const w = 640, h = 200;
+  const pad = { l: 48, r: 16, t: 18, b: 32 };
+  const innerW = w - pad.l - pad.r;
+  const innerH = h - pad.t - pad.b;
+  if (!snaps.length) {
+    return `<p class="value-note">No snapshots yet. Weekly price refreshes will start the chart.</p>`;
+  }
+  const vals = snaps.map(s => Number(s.ils) || 0);
+  let min = Math.min(...vals), max = Math.max(...vals);
+  if (min === max) { min = Math.max(0, min * 0.92); max = max * 1.08 || 1; }
+  else {
+    const padY = (max - min) * 0.12;
+    min = Math.max(0, min - padY);
+    max += padY;
+  }
+  const xAt = (i) => {
+    if (snaps.length === 1) return pad.l + innerW / 2;
+    return pad.l + (i / (snaps.length - 1)) * innerW;
+  };
+  const yAt = (v) => pad.t + innerH - ((v - min) / (max - min)) * innerH;
+  const pts = snaps.map((s, i) => [xAt(i), yAt(vals[i])]);
+  const line = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
+  const area = `${line} L${pts[pts.length - 1][0].toFixed(1)} ${pad.t + innerH} L${pts[0][0].toFixed(1)} ${pad.t + innerH} Z`;
+  const grid = [0, 0.5, 1].map(t => {
+    const y = pad.t + innerH * (1 - t);
+    const val = min + (max - min) * t;
+    return `<line class="grid" x1="${pad.l}" x2="${w - pad.r}" y1="${y.toFixed(1)}" y2="${y.toFixed(1)}"></line>
+      <text class="axis" x="${pad.l - 8}" y="${y + 4}" text-anchor="end">₪${Math.round(val)}</text>`;
+  }).join("");
+  const labels = snaps.map((s, i) => {
+    if (snaps.length > 8 && i !== 0 && i !== snaps.length - 1 && i % 2) return "";
+    return `<text class="axis" x="${pts[i][0].toFixed(1)}" y="${h - 8}" text-anchor="middle">${escapeHtml(formatDay(s.date))}</text>`;
+  }).join("");
+  const dots = pts.map((p, i) =>
+    `<circle class="dot" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4.5"></circle>
+     <circle class="dot-hit" data-snap="${i}" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="14"></circle>`
+  ).join("");
+  return `<svg class="value-chart" viewBox="0 0 ${w} ${h}" role="img" aria-label="Collection value over time">
+    <defs>
+      <linearGradient id="valueFill" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#e4c27a" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#e4c27a" stop-opacity="0"/>
+      </linearGradient>
+    </defs>
+    ${grid}
+    <path class="area" d="${area}"></path>
+    <path class="line" d="${line}"></path>
+    ${dots}
+    ${labels}
+  </svg>
+  <p class="value-tip" id="valueTip"></p>`;
+}
+
+function renderValue() {
+  const snaps = snapshots();
+  const last = snaps[snaps.length - 1];
+  const prev = snaps.length > 1 ? snaps[snaps.length - 2] : null;
+  const T = B.totals || {};
+  const ils = (last && last.ils != null) ? last.ils : T.ils;
+  const usd = (last && last.usd != null) ? last.usd : T.usd;
+  const fx = (last && last.fx) || (B.meta && B.meta.fx) || {};
+  if ($("valueSub")) {
+    $("valueSub").textContent = `${T.unique || (last && last.unique) || 0} unique · ${T.copies || (last && last.copies) || 0} copies · $1 = ₪${Number(fx.usd_ils || 0).toFixed(3)}` +
+      (fx.usd_date ? ` (${formatDay(fx.usd_date)})` : "");
+  }
+  const delta = prev ? valueDelta(ils, prev.ils) : null;
+  let deltaHtml = "";
+  if (delta != null) {
+    const cls = delta > 0 ? "up" : delta < 0 ? "down" : "flat";
+    const sign = delta > 0 ? "+" : "";
+    deltaHtml = `<p class="value-delta ${cls}">${sign}${shekel(delta)} since ${formatDay(prev.date)}</p>`;
+  } else {
+    deltaHtml = `<p class="value-delta flat">First snapshot · weekly updates start from here</p>`;
+  }
+  if ($("valueHero")) {
+    $("valueHero").innerHTML = `<p class="value-now">${money(ils, usd)}</p>${deltaHtml}`;
+  }
+  if ($("valueChartWrap")) $("valueChartWrap").innerHTML = renderValueChart(snaps);
+  if ($("valueNote")) {
+    $("valueNote").textContent = snaps.length < 2
+      ? "A GitHub Action refreshes TCGdex market prices every Monday and appends a snapshot, so this chart will grow on its own."
+      : `Prices refresh automatically every Monday via TCGdex, using Bank of Israel exchange rates. ${snaps.length} snapshots so far.`;
+  }
+  if ($("valueSets")) {
+    $("valueSets").innerHTML = (B.sets || []).map(s =>
+      `<div class="value-set">
+        <b>${escapeHtml(s.name || s.id)}</b>
+        <span class="pct">${s.owned || 0} / ${s.total || 0}</span>
+        <span class="val">${s.value_ils != null ? money(s.value_ils, s.value_usd) : "—"}</span>
+      </div>`
+    ).join("");
+  }
+  valueTipIndex = -1;
+}
+
+function openValue() {
+  const el = $("value");
+  if (!el) return;
+  closeToc(); closeHits(); closeWish();
+  renderValue();
+  el.hidden = false;
+  valueOpen = true;
+  if ($("valueBtn")) $("valueBtn").setAttribute("aria-expanded", "true");
+  if ($("valueClose")) $("valueClose").focus();
+}
+function closeValue() {
+  const el = $("value");
+  if (!el || el.hidden) return;
+  el.hidden = true;
+  valueOpen = false;
+  if ($("valueBtn")) $("valueBtn").setAttribute("aria-expanded", "false");
 }
 
 /* ---------- card modal ---------- */
@@ -870,6 +1011,9 @@ function applyQueryJump() {
     if (q.get("wish") === "1" || q.get("wish") === "true" || q.get("wishlist") === "1" || location.hash === "#wishlist" || location.hash === "#wish") {
       setTimeout(openWish, 200);
     }
+    if (q.get("value") === "1" || q.get("value") === "true" || location.hash === "#value") {
+      setTimeout(openValue, 200);
+    }
   } catch (e) {}
 }
 
@@ -909,7 +1053,7 @@ function init() {
   document.addEventListener("keydown", ev => {
     if (focusOpen) return;
     if (ev.target.matches && ev.target.matches("input,select,textarea,button")) {
-      if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); }
+      if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); }
       return;
     }
     if (hitsOpen) {
@@ -920,9 +1064,13 @@ function init() {
       if (ev.key === "Escape") { ev.preventDefault(); closeWish(); }
       return;
     }
+    if (valueOpen) {
+      if (ev.key === "Escape") { ev.preventDefault(); closeValue(); }
+      return;
+    }
     if (ev.key === "ArrowRight" || ev.key === "PageDown") { ev.preventDefault(); nextPage(); }
     if (ev.key === "ArrowLeft" || ev.key === "PageUp") { ev.preventDefault(); prevPage(); }
-    if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); }
+    if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); }
   });
 
   $("contentsBtn").addEventListener("click", () => $("toc").hidden ? openToc() : closeToc());
@@ -984,6 +1132,26 @@ function init() {
     ev.preventDefault();
     const card = cardById(item.dataset.id);
     if (card) openFocus(card);
+  });
+
+  if ($("valueBtn")) $("valueBtn").addEventListener("click", () => $("value").hidden ? openValue() : closeValue());
+  if ($("valueClose")) $("valueClose").addEventListener("click", closeValue);
+  if ($("valueBackdrop")) $("valueBackdrop").addEventListener("click", closeValue);
+  if ($("valueChartWrap")) $("valueChartWrap").addEventListener("pointerover", ev => {
+    const hit = ev.target.closest("[data-snap]");
+    if (!hit) return;
+    const snaps = snapshots();
+    const s = snaps[Number(hit.dataset.snap)];
+    const tip = $("valueTip");
+    if (s && tip) tip.textContent = `${formatDay(s.date)} · ${money(s.ils, s.usd)} · ${s.unique || 0} unique`;
+  });
+  if ($("valueChartWrap")) $("valueChartWrap").addEventListener("click", ev => {
+    const hit = ev.target.closest("[data-snap]");
+    if (!hit) return;
+    const snaps = snapshots();
+    const s = snaps[Number(hit.dataset.snap)];
+    const tip = $("valueTip");
+    if (s && tip) tip.textContent = `${formatDay(s.date)} · ${money(s.ils, s.usd)} · ${s.unique || 0} unique`;
   });
 
   $("soundToggle").addEventListener("click", () => {

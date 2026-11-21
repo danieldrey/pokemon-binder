@@ -41365,5 +41365,82 @@
     "priced": 653,
     "unpriced": 0,
     "count": 653
-  }
+  },
+  "snapshots": [
+    {
+      "date": "2026-11-21",
+      "captured_at": "2026-11-21T20:30:41+02:00",
+      "ils": 146.39,
+      "usd": 43.68,
+      "unique": 133,
+      "copies": 171,
+      "priced_copies": 171,
+      "fx": {
+        "usd_ils": 3.326,
+        "eur_ils": 3.6503,
+        "usd_date": "2026-11-20",
+        "source": "Bank of Israel"
+      },
+      "missing_ils": 50869.77,
+      "missing_usd": 15294.43,
+      "sets": [
+        {
+          "id": "M6",
+          "name": "Storm Emeralda",
+          "owned": 65,
+          "total": 113,
+          "ils": 101.61,
+          "usd": 30.24
+        },
+        {
+          "id": "me04",
+          "name": "Chaos Rising",
+          "owned": 27,
+          "total": 122,
+          "ils": 16.96,
+          "usd": 5.09
+        },
+        {
+          "id": "me05",
+          "name": "Pitch Black",
+          "owned": 19,
+          "total": 120,
+          "ils": 14.94,
+          "usd": 4.48
+        },
+        {
+          "id": "me02",
+          "name": "Phantasmal Flames",
+          "owned": 12,
+          "total": 130,
+          "ils": 7.46,
+          "usd": 2.24
+        },
+        {
+          "id": "me03",
+          "name": "Perfect Order",
+          "owned": 6,
+          "total": 124,
+          "ils": 2.2,
+          "usd": 0.66
+        },
+        {
+          "id": "30th",
+          "name": "30th Celebration",
+          "owned": 3,
+          "total": 161,
+          "ils": 2.89,
+          "usd": 0.87
+        },
+        {
+          "id": "mee",
+          "name": "Mega Evolution Energy",
+          "owned": 1,
+          "total": 16,
+          "ils": 0.33,
+          "usd": 0.1
+        }
+      ]
+    }
+  ]
 }
