@@ -36,9 +36,15 @@ let wanted = loadWanted();
 let soundOn = false;
 try { soundOn = localStorage.getItem(LS_SOUND) === "on"; } catch (e) {}
 
-const byId = new Map((B.cards || []).map(c => [c.id, c]));
-const allById = new Map();
-(B.sets || []).forEach(s => (s.cards || []).forEach(c => { if (c && c.id) allById.set(c.id, c); }));
+const LS_ADDS = "nextpull-pack-adds";
+let byId = new Map();
+let allById = new Map();
+function refreshIndexes() {
+  byId = new Map((B.cards || []).map(c => [c.id, c]));
+  allById = new Map();
+  (B.sets || []).forEach(s => (s.cards || []).forEach(c => { if (c && c.id) allById.set(c.id, c); }));
+}
+refreshIndexes();
 function enrich(c) {
   if (!c) return c;
   const extra = byId.get(c.id);
@@ -502,6 +508,7 @@ function jumpToSet(id) {
   closeWish();
   closeValue();
   closeTrade();
+  closePack();
 }
 
 function jumpToCard(id) {
@@ -512,6 +519,7 @@ function jumpToCard(id) {
   closeWish();
   closeValue();
   closeTrade();
+  closePack();
   closeToc();
   if (idx == null) return;
   pageFlip.turnToPage(idx);
@@ -556,6 +564,7 @@ function openToc() {
   closeWish();
   closeValue();
   closeTrade();
+  closePack();
   toc.hidden = false;
   $("contentsBtn").setAttribute("aria-expanded", "true");
 }
@@ -603,6 +612,7 @@ function openHits() {
   closeWish();
   closeValue();
   closeTrade();
+  closePack();
   renderHits();
   el.hidden = false;
   hitsOpen = true;
@@ -731,6 +741,7 @@ function openWish() {
   closeHits();
   closeValue();
   closeTrade();
+  closePack();
   renderWish();
   el.hidden = false;
   wishOpen = true;
@@ -866,7 +877,7 @@ function renderValue() {
 function openValue() {
   const el = $("value");
   if (!el) return;
-  closeToc(); closeHits(); closeWish(); closeTrade();
+  closeToc(); closeHits(); closeWish(); closeTrade(); closePack();
   renderValue();
   el.hidden = false;
   valueOpen = true;
@@ -977,7 +988,7 @@ function renderTrade() {
 function openTrade() {
   const el = $("trade");
   if (!el) return;
-  closeToc(); closeHits(); closeWish(); closeValue();
+  closeToc(); closeHits(); closeWish(); closeValue(); closePack();
   renderTrade();
   el.hidden = false;
   tradeOpen = true;
@@ -991,6 +1002,344 @@ function closeTrade() {
   tradeOpen = false;
   if ($("tradeBtn")) $("tradeBtn").setAttribute("aria-expanded", "false");
 }
+
+/* ---------- Pack-opening mode (localStorage + export JSON) ---------- */
+let packOpen = false;
+const packQueue = [];
+let packSearchTimer = 0;
+
+function loadAdds() {
+  try { return JSON.parse(localStorage.getItem(LS_ADDS) || "[]"); } catch (e) { return []; }
+}
+function saveAdds(arr) {
+  try { localStorage.setItem(LS_ADDS, JSON.stringify(arr)); } catch (e) {}
+}
+
+function recountTotals() {
+  let ils = 0, usd = 0, unique = 0, copies = 0;
+  (B.cards || []).forEach(c => {
+    const q = c.quantity || 1;
+    unique += 1;
+    copies += q;
+    if (c.value && c.value.ils != null) {
+      ils += Number(c.value.ils) * q;
+      usd += Number(c.value.usd || 0) * q;
+    }
+  });
+  B.totals = Object.assign({}, B.totals || {}, {
+    ils: Math.round(ils * 100) / 100,
+    usd: Math.round(usd * 100) / 100,
+    unique,
+    copies,
+    priced_copies: copies,
+    ils_low: Math.round(ils * 100) / 100,
+    ils_high: Math.round(ils * 100) / 100,
+  });
+}
+
+function applyOneAdd(add, recount) {
+  if (!add || !add.id) return;
+  const qty = Math.max(1, Number(add.quantity) || 1);
+  let set = (B.sets || []).find(s => s.id === add.set_id) ||
+    (B.sets || []).find(s => (s.cards || []).some(c => c.id === add.id));
+  let sc = set ? (set.cards || []).find(c => c.id === add.id) : null;
+  if (sc) {
+    if (sc.owned) sc.quantity = (sc.quantity || 1) + qty;
+    else {
+      sc.owned = true;
+      sc.quantity = qty;
+      set.owned = (set.owned || 0) + 1;
+      if (set.missing_count != null) set.missing_count = Math.max(0, set.missing_count - 1);
+      if (set.total) set.pct = Math.round(1000 * set.owned / set.total) / 10;
+    }
+    if (add.art && !sc.art) sc.art = add.art;
+    if (add.rarity && !sc.rarity) sc.rarity = add.rarity;
+  } else if (set) {
+    sc = Object.assign({}, add, { owned: true, quantity: qty });
+    set.cards = set.cards || [];
+    set.cards.push(sc);
+    set.owned = (set.owned || 0) + 1;
+    set.total = (set.total || 0) + 1;
+  }
+  if (!B.cards) B.cards = [];
+  const oc = B.cards.find(c => c.id === add.id);
+  if (oc) oc.quantity = (oc.quantity || 1) + qty;
+  else B.cards.push(Object.assign({}, sc || add, { owned: true, quantity: qty }));
+  const val = (sc && sc.value) || add.value;
+  if (set && val && val.ils != null) {
+    set.value_ils = Math.round(((set.value_ils || 0) + Number(val.ils) * qty) * 100) / 100;
+    set.value_usd = Math.round(((set.value_usd || 0) + Number(val.usd || 0) * qty) * 100) / 100;
+  }
+  if (recount !== false) recountTotals();
+  refreshIndexes();
+}
+
+function applyLocalAdds() {
+  loadAdds().forEach(a => applyOneAdd(a, false));
+  recountTotals();
+  refreshIndexes();
+}
+
+function tcgdexToCard(raw) {
+  if (!raw || !raw.id) return null;
+  const set = raw.set || {};
+  const image = raw.image || "";
+  return {
+    id: raw.id,
+    name: raw.name,
+    number: String(raw.localId || raw.number || ""),
+    rarity: raw.rarity || null,
+    set_id: set.id || String(raw.id).split("-")[0],
+    set_name: set.name || "",
+    art: image ? (image.endsWith(".webp") ? image : image + "/low.webp") : "",
+    value: raw.value || null,
+  };
+}
+
+function searchCatalog(q) {
+  q = (q || "").trim().toLowerCase();
+  if (!q) return [];
+  const hits = [];
+  const seen = new Set();
+  const score = (c) => {
+    const name = (c.name || "").toLowerCase();
+    const id = (c.id || "").toLowerCase();
+    const num = String(c.number || "").toLowerCase();
+    const num2 = num.replace(/^0+/, "");
+    const q2 = q.replace(/^0+/, "");
+    if (id === q || name === q) return 0;
+    if (num === q || num2 === q2) return 1;
+    if (name.startsWith(q) || id.startsWith(q)) return 2;
+    if (name.includes(q) || id.includes(q) || num.includes(q)) return 3;
+    return 9;
+  };
+  allById.forEach(c => {
+    if (!c || !c.id || seen.has(c.id)) return;
+    if (score(c) < 9) { seen.add(c.id); hits.push(c); }
+  });
+  hits.sort((a, b) => score(a) - score(b) || String(a.name || "").localeCompare(String(b.name || "")));
+  return hits.slice(0, 24);
+}
+
+async function searchTcgdex(q) {
+  q = (q || "").trim();
+  if (q.length < 2) return [];
+  const out = [];
+  const seen = new Set();
+  const push = (c) => { if (c && c.id && !seen.has(c.id)) { seen.add(c.id); out.push(c); } };
+  const look = async (url) => {
+    try {
+      const res = await fetch(url);
+      if (!res.ok) return null;
+      return await res.json();
+    } catch (e) { return null; }
+  };
+  if (/^[A-Za-z0-9]+-\d/.test(q) || /^[A-Za-z]{1,6}-[0-9A-Za-z]+$/.test(q)) {
+    push(tcgdexToCard(await look("https://api.tcgdex.net/v2/en/cards/" + encodeURIComponent(q))) ||
+         tcgdexToCard(await look("https://api.tcgdex.net/v2/ja/cards/" + encodeURIComponent(q))));
+  }
+  const list = await look("https://api.tcgdex.net/v2/en/cards?name=" + encodeURIComponent(q));
+  if (Array.isArray(list)) list.forEach(c => push(tcgdexToCard(c)));
+  return out.slice(0, 24);
+}
+
+function mergeSearch(local, remote) {
+  const seen = new Set();
+  const out = [];
+  [...local, ...remote].forEach(c => {
+    if (!c || !c.id || seen.has(c.id)) return;
+    seen.add(c.id);
+    out.push(c);
+  });
+  return out.slice(0, 24);
+}
+
+function renderPackResults(shot, results) {
+  const box = document.querySelector(`.pack-results[data-shot="${shot.uid}"]`);
+  if (!box) return;
+  if (!results.length) {
+    box.innerHTML = shot.query && shot.query.length >= 1
+      ? `<p class="pack-empty">No matches. Try a name, a number, or a TCGdex id like me04-011.</p>`
+      : "";
+    return;
+  }
+  box.innerHTML = results.map(c => `
+    <button type="button" class="pack-hit" data-shot="${shot.uid}" data-card-id="${escapeHtml(c.id)}">
+      <img src="${escapeHtml(c.art || "")}" alt="">
+      <div>
+        <b>${escapeHtml(c.name || c.id)}</b>
+        <span>${escapeHtml(c.set_name || c.set_id || "")} · ${escapeHtml(c.number || "")}${c.rarity ? " · " + escapeHtml(rarityLabel(c)) : ""}</span>
+      </div>
+    </button>`).join("");
+  box.querySelectorAll(".pack-hit").forEach(btn => {
+    const card = results.find(c => c.id === btn.dataset.cardId);
+    if (card) btn._card = card;
+  });
+}
+
+async function runPackSearch(shot, query) {
+  shot.query = query;
+  const local = searchCatalog(query);
+  renderPackResults(shot, local);
+  if (query.trim().length >= 2) {
+    const remote = await searchTcgdex(query);
+    if (shot.query === query) renderPackResults(shot, mergeSearch(local, remote));
+  }
+}
+
+function renderPackQueue() {
+  const root = $("packQueue");
+  if (!root) return;
+  if (!packQueue.length) {
+    root.innerHTML = "";
+    return;
+  }
+  root.innerHTML = packQueue.map(shot => `
+    <article class="pack-shot" data-shot="${shot.uid}">
+      <img src="${escapeHtml(shot.url)}" alt="Pulled card photo">
+      <div>
+        <input class="pack-search" data-shot="${shot.uid}" type="search" placeholder="Search name, number, or id…" value="${escapeHtml(shot.query || "")}" ${shot.done ? "disabled" : ""}>
+        ${shot.done ? `<p class="pack-empty">Added ${escapeHtml(shot.confirmed || "")} to the album.</p>` : `<div class="pack-results" data-shot="${shot.uid}"></div>`}
+      </div>
+    </article>`).join("");
+  packQueue.forEach(shot => {
+    if (!shot.done && shot.results) renderPackResults(shot, shot.results);
+  });
+}
+
+function renderPackPending() {
+  const root = $("packPending");
+  if (!root) return;
+  const adds = loadAdds();
+  if ($("packSub")) {
+    $("packSub").textContent = adds.length
+      ? `${adds.length} card${adds.length === 1 ? "" : "s"} saved on this device. Export JSON to merge them into the binder data.`
+      : "Photograph or upload your pulls, confirm each card, and they’ll fly into the album on this device.";
+  }
+  if (!adds.length) { root.innerHTML = ""; return; }
+  root.innerHTML = `<h3>On this device</h3>` + adds.map((c, i) => `
+    <div class="pack-add">
+      <img src="${escapeHtml(c.art || "")}" alt="">
+      <div>
+        <b>${escapeHtml(c.name || c.id)}</b>
+        <span class="wish-meta">${escapeHtml(c.set_name || "")} · ${escapeHtml(c.number || "")} · ×${c.quantity || 1}</span>
+      </div>
+      <button type="button" data-drop-add="${i}">Remove</button>
+    </div>`).join("");
+}
+
+function renderPack() {
+  renderPackQueue();
+  renderPackPending();
+}
+
+function addPackFiles(fileList) {
+  [...fileList].forEach(file => {
+    if (!file || !file.type.startsWith("image/")) return;
+    const uid = "s" + Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
+    packQueue.push({ uid, file, url: URL.createObjectURL(file), query: "", results: [], done: false });
+  });
+  renderPackQueue();
+}
+
+function exportAdds() {
+  const adds = loadAdds();
+  const payload = {
+    schema: "nextpull-binder-adds/v1",
+    exported_at: new Date().toISOString(),
+    note: "Merge into the repo with: python3 build_binder.py merge-adds this-file.json",
+    cards: adds,
+  };
+  const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+  const a = document.createElement("a");
+  const day = new Date().toISOString().slice(0, 10);
+  a.href = URL.createObjectURL(blob);
+  a.download = `binder-adds-${day}.json`;
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => { URL.revokeObjectURL(a.href); a.remove(); }, 500);
+}
+
+function flyIntoAlbum(src, done) {
+  const img = document.createElement("img");
+  img.className = "pack-fly";
+  img.src = src || "";
+  const start = document.querySelector(".pack-shot img") || $("packBtn") || document.body;
+  const sr = start.getBoundingClientRect();
+  const host = $("binderFrame") || $("bookHost") || document.body;
+  const er = host.getBoundingClientRect();
+  img.style.left = sr.left + "px";
+  img.style.top = sr.top + "px";
+  img.style.transform = "translate(0,0) scale(1)";
+  document.body.appendChild(img);
+  requestAnimationFrame(() => {
+    const dx = er.left + er.width / 2 - 45 - sr.left;
+    const dy = er.top + er.height / 2 - 63 - sr.top;
+    img.style.transform = `translate(${dx}px, ${dy}px) scale(.2)`;
+    img.style.opacity = "0";
+  });
+  setTimeout(() => { img.remove(); if (done) done(); }, 720);
+}
+
+function confirmPackCard(shot, card, fromEl) {
+  if (!shot || !card || !card.id) return;
+  const add = {
+    id: card.id,
+    name: card.name,
+    set_id: card.set_id,
+    set_name: card.set_name,
+    number: card.number,
+    rarity: card.rarity || null,
+    art: card.art || "",
+    quantity: 1,
+    added_at: new Date().toISOString(),
+    source: "pack",
+  };
+  const existing = loadAdds();
+  const prev = existing.find(a => a.id === add.id);
+  if (prev) prev.quantity = (prev.quantity || 1) + 1;
+  else existing.push(add);
+  saveAdds(existing);
+  applyOneAdd(add, true);
+  shot.done = true;
+  shot.confirmed = card.name || card.id;
+  renderHud();
+  const art = card.art || shot.url;
+  closePack();
+  flyIntoAlbum(art, () => {
+    albumPages = buildAlbumPages();
+    const idx = cardStarts[card.id] != null ? cardStarts[card.id] : (pageFlip ? pageFlip.getCurrentPageIndex() : 0);
+    mountBook(idx);
+    requestAnimationFrame(() => highlightPocket(card.id));
+  });
+}
+
+function dropAdd(index) {
+  const adds = loadAdds();
+  adds.splice(index, 1);
+  saveAdds(adds);
+  // Rebuild from pristine data.js + remaining adds
+  location.reload();
+}
+
+function openPack() {
+  const el = $("pack");
+  if (!el) return;
+  closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack();
+  renderPack();
+  el.hidden = false;
+  packOpen = true;
+  if ($("packBtn")) $("packBtn").setAttribute("aria-expanded", "true");
+  if ($("packClose")) $("packClose").focus();
+}
+function closePack() {
+  const el = $("pack");
+  if (!el || el.hidden) return;
+  el.hidden = true;
+  packOpen = false;
+  if ($("packBtn")) $("packBtn").setAttribute("aria-expanded", "false");
+}
+
 
 /* ---------- card modal ---------- */
 let focusOpen = false, focusScrollY = 0;
@@ -1196,10 +1545,14 @@ function applyQueryJump() {
     if (q.get("trade") === "1" || q.get("trade") === "true" || location.hash === "#trade") {
       setTimeout(openTrade, 200);
     }
+    if (q.get("pack") === "1" || q.get("pack") === "true" || location.hash === "#pack") {
+      setTimeout(openPack, 200);
+    }
   } catch (e) {}
 }
 
 function init() {
+  applyLocalAdds();
   albumPages = buildAlbumPages();
   renderHud();
   renderToc();
@@ -1236,7 +1589,7 @@ function init() {
   document.addEventListener("keydown", ev => {
     if (focusOpen) return;
     if (ev.target.matches && ev.target.matches("input,select,textarea,button")) {
-      if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); }
+      if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); }
       return;
     }
     if (hitsOpen) {
@@ -1252,12 +1605,12 @@ function init() {
       return;
     }
     if (tradeOpen) {
-      if (ev.key === "Escape") { ev.preventDefault(); closeTrade(); }
+      if (ev.key === "Escape") { ev.preventDefault(); closeTrade(); closePack(); }
       return;
     }
     if (ev.key === "ArrowRight" || ev.key === "PageDown") { ev.preventDefault(); nextPage(); }
     if (ev.key === "ArrowLeft" || ev.key === "PageUp") { ev.preventDefault(); prevPage(); }
-    if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); }
+    if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); }
   });
 
   $("contentsBtn").addEventListener("click", () => $("toc").hidden ? openToc() : closeToc());
@@ -1355,6 +1708,40 @@ function init() {
       ev.preventDefault();
       const card = cardById(item.dataset.id);
       if (card) openFocus(card);
+    }
+  });
+
+  if ($("packBtn")) $("packBtn").addEventListener("click", () => $("pack").hidden ? openPack() : closePack());
+  if ($("packClose")) $("packClose").addEventListener("click", closePack);
+  if ($("packBackdrop")) $("packBackdrop").addEventListener("click", closePack);
+  if ($("packExport")) $("packExport").addEventListener("click", exportAdds);
+  if ($("packClear")) $("packClear").addEventListener("click", () => {
+    if (!loadAdds().length) return;
+    if (confirm("Clear every pack add saved on this device? The published album is unchanged.")) {
+      saveAdds([]);
+      location.reload();
+    }
+  });
+  const onPackFiles = ev => { addPackFiles(ev.target.files || []); ev.target.value = ""; };
+  if ($("packCamera")) $("packCamera").addEventListener("change", onPackFiles);
+  if ($("packUpload")) $("packUpload").addEventListener("change", onPackFiles);
+  if ($("pack")) $("pack").addEventListener("input", ev => {
+    const inp = ev.target.closest(".pack-search");
+    if (!inp) return;
+    const shot = packQueue.find(s => s.uid === inp.dataset.shot);
+    if (!shot || shot.done) return;
+    clearTimeout(packSearchTimer);
+    packSearchTimer = setTimeout(() => runPackSearch(shot, inp.value), 220);
+  });
+  if ($("pack")) $("pack").addEventListener("click", ev => {
+    const drop = ev.target.closest("[data-drop-add]");
+    if (drop) { ev.preventDefault(); dropAdd(Number(drop.dataset.dropAdd)); return; }
+    const hit = ev.target.closest(".pack-hit");
+    if (hit) {
+      ev.preventDefault();
+      const shot = packQueue.find(s => s.uid === hit.dataset.shot);
+      const card = hit._card || allById.get(hit.dataset.cardId) || cardById(hit.dataset.cardId);
+      if (shot && card) confirmPackCard(shot, card, hit);
     }
   });
 
