@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>הבינדר של דניאל · Next Pull IL</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="top">
+    <div class="brand">
+      <img class="logo" src="logo.png" alt="Next Pull IL">
+      <div>
+        <p class="eyebrow">Next Pull IL</p>
+        <h1 id="title">הבינדר של דניאל</h1>
+        <p class="sub" id="generated"></p>
+      </div>
+    </div>
+    <div class="totals" id="totals"></div>
+  </header>
+
+  <p class="demo-note" id="demoNote"></p>
+  <p class="demo-note" id="collectrGap"></p>
+  <div id="reviewBox" class="review-box" hidden></div>
+
+  <nav class="tabs" role="tablist">
+    <button class="tab on" data-tab="binder">הבינדר</button>
+    <button class="tab" data-tab="sets">השלמת סטים</button>
+    <button class="tab" data-tab="wishlist">רשימת השגה</button>
+    <button class="tab" data-tab="tools">דירוג ודילים</button>
+  </nav>
+
+  <section id="panel-binder" class="panel on">
+    <div class="toolbar">
+      <label>מיון
+        <select id="sort">
+          <option value="binder">סדר בינדר</option>
+          <option value="value">שווי (גבוה לנמוך)</option>
+          <option value="set">סט ומספר</option>
+          <option value="name">שם</option>
+        </select>
+      </label>
+      <label>סינון
+        <select id="filter">
+          <option value="all">הכול</option>
+          <option value="slabs">סלאבים</option>
+          <option value="raw">קלפים רגילים</option>
+        </select>
+      </label>
+      <label class="grow">חיפוש
+        <input id="q" type="search" placeholder="שם, סט או מספר">
+      </label>
+    </div>
+    <div id="pages" class="pages"></div>
+  </section>
+
+  <section id="panel-sets" class="panel">
+    <div id="sets"></div>
+  </section>
+
+  <section id="panel-wishlist" class="panel">
+    <div class="wish-head" id="wishHead"></div>
+    <div id="wishlist" class="wish-grid"></div>
+  </section>
+
+  <section id="panel-tools" class="panel">
+    <div class="tools-grid">
+      <article class="tool-card" id="gradedCard"></article>
+      <article class="tool-card" id="pregradeCard"></article>
+      <article class="tool-card" id="dealsCard"></article>
+    </div>
+  </section>
+
+  <div id="focus" hidden>
+    <button class="backdrop" id="focusClose" aria-label="סגירה"></button>
+    <div class="focus-panel">
+      <div class="persp"><div class="card big" id="bigCard"></div></div>
+      <div class="focus-meta" id="focusMeta"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p id="share"></p>
+    <p>נתוני קלפים ומחיר raw: <a href="https://tcgdex.dev">TCGdex</a> (TCGplayer / Cardmarket). שערי מטבע: בנק ישראל. פוקימון הוא סימן מסחרי של Nintendo / Creatures / GAME FREAK — העמוד הוא כלי אישי לשיתוף אוסף, לא מוצר רשמי.</p>
+  </footer>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
