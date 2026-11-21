@@ -137,9 +137,15 @@ function buildAlbumPages() {
   return pages;
 }
 
-function holoCard(src, alt, eager) {
+function isHoloRare(c) {
+  const r = (c && c.rarity) || "";
+  return r === "Illustration rare" || r === "Special illustration rare" || r === "Ultra Rare";
+}
+
+function holoCard(src, alt, eager, card) {
   const attr = eager ? `src="${escapeHtml(src || "")}"` : `data-src="${escapeHtml(src || "")}" src=""`;
-  return `<div class="card" title="${escapeHtml(alt || "")}">
+  const live = isHoloRare(card) ? " holo-live" : "";
+  return `<div class="card${live}" title="${escapeHtml(alt || "")}">
     <div class="face"><img ${attr} alt="${escapeHtml(alt || "")}" decoding="async"></div>
     <div class="foil"></div><div class="sparkle"></div><div class="glare"></div><div class="edge"></div>
   </div>`;
@@ -167,7 +173,7 @@ function pocketEl(c, opts) {
   if (owned) {
     wrap.innerHTML = `
       ${badge}
-      <div class="persp">${holoCard(card.art, card.name, false)}</div>
+      <div class="persp">${holoCard(card.art, card.name, false, card)}</div>
       <div class="meta">
         <span class="en">${name}</span>
         <small>${num}${card.quantity > 1 ? " · ×" + card.quantity : ""}</small>
@@ -177,7 +183,7 @@ function pocketEl(c, opts) {
   } else if (card && card.art) {
     const star = wanted.has(card.id) ? "★" : "☆";
     wrap.innerHTML = `
-      <div class="persp">${holoCard(card.art, card.name, false)}</div>
+      <div class="persp">${holoCard(card.art, card.name, false, card)}</div>
       <div class="meta">
         <span class="en">${name}</span>
         <small>${num}</small>
@@ -218,7 +224,7 @@ function fillPage(el, page) {
       <h2>Daniel’s Binder</h2>
       <div class="count">${T.unique || 0} cards · ${sets} sets</div>
       <div class="value">${money(T.ils, T.usd)}</div>
-      <div class="fan">${fan.map(c => holoCard(c.art, c.name, true)).join("")}</div>
+      <div class="fan">${fan.map(c => holoCard(c.art, c.name, true, c)).join("")}</div>
       <p class="hint">Turn the page</p>
     </div>`;
     el.appendChild(inner);
@@ -582,7 +588,7 @@ function renderHits() {
         <span class="hit-rank">${String(i + 1).padStart(2, "0")}</span>
         ${rare ? `<span class="hit-rare">${escapeHtml(rare)}</span>` : ""}
       </div>
-      <div class="persp">${holoCard(c.art, c.name, true)}</div>
+      <div class="persp">${holoCard(c.art, c.name, true, c)}</div>
       <h3 class="hit-name">${escapeHtml(c.name || "")}</h3>
       <p class="hit-set">${escapeHtml(c.set_name || "")} · ${escapeHtml(c.number || "")}${copies}</p>
       <p class="hit-val">${valueLabel(c.value)}</p>
@@ -998,22 +1004,79 @@ function unlockBody() {
   document.body.style.top = "";
   window.scrollTo(0, focusScrollY);
 }
+function setHoloVars(el, x, y, tracking) {
+  if (!el) return;
+  const cx = Math.min(1, Math.max(0, x));
+  const cy = Math.min(1, Math.max(0, y));
+  el.style.setProperty("--mx", (cx * 100) + "%");
+  el.style.setProperty("--my", (cy * 100) + "%");
+  el.style.setProperty("--ry", ((cx - .5) * 18) + "deg");
+  el.style.setProperty("--rx", ((.5 - cy) * 12) + "deg");
+  el.style.setProperty("--o", "1");
+  el.style.setProperty("--pos", (cx * 100) + "%");
+  el.classList.toggle("is-tracking", !!tracking);
+}
+function resetHoloVars(el) {
+  if (!el) return;
+  el.style.setProperty("--rx", "0deg");
+  el.style.setProperty("--ry", "0deg");
+  el.style.setProperty("--o", el.classList.contains("holo-live") ? ".42" : "0");
+  el.classList.remove("is-tracking");
+}
+
+let tiltListening = false;
+let lastHolo = null;
+
+async function requestHoloTilt() {
+  if (tiltListening) return;
+  try {
+    if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
+      const state = await DeviceOrientationEvent.requestPermission();
+      if (state !== "granted") return;
+    } else if (typeof DeviceOrientationEvent === "undefined") {
+      return;
+    }
+  } catch (e) {
+    return;
+  }
+  tiltListening = true;
+  window.addEventListener("deviceorientation", ev => {
+    const x = ((ev.gamma ?? 0) + 30) / 60;
+    const y = ((ev.beta ?? 40) - 10) / 60;
+    document.querySelectorAll(".card.holo-live").forEach(el => setHoloVars(el, x, y, true));
+  }, { passive: true });
+}
+
 function enableTilt(el) {
   if (!el) return;
-  el.addEventListener("pointermove", ev => {
-    const r = el.getBoundingClientRect();
-    const x = (ev.clientX - r.left) / r.width, y = (ev.clientY - r.top) / r.height;
-    el.style.setProperty("--mx", (x * 100) + "%");
-    el.style.setProperty("--my", (y * 100) + "%");
-    el.style.setProperty("--ry", ((x - .5) * 16) + "deg");
-    el.style.setProperty("--rx", ((.5 - y) * 10) + "deg");
-    el.style.setProperty("--o", "1");
-    el.style.setProperty("--pos", (x * 80) + "%");
-  });
-  el.addEventListener("pointerleave", () => {
-    el.style.setProperty("--rx", "0deg");
-    el.style.setProperty("--ry", "0deg");
-    el.style.setProperty("--o", "0");
+  // Pointer tracking is delegated globally for .holo-live; this keeps a hook
+  // on the focus card too (including non-holo rares, for a light glare).
+  el.addEventListener("pointerdown", () => { if (el.classList.contains("holo-live")) requestHoloTilt(); });
+}
+
+function bindHoloPointer() {
+  if (bindHoloPointer.bound) return;
+  bindHoloPointer.bound = true;
+  const move = ev => {
+    const card = ev.target && ev.target.closest && ev.target.closest(".card.holo-live");
+    if (card) {
+      if (ev.pointerType === "touch" && tiltListening) return;
+      const r = card.getBoundingClientRect();
+      if (!r.width || !r.height) return;
+      setHoloVars(card, (ev.clientX - r.left) / r.width, (ev.clientY - r.top) / r.height, true);
+      lastHolo = card;
+    } else if (lastHolo) {
+      resetHoloVars(lastHolo);
+      lastHolo = null;
+    }
+  };
+  document.addEventListener("pointermove", move, { passive: true });
+  document.addEventListener("pointerdown", ev => {
+    const card = ev.target && ev.target.closest && ev.target.closest(".card.holo-live");
+    if (card) requestHoloTilt();
+  }, { passive: true });
+  document.addEventListener("pointerleave", () => {
+    if (lastHolo) { resetHoloVars(lastHolo); lastHolo = null; }
   });
 }
 function storageNote(c) {
@@ -1024,7 +1087,7 @@ function storageNote(c) {
 }
 function fillFocus(c) {
   const card = $("bigCard");
-  card.className = "card big";
+  card.className = "card big" + (isHoloRare(c) ? " holo-live" : "");
   card.innerHTML = `<div class="face"><img src="${escapeHtml(c.art || "")}" alt="${escapeHtml(c.name || "")}"></div>
     <div class="foil"></div><div class="sparkle"></div><div class="glare"></div><div class="edge"></div>`;
   enableTilt(card);
@@ -1140,6 +1203,7 @@ function init() {
   albumPages = buildAlbumPages();
   renderHud();
   renderToc();
+  bindHoloPointer();
   let started = false;
   const start = () => { if (started) return; started = true; mountBook(0); applyQueryJump(); };
   setTimeout(start, 350);

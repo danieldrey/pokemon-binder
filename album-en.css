@@ -146,6 +146,43 @@ body.portrait-book .page-inner{padding:10px 10px 8px 28px} /* room for left ring
 .card .glare{position:absolute;inset:0;border-radius:inherit;pointer-events:none;mix-blend-mode:overlay;opacity:calc(.15 + var(--o)*.6);
   background:linear-gradient(120deg,transparent 30%,#fff4 48%,transparent 62%)}
 .card .edge{position:absolute;inset:0;border-radius:inherit;pointer-events:none;box-shadow:inset 0 0 0 1px #ffffff40,inset 0 0 14px #ffffff1a}
+
+/* IR / SAR / UR live holo — follows pointer or device tilt */
+.card.holo-live{--o:.42;transition:transform .12s ease-out}
+.card.holo-live .foil{
+  opacity:calc(.28 + var(--o)*.5);
+  mix-blend-mode:color-dodge;
+  background:
+    linear-gradient(115deg,
+      #ff3b6a00 8%, #ff4d6acc 20%, #ffd24dcc 34%, #53f0b0cc 48%,
+      #4eb6ffcc 62%, #c46bffcc 76%, #ff3b6a00 90%),
+    radial-gradient(circle at var(--mx) var(--my),#fff,transparent 46%);
+  background-size:260% 260%,140% 140%;
+  background-position:var(--pos) calc(var(--my) * .4 + 30%), var(--mx) var(--my);
+  animation:holoIdle 5.5s linear infinite;
+  filter:saturate(1.35) contrast(1.08)}
+.card.holo-live .sparkle{
+  opacity:calc(.25 + var(--o)*.75);
+  background:
+    radial-gradient(circle at var(--pos) 28%,#fff,transparent 22%),
+    radial-gradient(circle at calc(100% - var(--pos)) 72%,#fff8,transparent 18%);
+  animation:holoIdle 5.5s linear infinite}
+.card.holo-live .glare{
+  opacity:calc(.22 + var(--o)*.55);
+  background:linear-gradient(calc(110deg + var(--ry)),transparent 28%,#fff6 48%,transparent 66%);
+  background-size:180% 180%;
+  background-position:var(--pos) var(--my)}
+.card.holo-live.is-tracking .foil,
+.card.holo-live.is-tracking .sparkle{animation:none}
+.card.holo-live.big{--o:.55}
+@keyframes holoIdle{
+  0%{background-position:0% 40%,50% 40%}
+  50%{background-position:80% 60%,60% 50%}
+  100%{background-position:160% 40%,50% 40%}
+}
+@media (prefers-reduced-motion:reduce){
+  .card.holo-live,.card.holo-live .foil,.card.holo-live .sparkle{animation:none;transition:none;transform:none}
+}
 .pocket.missing .card{filter:grayscale(1) brightness(.62) opacity(.72);box-shadow:0 6px 12px -10px #0009;cursor:default}
 .pocket.missing .foil,.pocket.missing .sparkle,.pocket.missing .glare{display:none}
 .meta{width:100%;text-align:center;margin-top:3px;min-height:0}
