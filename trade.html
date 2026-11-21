@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Trade list · Daniel’s Binder</title>
+  <meta name="description" content="Extra copies from Daniel’s Pokémon binder, ready to trade.">
+  <meta property="og:title" content="Daniel’s Binder · Trade list">
+  <meta property="og:description" content="Extra copies from the collection, ready to trade.">
+  <link rel="stylesheet" href="vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="album-en.css">
+</head>
+<body class="album-en trade-page">
+  <div class="room" aria-hidden="true"></div>
+  <header class="hud trade-hud">
+    <a class="hud-brand" href="album-en.html">
+      <img class="hud-logo" src="logo.png" alt="">
+      <div>
+        <p class="eyebrow">Daniel’s Binder</p>
+        <h1>Trade list</h1>
+      </div>
+    </a>
+    <div class="hud-actions">
+      <button type="button" class="hud-btn gold" id="shareBtn">Share</button>
+      <a class="hud-btn" href="album-en.html">Open album</a>
+    </div>
+  </header>
+  <main class="trade-main">
+    <p class="trade-lead" id="tradeLead"></p>
+    <div class="wish-filters" id="tradeFilters"></div>
+    <div class="wish-list trade-list" id="tradeList"></div>
+  </main>
+  <p class="trade-toast" id="tradeToast" hidden>Link copied</p>
+  <script src="data.js"></script>
+  <script src="trade.js"></script>
+</body>
+</html>

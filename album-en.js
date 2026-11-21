@@ -495,6 +495,7 @@ function jumpToSet(id) {
   closeHits();
   closeWish();
   closeValue();
+  closeTrade();
 }
 
 function jumpToCard(id) {
@@ -504,6 +505,7 @@ function jumpToCard(id) {
   closeHits();
   closeWish();
   closeValue();
+  closeTrade();
   closeToc();
   if (idx == null) return;
   pageFlip.turnToPage(idx);
@@ -547,6 +549,7 @@ function openToc() {
   closeHits();
   closeWish();
   closeValue();
+  closeTrade();
   toc.hidden = false;
   $("contentsBtn").setAttribute("aria-expanded", "true");
 }
@@ -593,6 +596,7 @@ function openHits() {
   closeToc();
   closeWish();
   closeValue();
+  closeTrade();
   renderHits();
   el.hidden = false;
   hitsOpen = true;
@@ -720,6 +724,7 @@ function openWish() {
   closeToc();
   closeHits();
   closeValue();
+  closeTrade();
   renderWish();
   el.hidden = false;
   wishOpen = true;
@@ -855,7 +860,7 @@ function renderValue() {
 function openValue() {
   const el = $("value");
   if (!el) return;
-  closeToc(); closeHits(); closeWish();
+  closeToc(); closeHits(); closeWish(); closeTrade();
   renderValue();
   el.hidden = false;
   valueOpen = true;
@@ -868,6 +873,117 @@ function closeValue() {
   el.hidden = true;
   valueOpen = false;
   if ($("valueBtn")) $("valueBtn").setAttribute("aria-expanded", "false");
+}
+
+
+/* ---------- Trade list of duplicates ---------- */
+let tradeOpen = false;
+const tradeState = { set: "all" };
+const extrasOf = (c) => Math.max(0, ((c && c.quantity) || 1) - 1);
+
+function allDuplicates() {
+  return (B.cards || []).filter(c => extrasOf(c) > 0);
+}
+
+function tradeCards() {
+  let cards = allDuplicates();
+  if (tradeState.set !== "all") cards = cards.filter(c => c.set_id === tradeState.set);
+  cards.sort((a, b) => extrasOf(b) - extrasOf(a) || cardValueIls(b) - cardValueIls(a) ||
+    String(a.name || "").localeCompare(String(b.name || "")));
+  return cards;
+}
+
+function tradeUrl() {
+  try { return new URL("trade.html", document.baseURI || location.href).href; }
+  catch (e) { return "https://danieldrey.github.io/pokemon-binder/trade.html"; }
+}
+
+function toast(msg) {
+  const el = $("tradeToast");
+  if (!el) return;
+  el.textContent = msg;
+  el.hidden = false;
+  clearTimeout(toast.t);
+  toast.t = setTimeout(() => { el.hidden = true; }, 1800);
+}
+
+async function shareTradeList() {
+  const url = tradeUrl();
+  const title = "Daniel’s Binder · Trade list";
+  try {
+    if (navigator.share) {
+      await navigator.share({ title, text: "Extra copies from the binder, ready to trade.", url });
+      return;
+    }
+  } catch (e) {
+    if (e && e.name === "AbortError") return;
+  }
+  try {
+    await navigator.clipboard.writeText(url);
+    toast("Link copied");
+  } catch (e) {
+    toast(url);
+  }
+}
+
+function renderTrade() {
+  const cards = tradeCards();
+  const all = allDuplicates();
+  const extras = cards.reduce((s, c) => s + extrasOf(c), 0);
+  const setsWithDups = new Set(all.map(c => c.set_id));
+  if ($("tradeSub")) {
+    $("tradeSub").textContent = cards.length
+      ? `${cards.length} cards · ${extras} extra ${extras === 1 ? "copy" : "copies"} to trade. One of each stays in the album.`
+      : "No extra copies match this filter.";
+  }
+  const filters = $("tradeFilters");
+  if (filters) {
+    const chips = [`<button type="button" class="wish-chip" data-trade-set="all" aria-pressed="${tradeState.set === "all" ? "true" : "false"}">All sets</button>`]
+      .concat((B.sets || []).filter(s => setsWithDups.has(s.id)).map(s =>
+        `<button type="button" class="wish-chip" data-trade-set="${escapeHtml(s.id)}" aria-pressed="${tradeState.set === s.id ? "true" : "false"}">${escapeHtml(s.name)}</button>`
+      )).join("");
+    filters.innerHTML = `<div class="wish-row" role="toolbar" aria-label="Filter by set">${chips}</div>`;
+  }
+  const root = $("tradeList");
+  if (!root) return;
+  if (!cards.length) {
+    root.innerHTML = `<p class="wish-empty">No extra copies to trade${tradeState.set === "all" ? " yet" : " in this set"}.</p>`;
+    return;
+  }
+  root.innerHTML = cards.map(c => {
+    const rare = rarityLabel(c);
+    const extra = extrasOf(c);
+    return `<article class="wish-item trade-item" role="button" tabindex="0" data-id="${escapeHtml(c.id)}">
+      <img src="${escapeHtml(c.art || "")}" alt="" loading="lazy" width="52" height="72">
+      <div>
+        <h3 class="wish-name">${escapeHtml(c.name || "")}${rare ? `<span class="wish-rare">${escapeHtml(rare)}</span>` : ""}</h3>
+        <p class="wish-meta">${escapeHtml(c.set_name || "")} · ${escapeHtml(c.number || "")}</p>
+      </div>
+      <div class="wish-side">
+        <p class="wish-val">${valueLabel(c.value)}</p>
+        <p class="trade-extras">×${c.quantity} · ${extra} extra${extra === 1 ? "" : "s"}</p>
+        <button type="button" class="wish-jump" data-jump-card="${escapeHtml(c.id)}">Show in album →</button>
+      </div>
+    </article>`;
+  }).join("");
+}
+
+function openTrade() {
+  const el = $("trade");
+  if (!el) return;
+  closeToc(); closeHits(); closeWish(); closeValue();
+  renderTrade();
+  el.hidden = false;
+  tradeOpen = true;
+  if ($("tradeBtn")) $("tradeBtn").setAttribute("aria-expanded", "true");
+  if ($("tradeClose")) $("tradeClose").focus();
+}
+function closeTrade() {
+  const el = $("trade");
+  if (!el || el.hidden) return;
+  el.hidden = true;
+  tradeOpen = false;
+  if ($("tradeBtn")) $("tradeBtn").setAttribute("aria-expanded", "false");
 }
 
 /* ---------- card modal ---------- */
@@ -1014,6 +1130,9 @@ function applyQueryJump() {
     if (q.get("value") === "1" || q.get("value") === "true" || location.hash === "#value") {
       setTimeout(openValue, 200);
     }
+    if (q.get("trade") === "1" || q.get("trade") === "true" || location.hash === "#trade") {
+      setTimeout(openTrade, 200);
+    }
   } catch (e) {}
 }
 
@@ -1053,7 +1172,7 @@ function init() {
   document.addEventListener("keydown", ev => {
     if (focusOpen) return;
     if (ev.target.matches && ev.target.matches("input,select,textarea,button")) {
-      if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); }
+      if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); }
       return;
     }
     if (hitsOpen) {
@@ -1068,9 +1187,13 @@ function init() {
       if (ev.key === "Escape") { ev.preventDefault(); closeValue(); }
       return;
     }
+    if (tradeOpen) {
+      if (ev.key === "Escape") { ev.preventDefault(); closeTrade(); }
+      return;
+    }
     if (ev.key === "ArrowRight" || ev.key === "PageDown") { ev.preventDefault(); nextPage(); }
     if (ev.key === "ArrowLeft" || ev.key === "PageUp") { ev.preventDefault(); prevPage(); }
-    if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); }
+    if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); }
   });
 
   $("contentsBtn").addEventListener("click", () => $("toc").hidden ? openToc() : closeToc());
@@ -1152,6 +1275,23 @@ function init() {
     const s = snaps[Number(hit.dataset.snap)];
     const tip = $("valueTip");
     if (s && tip) tip.textContent = `${formatDay(s.date)} · ${money(s.ils, s.usd)} · ${s.unique || 0} unique`;
+  });
+
+  if ($("tradeBtn")) $("tradeBtn").addEventListener("click", () => $("trade").hidden ? openTrade() : closeTrade());
+  if ($("tradeClose")) $("tradeClose").addEventListener("click", closeTrade);
+  if ($("tradeBackdrop")) $("tradeBackdrop").addEventListener("click", closeTrade);
+  if ($("tradeShare")) $("tradeShare").addEventListener("click", shareTradeList);
+  if ($("trade")) $("trade").addEventListener("click", ev => {
+    const set = ev.target.closest("[data-trade-set]");
+    if (set) { ev.preventDefault(); tradeState.set = set.dataset.tradeSet; renderTrade(); return; }
+    const go = ev.target.closest("[data-jump-card]");
+    if (go) { ev.preventDefault(); ev.stopPropagation(); jumpToCard(go.dataset.jumpCard); return; }
+    const item = ev.target.closest(".trade-item");
+    if (item && item.dataset.id) {
+      ev.preventDefault();
+      const card = cardById(item.dataset.id);
+      if (card) openFocus(card);
+    }
   });
 
   $("soundToggle").addEventListener("click", () => {

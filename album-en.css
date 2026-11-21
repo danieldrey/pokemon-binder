@@ -412,3 +412,24 @@ body.focus-lock{overflow:hidden;position:fixed;left:0;right:0;width:100%;touch-a
   .value-chart-wrap{min-height:160px}
   .value-now{font-size:40px}
 }
+
+
+/* Standalone shareable trade page */
+body.trade-page{overflow:auto;height:auto;min-height:100dvh}
+.trade-page .room{position:fixed;inset:0}
+.trade-hud{position:sticky;top:0;z-index:8;background:linear-gradient(180deg,#0b0706ee,#0b0706cc 70%,#0b070600);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+.trade-hud a.hud-brand{text-decoration:none;color:inherit}
+.trade-hud a.hud-btn{text-decoration:none;display:inline-flex;align-items:center}
+.trade-main{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:8px 16px 48px}
+.trade-lead{margin:4px 0 14px;color:var(--muted);font-size:14px;line-height:1.45}
+.trade-extras{margin:0;font-size:11px;color:var(--gold2);font-weight:600;letter-spacing:.03em;white-space:nowrap}
+.trade-toast{position:fixed;z-index:60;left:50%;bottom:calc(18px + var(--safe-b));transform:translateX(-50%);
+  margin:0;padding:8px 14px;border-radius:999px;background:#1a120f;border:1px solid #e8c36a66;
+  color:var(--gold2);font-size:13px;box-shadow:0 10px 30px #000a}
+.trade-toast[hidden]{display:none!important}
+.trade-share{margin-top:2px}
+
+@media(max-width:700px){
+  body.trade-page{--hud-h:90px}
+}
