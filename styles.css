@@ -180,12 +180,9 @@ footer a{color:var(--gold)}
 .album-hint{color:var(--muted);font-size:12px;margin:0}
 @media(max-width:800px){
   .book-stage{min-height:0}
-  .leaf{width:100%;border-radius:16px!important}
-  .leaf.hidden-mobile{display:none}
+  .pages .leaf{width:100%;border-radius:16px!important}
   .book-nav{width:40px;height:40px;font-size:26px}
-  .flipper{width:100%;left:0;right:0}
-  .flipper.right,.flipper.left{transform-origin:left center}
-  .cover-page{min-height:360px}
+  .cover-page{min-height:auto;padding:16px}
 }
 @media(prefers-reduced-motion:reduce){
   .flipper.turning-forward,.flipper.turning-back{transition:none}
@@ -198,3 +195,89 @@ footer a{color:var(--gold)}
 
 .chip.sleeve{background:#3a5a2a22;color:#b7e39a;border-color:#8fd06a66}
 .leaf .chip.sleeve{font-size:9px;padding:1px 6px;margin-top:2px}
+
+
+/* ===== Share-only album view ===== */
+body.view-album .top,
+body.view-album .demo-note,
+body.view-album .review-box,
+body.view-album .tabs,
+body.view-album #panel-list,
+body.view-album #panel-sets,
+body.view-album #panel-wishlist,
+body.view-album #panel-tools,
+body.view-album footer{display:none!important}
+body.view-album #panel-binder{display:block!important;padding:0}
+body.view-album{min-height:100dvh;display:flex;flex-direction:column}
+body.view-album .album-chrome{padding:max(12px,env(safe-area-inset-top)) 16px 8px;position:relative;z-index:2}
+body.view-album .book-wrap{flex:1;padding:0 8px max(8px,env(safe-area-inset-bottom))}
+.album-chrome{display:flex;flex-direction:column;gap:10px}
+.album-brand{display:flex;gap:12px;align-items:center}
+.logo.sm{width:44px;height:44px;object-fit:contain;filter:drop-shadow(0 6px 12px #0008)}
+.album-status.compact{margin:0}
+.album-status.compact .partial,.album-status.compact .album-hint{display:none}
+.album-bottom{display:flex;direction:rtl;justify-content:center;align-items:center;gap:16px;flex-wrap:wrap;margin:8px 0 16px;position:relative;z-index:2}
+.sound-toggle,.share-album{background:#ffffff10;color:var(--ink);border:1px solid var(--line);border-radius:999px;padding:6px 12px;font:inherit;font-size:13px;cursor:pointer;text-decoration:none}
+.sound-toggle[aria-pressed="true"]{background:#e8c36a33;border-color:var(--gold)}
+
+/* Binder frame, spine and rings */
+.binder-frame{position:relative;flex:1;min-width:0;display:flex;justify-content:center;align-items:center;direction:ltr}
+#bookHost{position:relative;z-index:1}
+#book{margin:0 auto}
+.stf__parent{margin:0 auto;box-shadow:0 40px 70px -24px #000d,0 0 0 1px #0008}
+/* Official StPageFlip layout (wrapper typo in upstream CSS is fixed here). */
+.stf__parent{position:relative;display:block;box-sizing:border-box;transform:translateZ(0);touch-action:pan-y;margin:0 auto}
+.stf__wrapper{position:relative;width:100%;box-sizing:border-box}
+.stf__parent canvas{position:absolute;width:100%;height:100%;left:0;top:0;pointer-events:none}
+.stf__block{position:absolute;width:100%;height:100%;box-sizing:border-box;perspective:2000px}
+.stf__item{display:none;position:absolute;transform-style:preserve-3d;overflow:hidden;box-sizing:border-box}
+.stf__outerShadow,.stf__innerShadow,.stf__hardShadow,.stf__hardInnerShadow{position:absolute;left:0;top:0;pointer-events:none}
+.stf-page, .leaf.stf-page, .stf__item.stf-page{
+  background:
+    linear-gradient(180deg,#4a3226 0%,#2b1b14 38%,#1a100c 100%);
+  box-shadow:inset 0 0 0 1px #ffffff14,inset 0 0 80px #0005;
+}
+#bookHost{position:relative;z-index:1;flex:0 0 auto}
+
+.stf-page.cover, .leaf.stf-page.cover{
+  background:
+    radial-gradient(80% 60% at 50% 30%,#5a3a24 0%,transparent 60%),
+    linear-gradient(160deg,#3a241a,#140e0c);
+}
+.stf-page.back-cover{display:flex;align-items:center;justify-content:center}
+.binder-rings{position:absolute;left:50%;top:6%;bottom:6%;width:26px;transform:translateX(-50%);
+  z-index:8;pointer-events:none;display:flex;flex-direction:column;justify-content:space-evenly;align-items:center}
+.binder-rings i{display:block;width:20px;height:26px;border-radius:10px;
+  background:
+    linear-gradient(90deg,#9aa0aa 0%,#e8eaee 35%,#6a6e76 50%,#f2f3f6 70%,#7a8088 100%);
+  box-shadow:inset 0 1px 0 #fff8,0 3px 6px #0008,0 0 0 1px #0006;
+}
+.binder-spine{position:absolute;left:50%;top:0;bottom:0;width:16px;transform:translateX(-50%);
+  z-index:7;pointer-events:none;
+  background:linear-gradient(90deg,#0000,#0009 40%,#0009 60%,#0000);
+  box-shadow:0 0 18px #0008}
+body.portrait-book .binder-rings{left:8px;transform:none;width:20px}
+body.portrait-book .binder-spine{left:8px;transform:none;width:10px;background:linear-gradient(90deg,#0008,#0000)}
+
+/* Pocket sleeves */
+.stf-page .pocket, .leaf.stf-page .pocket, #book .pocket{
+  position:relative;
+  background:
+    linear-gradient(180deg,#ffffff1f 0 14px,#0c0908e6 18px);
+  box-shadow:inset 0 0 0 1px #ffffff20,inset 0 16px 12px -14px #fff4,0 8px 14px -8px #000a;
+  border:1px solid #ffffff18;
+}
+.stf-page .pocket:before, #book .pocket:before{
+  content:"";position:absolute;left:5px;right:5px;top:0;height:11px;border-radius:0 0 3px 3px;
+  background:linear-gradient(180deg,#ffffff40,#ffffff10);pointer-events:none;z-index:2
+}
+.stf-page .page-inner, #book .page-inner{height:100%;padding:10px 12px 8px;box-sizing:border-box}
+.stf-page .grid-3{gap:8px 6px}
+.stf-page .cover-page{min-height:0;height:100%}
+.stf-page .page-label{color:var(--gold)}
+
+@media(max-width:700px){
+  body.view-album .album-chrome{padding-right:10px;padding-left:10px}
+  .book-wrap{gap:4px}
+  .set-chip{padding:6px 10px;font-size:13px}
+}

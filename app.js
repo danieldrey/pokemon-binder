@@ -1,4 +1,14 @@
 const B = window.BINDER;
+const ALBUM_ONLY = (()=>{
+  try{
+    const q=new URLSearchParams(location.search);
+    if((q.get("view")||"").toLowerCase()==="album") return true;
+  }catch(e){}
+  if(/album\.html$/i.test(location.pathname||"")) return true;
+  return document.body.classList.contains("view-album");
+})();
+if(ALBUM_ONLY) document.body.classList.add("view-album");
+function el(id){ return document.getElementById(id); }
 const shekel = (n, d=0) => n == null ? "—" : "₪" + Number(n).toLocaleString("he-IL", {maximumFractionDigits:d, minimumFractionDigits:d});
 const usd = (n) => n == null ? "" : "$" + Number(n).toLocaleString("en-US", {maximumFractionDigits:2, minimumFractionDigits: n>=10?0:2});
 const ltr = (s) => `<span dir="ltr">${s}</span>`;
@@ -31,11 +41,11 @@ function valueLabel(v){
   return ltr(`${shekel(v.ils,ilsPlaces(v.ils))} (${usd(v.usd)})`);
 }
 
-document.getElementById("title").textContent = B.meta.title;
-document.getElementById("generated").textContent = `${B.meta.generated_at_label} · ${B.meta.fx_label}`;
-document.getElementById("demoNote").textContent = B.meta.demo_note_he;
+if(el("title") && B.meta && !ALBUM_ONLY) el("title").textContent = B.meta.title;
+if(el("generated")) el("generated").textContent = `${B.meta.generated_at_label} · ${B.meta.fx_label}`;
+if(el("demoNote")) el("demoNote").textContent = B.meta.demo_note_he;
 
-if(B.meta.collectr_portfolio_total_usd){
+if(!ALBUM_ONLY && B.meta.collectr_portfolio_total_usd && el("collectrGap")){
   const vis = (B.cards||[]).reduce((s,c)=> s + ((c.section!=="graded" && c.collectr_price_usd)? Number(c.collectr_price_usd):0), 0);
   const shown = B.meta.collectr_portfolio_total_usd;
   const gap = Math.round((shown-vis)*100)/100;
@@ -44,8 +54,8 @@ if(B.meta.collectr_portfolio_total_usd){
     `סכום המחירים שנראו בצילומים הוא ${ltr("$"+vis.toFixed(2))}, כלומר פער של ${ltr("$"+Math.abs(gap).toFixed(2))} `+
     `בגלל קלפים שנחתכו בין צילומים או בלי מחיר גלוי. הפער הזה לא הושלם בניחוש.`;
 }
-if((B.review||[]).length){
-  const box=document.getElementById("reviewBox");
+if(!ALBUM_ONLY && (B.review||[]).length && el("reviewBox")){
+  const box=el("reviewBox");
   box.hidden=false;
   box.innerHTML = `<h2>ממתינים לאישור (${B.review.length})</h2><ul>` +
     B.review.map(r=>`<li><b>${r.name||r.likely_id||""}</b>${r.set_name? " · "+r.set_name:""}${r.number? " · "+r.number+"/076":""} — ${r.reason_he||""}</li>`).join("") +
@@ -53,17 +63,17 @@ if((B.review||[]).length){
 }
 
 
-document.getElementById("share").textContent = B.share.how_he;
+if(el("share")) el("share").innerHTML = (B.share && (B.share.how_he||"")) + (B.share && B.share.album_url ? ` <a href="album.html">קישור לאלבום בלבד</a>.` : "");
 
 const T = B.totals;
-document.getElementById("totals").innerHTML = `
+if(el("totals")) el("totals").innerHTML = `
   <div class="pill"><b>${ltr(T.has_range ? shekel(T.ils_low,2)+"–"+shekel(T.ils_high,2).replace("₪","") : shekel(T.ils,2))}</b><span>שווי אוסף מוערך</span></div>
   <div class="pill"><b>${ltr(usd(T.usd))}</b><span>בדולרים</span></div>
   <div class="pill"><b>${T.unique}</b><span>קלפים ייחודיים · ${T.copies} עותקים</span></div>
   <div class="pill"><b>${B.sets.length}</b><span>סטים במעקב</span></div>`;
 
 /* tabs */
-document.querySelectorAll(".tab").forEach(btn=>{
+if(!ALBUM_ONLY) document.querySelectorAll(".tab").forEach(btn=>{
   btn.onclick=()=>{
     document.querySelectorAll(".tab").forEach(b=>b.classList.toggle("on", b===btn));
     document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on", p.id==="panel-"+btn.dataset.tab));
@@ -182,8 +192,8 @@ function renderPages(){
     root.appendChild(renderPage("עמוד "+(Math.floor(i/9)+1), list.slice(i,i+9)));
   }
 }
-["sort","filter","q"].forEach(id=>document.getElementById(id).addEventListener("input", renderPages));
-renderPages();
+if(!ALBUM_ONLY) ["sort","filter","q"].forEach(id=>{ const n=el(id); if(n) n.addEventListener("input", renderPages); });
+if(!ALBUM_ONLY && el("pages")) renderPages();
 
 function renderSets(){
   const root=document.getElementById("sets");
@@ -223,7 +233,7 @@ function renderSets(){
     root.appendChild(block);
   });
 }
-renderSets();
+if(!ALBUM_ONLY && el("sets")) renderSets();
 
 function renderWishlist(){
   // combine baked prices with wanted set
@@ -257,7 +267,7 @@ function renderWishlist(){
     root.appendChild(fig);
   });
 }
-renderWishlist();
+if(!ALBUM_ONLY && el("wishlist")) renderWishlist();
 
 const focusBox=document.getElementById("focus");
 const focusBackdrop=document.getElementById("focusBackdrop");
@@ -340,50 +350,47 @@ if(location.hash==="#card"){
 }
 
 
-/* ===== Flip-through album =====
-   The chrome is RTL Hebrew, but the book itself turns like a physical LTR binder:
-   the next page is to the right, swipe left or press ArrowRight to go forward.
-*/
-function isMobileBook(){
-  return window.matchMedia("(max-width: 800px)").matches;
-}
 
+/* ===== Flip-through album (StPageFlip) =====
+   Chrome is RTL Hebrew; the book itself turns like a physical LTR binder.
+   Drag a corner or swipe to curl the page. Arrow keys and the side buttons also work.
+*/
+const LS_SOUND = "nextpull-album-sound";
 let currentSetId = null;
 let albumPages = [];
-let pageIndex = 0;
+let pageFlip = null;
 let flipping = false;
+let soundOn = false;
+try{ soundOn = localStorage.getItem(LS_SOUND)==="on"; }catch(e){}
 
 function collectionCard(id){
   return (B.cards||[]).find(c=>c.id===id) || null;
 }
-
 function escapeHtml(s){
   return String(s??"").replace(/[&<>"']/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
 }
-
+function useSpreadLayout(){
+  const w=window.innerWidth, h=window.innerHeight;
+  return w>=700 || w>h; // desktop, tablet, or phone landscape
+}
 function buildAlbumPages(set){
   const pages=[{type:"cover", set}];
   const cards=set.cards||[];
   let pageNo=1;
   for(let i=0;i<cards.length;i+=9){
     const chunk=cards.slice(i,i+9);
-    pages.push({
-      type:"grid",
-      pageNo,
-      from:i+1,
-      to:i+chunk.length,
-      cards:chunk
-    });
+    pages.push({type:"grid", pageNo, from:i+1, to:i+chunk.length, cards:chunk});
     pageNo++;
   }
+  pages.push({type:"back", set});
   return pages;
 }
-
 function albumPocket(c){
   const wrap=document.createElement("div");
   const owned=!!c.owned;
   wrap.className="pocket "+(owned?"owned":"missing")+(c.art?"":" ghost");
   wrap.dataset.id=c.id||"";
+  if(owned) wrap.setAttribute("role","button");
   const name=escapeHtml(c.name||"");
   const num=escapeHtml(c.number||"");
   if(owned){
@@ -395,8 +402,6 @@ function albumPocket(c){
         <div class="val">${valueLabel(c.value)}</div>
         ${storageChips(c)}
       </div>`;
-    const card=wrap.querySelector(".card");
-    if(card) enableTilt(card);
   } else if(c.art){
     const star = wanted.has(c.id)?"★":"☆";
     wrap.innerHTML=`
@@ -415,18 +420,23 @@ function albumPocket(c){
       <button type="button" class="want-btn" title="סמן כמבוקש" aria-label="סמן כמבוקש">${star}</button>`;
     if(wanted.has(c.id)) wrap.classList.add("wanted-pocket");
   }
+  // Eager-load art on nearby pages later; default lazy for the rest
+  wrap.querySelectorAll("img").forEach(img=>{ img.loading="lazy"; img.decoding="async"; });
   return wrap;
 }
-
-function renderLeaf(page, side){
-  const leaf=document.createElement("div");
-  leaf.className="leaf "+(side||"")+(page?"":" blank");
-  if(isMobileBook() && side==="left") leaf.classList.add("hidden-mobile");
+function fillPageEl(el, page){
+  el.innerHTML="";
   const inner=document.createElement("div");
   inner.className="page-inner";
-  if(!page){
-    leaf.appendChild(inner);
-    return leaf;
+  if(!page || page.type==="back"){
+    el.classList.add("back-cover");
+    const s=(page && page.set) || {};
+    inner.innerHTML = `<div class="cover-page">
+      <img class="logo sm" src="logo.png" alt="">
+      <h2>${escapeHtml((s && s.name) || "Next Pull IL")}</h2>
+    </div>`;
+    el.appendChild(inner);
+    return el;
   }
   if(page.type==="cover"){
     const s=page.set;
@@ -437,8 +447,8 @@ function renderLeaf(page, side){
       <div class="bar"><i style="width:${Math.min(100,s.pct||0)}%"></i></div>
       <div class="set-stats">${s.value_ils!=null? ltr(shekel(s.value_ils,2)+" ("+usd(s.value_usd)+")") : ""}</div>
     </div>`;
-    leaf.appendChild(inner);
-    return leaf;
+    el.appendChild(inner);
+    return el;
   }
   inner.innerHTML = `<div class="page-label"><span>עמוד ${page.pageNo}</span><span>${ltr(page.from+"–"+page.to)}</span></div>`;
   const grid=document.createElement("div");
@@ -452,198 +462,103 @@ function renderLeaf(page, side){
     } else grid.appendChild(albumPocket(c));
   }
   inner.appendChild(grid);
-  leaf.appendChild(inner);
-  return leaf;
+  el.appendChild(inner);
+  return el;
 }
-
-function spreadFor(index){
-  if(isMobileBook()){
-    return {left:null, right:albumPages[index]||null, single:true};
-  }
-  const i=index - (index%2);
-  return {left:albumPages[i]||null, right:albumPages[i+1]||null, single:false};
-}
-
-function renderSpread(){
-  const stage=document.getElementById("bookStage");
-  const spread=spreadFor(pageIndex);
-  stage.innerHTML="";
-  if(spread.single){
-    const leaf=renderLeaf(spread.right, "right");
-    leaf.style.width="100%";
-    stage.appendChild(leaf);
-  } else {
-    stage.appendChild(renderLeaf(spread.left, "left"));
-    stage.appendChild(renderLeaf(spread.right, "right"));
-  }
-  updatePager();
-}
-
-function pageCountLabel(){
-  const n=albumPages.length;
-  if(!n) return "";
-  if(isMobileBook()){
-    const p=albumPages[pageIndex];
-    if(p && p.type==="cover") return `כריכה · 1 מתוך ${n}`;
-    return `עמוד ${pageIndex+1} מתוך ${n}`;
-  }
-  const left=pageIndex+1;
-  const right=Math.min(pageIndex+2, n);
-  const l=albumPages[pageIndex];
-  const r=albumPages[pageIndex+1];
-  const name= (p)=>{
-    if(!p) return "";
-    if(p.type==="cover") return "כריכה";
-    return "עמוד "+p.pageNo;
-  };
-  if(!r) return `${name(l)} מתוך ${n} עמודים`;
-  return `${name(l)} – ${name(r)} · ${n} עמודים`;
-}
-
-function updatePager(){
-  const n=albumPages.length;
-  const max = isMobileBook()? n-1 : (n%2===0? n-2 : n-1 - ((n-1)%2===0?0:0));
-  // desktop last even index
-  const last = isMobileBook()? Math.max(0,n-1) : Math.max(0, n-1 - ((n-1)%2));
-  document.getElementById("pagePrev").disabled = pageIndex<=0 || flipping;
-  document.getElementById("pageNext").disabled = pageIndex>=last || flipping;
-  document.getElementById("pageCounter").textContent = pageCountLabel();
-}
-
-function clampIndex(i){
-  const n=albumPages.length;
-  if(n<=0) return 0;
-  if(isMobileBook()) return Math.max(0, Math.min(i, n-1));
-  i = i - (i%2);
-  const last = Math.max(0, n % 2 === 0 ? n-2 : n-1);
-  // if n is 5 (0..4), last even left is 4 (right blank). last = n-1 if odd, n-2 if even? 
-  // n=5 pages: spreads (0,1)(2,3)(4,blank) last=4
-  // n=4 pages: spreads (0,1)(2,3) last=2
-  const lastEven = (n%2===0)? n-2 : n-1;
-  return Math.max(0, Math.min(i, lastEven));
-}
-
-function animateFlip(from, to){
-  if(flipping || from===to) return;
-  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if(reduce){
-    pageIndex=to;
-    renderSpread();
-    return;
-  }
-  flipping=true;
-  updatePager();
-  const stage=document.getElementById("bookStage");
-  const mobile=isMobileBook();
-  const goingForward=to>from;
-  const flipper=document.createElement("div");
-  const front=document.createElement("div");
-  front.className="flip-face flip-front";
-  const back=document.createElement("div");
-  back.className="flip-face flip-back";
-  flipper.appendChild(front);
-  flipper.appendChild(back);
-
-  if(mobile){
-    flipper.className="flipper right";
-    flipper.style.width="100%";
-    if(goingForward){
-      front.appendChild(renderLeaf(albumPages[from], "right"));
-      front.firstChild.style.width="100%";
-      back.appendChild(renderLeaf(albumPages[to], "right"));
-      back.firstChild.style.width="100%";
-    } else {
-      front.appendChild(renderLeaf(albumPages[to], "right"));
-      front.firstChild.style.width="100%";
-      back.appendChild(renderLeaf(albumPages[from], "right"));
-      back.firstChild.style.width="100%";
-      flipper.style.transform="rotateY(-180deg)";
-    }
-    // put the destination page underneath
-    stage.innerHTML="";
-    const under=renderLeaf(albumPages[goingForward?to:from], "right");
-    under.style.width="100%";
-    stage.appendChild(under);
-    stage.appendChild(flipper);
-  } else {
-    const cur=spreadFor(from);
-    const nxt=spreadFor(to);
-    if(goingForward){
-      flipper.className="flipper right";
-      front.appendChild(renderLeaf(cur.right, "right"));
-      back.appendChild(renderLeaf(nxt.left, "left"));
-      stage.innerHTML="";
-      stage.appendChild(renderLeaf(cur.left, "left"));
-      stage.appendChild(renderLeaf(nxt.right, "right"));
-      stage.appendChild(flipper);
-    } else {
-      flipper.className="flipper left";
-      front.appendChild(renderLeaf(cur.left, "left"));
-      back.appendChild(renderLeaf(nxt.right, "right"));
-      stage.innerHTML="";
-      stage.appendChild(renderLeaf(nxt.left, "left"));
-      stage.appendChild(renderLeaf(cur.right, "right"));
-      stage.appendChild(flipper);
-    }
-  }
-
-  const finish=()=>{
-    pageIndex=to;
-    flipping=false;
-    renderSpread();
-  };
-  const start=()=>{
-    const cls = goingForward? "turning-forward" : "turning-back";
-    if(mobile && !goingForward){
-      // return from -180 to 0
-      flipper.style.transition="transform .7s cubic-bezier(.2,.7,.2,1)";
-      requestAnimationFrame(()=>{ flipper.style.transform="rotateY(0deg)"; });
-    } else {
-      flipper.classList.add(cls);
-    }
-  };
-  let done=false;
-  const once=()=>{ if(done) return; done=true; finish(); };
-  flipper.addEventListener("transitionend", ev=>{
-    if(ev.target!==flipper) return;
-    once();
+function buildPageElements(pages){
+  return pages.map((page,i)=>{
+    const el=document.createElement("div");
+    el.className="stf-page leaf"+(page && page.type==="cover"?" cover":"")+(page && page.type==="back"?" back-cover":"");
+    if(i===0 || i===pages.length-1) el.dataset.density="hard";
+    fillPageEl(el, page);
+    return el;
   });
-  requestAnimationFrame(()=>requestAnimationFrame(start));
-  setTimeout(once, 850);
 }
-
-function goToPage(i){
-  if(flipping) return;
-  const to=clampIndex(i);
-  if(to===pageIndex) return;
-  animateFlip(pageIndex, to);
+function preloadAround(pages, index){
+  const loadPage=(page)=>{
+    if(!page) return;
+    const urls=[];
+    if(page.set && page.set.logo) urls.push(page.set.logo);
+    (page.cards||[]).forEach(c=>{ if(c.art) urls.push(c.art); });
+    urls.forEach(src=>{ const im=new Image(); im.decoding="async"; im.src=src; });
+  };
+  for(let i=index-2;i<=index+3;i++) loadPage(pages[i]);
+  const rest=()=>{ pages.forEach((p,i)=>{ if(i<index-2||i>index+3) loadPage(p); }); };
+  if(window.requestIdleCallback) requestIdleCallback(rest,{timeout:2000});
+  else setTimeout(rest, 300);
 }
-function nextPage(){ goToPage(pageIndex + (isMobileBook()?1:2)); }
-function prevPage(){ goToPage(pageIndex - (isMobileBook()?1:2)); }
-
+function playFlipSound(){
+  if(!soundOn) return;
+  try{
+    const AC=window.AudioContext||window.webkitAudioContext;
+    if(!AC) return;
+    if(!playFlipSound.ctx) playFlipSound.ctx=new AC();
+    const ctx=playFlipSound.ctx;
+    if(ctx.state==="suspended") ctx.resume();
+    const len=Math.floor(ctx.sampleRate*0.16);
+    const buf=ctx.createBuffer(1,len,ctx.sampleRate);
+    const d=buf.getChannelData(0);
+    for(let i=0;i<len;i++) d[i]=(Math.random()*2-1)*Math.exp(-i/len*7);
+    const src=ctx.createBufferSource();
+    src.buffer=buf;
+    const f=ctx.createBiquadFilter();
+    f.type="bandpass"; f.frequency.value=1400; f.Q.value=0.6;
+    const g=ctx.createGain();
+    g.gain.setValueAtTime(0.12, ctx.currentTime);
+    g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+0.16);
+    src.connect(f); f.connect(g); g.connect(ctx.destination);
+    src.start();
+  }catch(e){}
+}
+function updateSoundToggle(){
+  const btn=el("soundToggle");
+  if(!btn) return;
+  btn.setAttribute("aria-pressed", soundOn?"true":"false");
+  btn.textContent = soundOn? "קול: פועל":"קול: כבוי";
+}
+function bookSize(){
+  const wrap=el("binderFrame") || el("bookHost");
+  const chrome=document.querySelector(".album-chrome");
+  const bottom=document.querySelector(".album-bottom");
+  const availW=Math.max(280, (wrap? wrap.clientWidth : window.innerWidth) - 8);
+  const topH=(chrome? chrome.getBoundingClientRect().height : 0) + (bottom? bottom.getBoundingClientRect().height : 56) + 32;
+  const availH=Math.max(320, window.innerHeight - topH);
+  const spread=useSpreadLayout();
+  // One page aspect: 3x3 cards ~ 0.72 (w/h)
+  const pageAspect=0.72;
+  let pageW, pageH;
+  if(spread){
+    pageW=Math.min(560, Math.floor(availW/2)-4);
+    pageH=Math.floor(pageW/pageAspect);
+    if(pageH>availH){ pageH=availH; pageW=Math.floor(pageH*pageAspect); }
+  } else {
+    pageW=Math.min(420, availW-8);
+    pageH=Math.floor(pageW/pageAspect);
+    if(pageH>availH){ pageH=availH; pageW=Math.floor(pageH*pageAspect); }
+  }
+  pageW=Math.max(180, pageW);
+  pageH=Math.max(260, pageH);
+  return {pageW, pageH, spread};
+}
 function currentSet(){
   return (B.sets||[]).find(s=>s.id===currentSetId) || (B.sets||[])[0] || null;
 }
-
 function renderAlbumStatus(){
   const s=currentSet();
-  const box=document.getElementById("albumStatus");
-  if(!s){ box.innerHTML=""; return; }
+  const box=el("albumStatus");
+  if(!box || !s) return;
+  const share = ALBUM_ONLY? "" : "";
   box.innerHTML = `<div class="set-head">
       <div>
-        <h2 style="margin:0;font-size:22px">${escapeHtml(s.name||"")}</h2>
-        <div class="set-stats">${ltr(String(s.owned))} מתוך ${ltr(String(s.total))} · ${s.pct}%${s.official!==s.total?` · ${ltr(s.owned+"/"+s.official)} במספור הרשמי (${s.pct_official}%)`:""} · ${s.missing_count} חסרים</div>
-        ${s.partial? `<div class="partial">${s.partial_note_he||"מעקב חלקי"}</div>`:""}
+        <h2 style="margin:0;font-size:${ALBUM_ONLY?18:22}px">${escapeHtml(s.name||"")}</h2>
+        <div class="set-stats">${ltr(String(s.owned))} מתוך ${ltr(String(s.total))} · ${s.pct}%</div>
       </div>
-      <div>
-        <div class="pill" style="min-width:auto;padding:8px 12px"><b>${s.value_ils!=null?ltr(shekel(s.value_ils,2)): "—"}</b><span>שווי הסט באוסף${s.value_usd!=null? " · "+usd(s.value_usd):""}</span></div>
-      </div>
-    </div>
-    <p class="album-hint">האלבום נפתח משמאל לימין, כמו בינדר פיזי. בעמוד אפשר להחליק, ובמחשב גם עם החצים.</p>`;
+      <div class="pill" style="min-width:auto;padding:8px 12px"><b>${s.value_ils!=null?ltr(shekel(s.value_ils,2)): "—"}</b><span>שווי הסט${s.value_usd!=null? " · "+usd(s.value_usd):""}</span></div>
+    </div>`;
 }
-
 function renderSetPicker(){
-  const root=document.getElementById("setPicker");
+  const root=el("setPicker");
+  if(!root) return;
   root.innerHTML="";
   (B.sets||[]).forEach(s=>{
     const btn=document.createElement("button");
@@ -654,21 +569,136 @@ function renderSetPicker(){
     root.appendChild(btn);
   });
 }
-
+function pageCountLabel(){
+  if(!pageFlip) return "";
+  const n=pageFlip.getPageCount();
+  const i=pageFlip.getCurrentPageIndex();
+  const mode=pageFlip.getOrientation && pageFlip.getOrientation();
+  const spread = mode!=="portrait" && useSpreadLayout();
+  const name=p=>{
+    if(!p) return "";
+    if(p.type==="cover") return "כריכה";
+    if(p.type==="back") return "כריכה אחורית";
+    return "עמוד "+p.pageNo;
+  };
+  if(spread){
+    const l=albumPages[i], r=albumPages[i+1];
+    if(!r) return `${name(l)} · ${n} עמודים`;
+    return `${name(l)} – ${name(r)} · ${n} עמודים`;
+  }
+  return `${name(albumPages[i]) || ("עמוד "+(i+1))} · ${i+1} מתוך ${n}`;
+}
+function updatePager(){
+  if(!pageFlip) return;
+  const i=pageFlip.getCurrentPageIndex();
+  const n=pageFlip.getPageCount();
+  if(el("pagePrev")) el("pagePrev").disabled = i<=0 || flipping;
+  if(el("pageNext")) el("pageNext").disabled = i>=n-1 || flipping;
+  if(el("pageCounter")) el("pageCounter").textContent = pageCountLabel();
+  const portrait = (pageFlip.getOrientation && pageFlip.getOrientation()==="portrait") || !useSpreadLayout();
+  document.body.classList.toggle("portrait-book", !!portrait);
+  preloadAround(albumPages, i);
+}
+function destroyBook(){
+  if(pageFlip){
+    try{ pageFlip.destroy(); }catch(e){}
+    pageFlip=null;
+  }
+  const host=el("bookHost");
+  if(host) host.innerHTML='<div id="book"></div>';
+}
+function mountBook(startPage){
+  if(typeof St==="undefined" || !St.PageFlip){
+    const host=el("bookHost");
+    if(host) host.innerHTML="<p class='demo-note'>ספריית הדפדוף לא נטענה.</p>";
+    return;
+  }
+  destroyBook();
+  const pages=buildPageElements(albumPages);
+  const book=el("book");
+  pages.forEach(pg=>book.appendChild(pg));
+  const {pageW, pageH, spread}=bookSize();
+  const host=el("bookHost");
+  if(host){
+    host.style.width=(spread?pageW*2:pageW)+"px";
+    host.style.maxWidth="100%";
+  }
+  document.body.classList.toggle("portrait-book", !spread);
+  pageFlip=new St.PageFlip(book, {
+    width: pageW,
+    height: pageH,
+    size: "stretch",
+    minWidth: 160,
+    maxWidth: 700,
+    minHeight: 240,
+    maxHeight: 1100,
+    drawShadow: true,
+    maxShadowOpacity: 0.7,
+    flippingTime: 800,
+    usePortrait: !spread,
+    showCover: false, // two-page spread: cover | first cards
+    autoSize: true,
+    mobileScrollSupport: true,
+    swipeDistance: 24,
+    clickEventForward: true,
+    useMouseEvents: true,
+    disableFlipByClick: true,
+    showPageCorners: true,
+    startZIndex: 1,
+    startPage: Math.max(0, Math.min(startPage||0, albumPages.length-1))
+  });
+  pageFlip.on("flip", ev=>{
+    flipping=false;
+    updatePager();
+  });
+  pageFlip.on("changeState", ev=>{
+    const st=ev.data;
+    flipping = (st==="flipping" || st==="user_fold");
+    if(st==="flipping") playFlipSound();
+    if(st==="read"){ flipping=false; updatePager(); }
+  });
+  pageFlip.on("changeOrientation", ()=> updatePager());
+  pageFlip.loadFromHTML(pages);
+  try{ window.__pageFlip = pageFlip; }catch(e){}
+  buildRings();
+  updatePager();
+  preloadAround(albumPages, pageFlip.getCurrentPageIndex());
+}
+function buildRings(){
+  const ringBox=el("binderRings");
+  if(!ringBox) return;
+  ringBox.innerHTML="";
+  const spine=document.createElement("div");
+  spine.className="binder-spine";
+  const frame=el("binderFrame");
+  if(frame && !frame.querySelector(".binder-spine")) frame.appendChild(spine);
+  for(let i=0;i<8;i++){
+    const d=document.createElement("i");
+    ringBox.appendChild(d);
+  }
+}
 function selectSet(id, keepPage){
-  const s=(B.sets||[]).find(x=>x.id===id);
+  const s=(B.sets||[]).find(x=>x.id===id) || (B.sets||[])[0];
   if(!s) return;
   currentSetId=s.id;
   albumPages=buildAlbumPages(s);
-  if(!keepPage) pageIndex=0;
-  else pageIndex=clampIndex(pageIndex);
+  let start=0;
+  if(keepPage && pageFlip) start=pageFlip.getCurrentPageIndex();
+  // honor ?set=
   renderSetPicker();
   renderAlbumStatus();
-  renderSpread();
+  mountBook(keepPage? start : 0);
+  // update URL set param on the share page without adding history spam
+  if(ALBUM_ONLY){
+    try{
+      const u=new URL(location.href);
+      u.searchParams.set("set", currentSetId);
+      history.replaceState(history.state, "", u);
+    }catch(e){}
+  }
 }
-
 function refreshAlbumWanted(){
-  document.querySelectorAll("#bookStage .pocket.missing, #bookStage .pocket.ghost").forEach(p=>{
+  document.querySelectorAll("#book .pocket.missing, #book .pocket.ghost, #bookHost .pocket.missing").forEach(p=>{
     const id=p.dataset.id;
     const on=wanted.has(id);
     p.classList.toggle("wanted-pocket", on);
@@ -676,84 +706,86 @@ function refreshAlbumWanted(){
     if(btn) btn.textContent=on?"★":"☆";
   });
 }
+function nextPage(){ if(pageFlip) pageFlip.flipNext("bottom"); }
+function prevPage(){ if(pageFlip) pageFlip.flipPrev("bottom"); }
 
 function initAlbum(){
   const sets=B.sets||[];
   if(!sets.length){
-    document.getElementById("bookStage").innerHTML="<p class='demo-note'>אין עדיין סטים באלבום.</p>";
+    const host=el("bookHost");
+    if(host) host.innerHTML="<p class='demo-note'>אין עדיין סטים באלבום.</p>";
     return;
   }
-  if(!currentSetId) currentSetId=sets[0].id;
-  const stage=document.getElementById("bookStage");
-  stage.addEventListener("click", ev=>{
-    if(flipping) return;
-    const btn=ev.target.closest(".want-btn");
-    if(btn){
-      ev.preventDefault(); ev.stopPropagation();
-      const id=btn.closest(".pocket").dataset.id;
-      if(!id) return;
-      if(wanted.has(id)) wanted.delete(id); else wanted.add(id);
-      saveWanted(wanted);
-      refreshAlbumWanted();
-      renderSets(); renderWishlist();
-      return;
-    }
-    const pocket=ev.target.closest(".pocket.owned");
-    if(pocket){
-      const id=pocket.dataset.id;
-      const card=collectionCard(id) || ((currentSet()||{}).cards||[]).find(c=>c.id===id);
-      if(card) openFocus(card);
-    }
-  });
-  document.getElementById("pagePrev").addEventListener("click", prevPage);
-  document.getElementById("pageNext").addEventListener("click", nextPage);
+  const q=(()=>{ try{ return new URLSearchParams(location.search).get("set"); }catch(e){ return null; } })();
+  currentSetId = (q && sets.some(s=>s.id===q)) ? q : sets[0].id;
+
+  const host=el("bookHost") || el("book");
+  if(host){
+    host.addEventListener("click", ev=>{
+      const btn=ev.target.closest(".want-btn");
+      if(btn){
+        ev.preventDefault(); ev.stopPropagation();
+        const id=btn.closest(".pocket").dataset.id;
+        if(!id) return;
+        if(wanted.has(id)) wanted.delete(id); else wanted.add(id);
+        saveWanted(wanted);
+        refreshAlbumWanted();
+        if(typeof renderSets==="function" && !ALBUM_ONLY) renderSets();
+        if(typeof renderWishlist==="function" && !ALBUM_ONLY) renderWishlist();
+        return;
+      }
+      const pocket=ev.target.closest(".pocket.owned");
+      if(pocket){
+        ev.preventDefault(); ev.stopPropagation();
+        const id=pocket.dataset.id;
+        const card=collectionCard(id) || ((currentSet()||{}).cards||[]).find(c=>c.id===id);
+        if(card) openFocus(card);
+      }
+    }, true);
+  }
+  if(el("pagePrev")) el("pagePrev").addEventListener("click", prevPage);
+  if(el("pageNext")) el("pageNext").addEventListener("click", nextPage);
   document.addEventListener("keydown", ev=>{
     if(focusOpen) return;
     if(ev.target.matches && ev.target.matches("input,select,textarea")) return;
-    const binderOn=document.getElementById("panel-binder").classList.contains("on");
+    const binderOn=ALBUM_ONLY || (el("panel-binder") && el("panel-binder").classList.contains("on"));
     if(!binderOn) return;
     if(ev.key==="ArrowRight" || ev.key==="PageDown"){ ev.preventDefault(); nextPage(); }
     if(ev.key==="ArrowLeft" || ev.key==="PageUp"){ ev.preventDefault(); prevPage(); }
   });
-  const book=document.getElementById("book");
-  let sx=0, sy=0, tracking=false;
-  book.addEventListener("touchstart", ev=>{
-    if(focusOpen || flipping) return;
-    const t=ev.changedTouches[0];
-    sx=t.clientX; sy=t.clientY; tracking=true;
-  }, {passive:true});
-  book.addEventListener("touchend", ev=>{
-    if(!tracking) return;
-    tracking=false;
-    const t=ev.changedTouches[0];
-    const dx=t.clientX-sx, dy=t.clientY-sy;
-    if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)*1.2){
-      if(dx<0) nextPage(); else prevPage();
-    }
-  }, {passive:true});
+  updateSoundToggle();
+  if(el("soundToggle")){
+    el("soundToggle").addEventListener("click", ()=>{
+      soundOn=!soundOn;
+      try{ localStorage.setItem(LS_SOUND, soundOn?"on":"off"); }catch(e){}
+      updateSoundToggle();
+      if(soundOn) playFlipSound();
+    });
+  }
+  let resizeTimer=0;
   window.addEventListener("resize", ()=>{
-    if(flipping) return;
-    pageIndex=clampIndex(pageIndex);
-    renderSpread();
+    clearTimeout(resizeTimer);
+    resizeTimer=setTimeout(()=> selectSet(currentSetId, true), 220);
   });
   selectSet(currentSetId);
 }
 
 initAlbum();
 
+
 /* tools tab copy */
-document.getElementById("gradedCard").innerHTML = `
+if(!ALBUM_ONLY && el("gradedCard")) el("gradedCard").innerHTML = `
   <h2>שווי מדורג</h2>
   <p>${B.graded_sources.notes_he}</p>
   <ul>${(B.graded_sources.manual_examples||[]).map(e=>`<li><b>${e.label}</b> — ${e.note_he}</li>`).join("")}</ul>
   <p>עלות דירוג מישראל שמשמשת להערכה: <b>${B.grading.israel_psa_fee_label}</b>. ${B.grading.note_he}</p>
   <p class="set-stats">${B.grading.israel_psa_fee_source}</p>`;
-document.getElementById("pregradeCard").innerHTML = `
+if(!ALBUM_ONLY && el("pregradeCard")) el("pregradeCard").innerHTML = `
   <h2>הערכת דירוג מתמונה</h2>
   <p>אפשר למדוד מרכוז מתמונה של קלף בודד (יחס שוליים ימין/שמאל ולמעלה/למטה) ולהשוות לסובלנות הרשמית של PSA לחזית. זה <b>לא</b> ציון PSA או CGC.</p>
   <p>פינות, קצוות ומשטח הם הערכה גסה בלבד, והולו או שרוול מטעים אותה. כשתשלח תמונה חזיתית חדה של קלף, אפשר להריץ את המדידה ולהחזיר תקרת מרכוז (למשל «בטווח PSA 9 למרכוז בלבד»).</p>
   <p class="set-stats">פקודה: <code>python build_binder.py pregrade photo.jpg</code></p>`;
-document.getElementById("dealsCard").innerHTML = `
+if(!ALBUM_ONLY && el("dealsCard")) el("dealsCard").innerHTML = `
   <h2>דילים למוצרים אטומים</h2>
   <p>${B.deals.notes_he}</p>
   <ul>${B.deals.sources.map(s=>`<li><b>${s.name}</b> — ${s.note_he}</li>`).join("")}</ul>`;

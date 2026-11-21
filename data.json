@@ -2,15 +2,15 @@
   "meta": {
     "title": "הבינדר של דניאל",
     "brand": "Next Pull IL",
-    "generated_at": "2026-11-21T14:24:20.116810+02:00",
-    "generated_at_label": "2026-11-21 14:24 שעון ישראל",
+    "generated_at": "2026-11-21T14:57:21.541806+02:00",
+    "generated_at_label": "2026-11-21 14:57 שעון ישראל",
     "fx": {
       "usd_ils": 3.326,
       "eur_ils": 3.6503,
       "usd_date": "2026-11-20",
       "eur_date": "2026-11-20",
       "source": "Bank of Israel",
-      "fetched_at": "2026-11-21T12:24:12Z",
+      "fetched_at": "2026-11-21T12:57:20Z",
       "usd_last_update": "2026-11-20T10:21:05.8283621Z",
       "eur_last_update": "2026-11-20T10:21:05.8283621Z"
     },
@@ -1377,7 +1377,7 @@
         "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:14Z",
+      "fetched_at": null,
       "art": "art/mee-010.jpg",
       "worth_grading": {
         "status": "unlikely",
@@ -1557,7 +1557,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:14Z",
+      "fetched_at": null,
       "art": "art/me03-042.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -1617,7 +1617,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:14Z",
+      "fetched_at": null,
       "art": "art/me03-024.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -1677,7 +1677,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:14Z",
+      "fetched_at": null,
       "art": "art/me02-012.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -1737,7 +1737,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:14Z",
+      "fetched_at": null,
       "art": "art/me04-013.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -1797,7 +1797,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:15Z",
+      "fetched_at": null,
       "art": "art/me04-029.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -1856,7 +1856,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:15Z",
+      "fetched_at": null,
       "art": "art/me04-027.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -1915,7 +1915,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:15Z",
+      "fetched_at": null,
       "art": "art/me04-002.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -1974,7 +1974,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:15Z",
+      "fetched_at": null,
       "art": "art/me04-001.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -2034,7 +2034,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:15Z",
+      "fetched_at": null,
       "art": "art/me04-009.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -2093,7 +2093,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:15Z",
+      "fetched_at": null,
       "art": "art/me04-043.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -2153,7 +2153,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:15Z",
+      "fetched_at": null,
       "art": "art/me05-020.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -2213,7 +2213,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:15Z",
+      "fetched_at": null,
       "art": "art/me05-012.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -2272,7 +2272,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:15Z",
+      "fetched_at": null,
       "art": "art/me02-026.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -2331,7 +2331,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:24:15Z",
+      "fetched_at": null,
       "art": "art/me02-074.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -13700,6 +13700,8 @@
     "manual_examples": []
   },
   "share": {
-    "how_he": "אפשר לשתף את הקישור https://danieldrey.github.io/pokemon-binder/ ."
+    "how_he": "אפשר לשתף את האלבום בלבד בקישור https://danieldrey.github.io/pokemon-binder/album.html",
+    "album_url": "https://danieldrey.github.io/pokemon-binder/album.html",
+    "site_url": "https://danieldrey.github.io/pokemon-binder/"
   }
 }

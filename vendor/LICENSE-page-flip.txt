@@ -1,0 +1,8 @@
+page-flip (StPageFlip) v2.0.7
+https://github.com/Nodlik/StPageFlip
+License: MIT
+Copyright (c) Oleg (Nodlik)
+
+
+Local patch: flipPrev uses getRect().left+10 instead of hardcoded x=10,
+so previous-page animation works in portrait (where the visible page is the right half).

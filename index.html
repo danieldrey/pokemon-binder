@@ -38,12 +38,17 @@
       <div class="album-status" id="albumStatus"></div>
       <div class="book-wrap">
         <button type="button" class="book-nav prev" id="pagePrev" aria-label="העמוד הקודם">‹</button>
-        <div class="book" id="book">
-          <div class="book-stage" id="bookStage"></div>
+        <div class="binder-frame" id="binderFrame">
+          <div class="binder-rings" id="binderRings" aria-hidden="true"></div>
+          <div id="bookHost"><div id="book"></div></div>
         </div>
         <button type="button" class="book-nav next" id="pageNext" aria-label="העמוד הבא">›</button>
       </div>
-      <div class="page-counter" id="pageCounter" aria-live="polite"></div>
+      <div class="album-bottom">
+        <div class="page-counter" id="pageCounter" aria-live="polite"></div>
+        <button type="button" class="sound-toggle" id="soundToggle" aria-pressed="false">קול: כבוי</button>
+        <a class="share-album" id="shareAlbumLink" href="album.html">קישור לאלבום בלבד</a>
+      </div>
     </div>
   </section>
 
@@ -104,6 +109,7 @@
     <p>נתוני קלפים ומחיר raw: <a href="https://tcgdex.dev">TCGdex</a> (TCGplayer / Cardmarket). שערי מטבע: בנק ישראל. פוקימון הוא סימן מסחרי של Nintendo / Creatures / GAME FREAK — העמוד הוא כלי אישי לשיתוף אוסף, לא מוצר רשמי.</p>
   </footer>
   <script src="data.js"></script>
+  <script src="vendor/page-flip.browser.js"></script>
   <script src="app.js"></script>
 </body>
 </html>
