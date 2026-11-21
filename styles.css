@@ -195,3 +195,6 @@ footer a{color:var(--gold)}
 
 .chip.toploader{background:#3a6ea822;color:#9ecbff;border-color:#6ea8ff66}
 .leaf .chip.toploader{font-size:9px;padding:1px 6px;margin-top:2px}
+
+.chip.sleeve{background:#3a5a2a22;color:#b7e39a;border-color:#8fd06a66}
+.leaf .chip.sleeve{font-size:9px;padding:1px 6px;margin-top:2px}

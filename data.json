@@ -2,15 +2,15 @@
   "meta": {
     "title": "הבינדר של דניאל",
     "brand": "Next Pull IL",
-    "generated_at": "2026-11-21T14:20:23.811158+02:00",
-    "generated_at_label": "2026-11-21 14:20 שעון ישראל",
+    "generated_at": "2026-11-21T14:24:20.116810+02:00",
+    "generated_at_label": "2026-11-21 14:24 שעון ישראל",
     "fx": {
       "usd_ils": 3.326,
       "eur_ils": 3.6503,
       "usd_date": "2026-11-20",
       "eur_date": "2026-11-20",
       "source": "Bank of Israel",
-      "fetched_at": "2026-11-21T12:20:19Z",
+      "fetched_at": "2026-11-21T12:24:12Z",
       "usd_last_update": "2026-11-20T10:21:05.8283621Z",
       "eur_last_update": "2026-11-20T10:21:05.8283621Z"
     },
@@ -20,14 +20,14 @@
     "collectr_portfolio_date": "2026-11-21"
   },
   "totals": {
-    "usd": 30.11,
-    "ils": 100.17,
-    "ils_low": 100.17,
-    "ils_high": 100.17,
+    "usd": 33.08,
+    "ils": 110.08,
+    "ils_low": 110.08,
+    "ils_high": 110.08,
     "has_range": false,
-    "priced_copies": 20,
-    "copies": 20,
-    "unique": 20
+    "priced_copies": 38,
+    "copies": 38,
+    "unique": 37
   },
   "cards": [
     {
@@ -880,7 +880,9 @@
         "cgc10": null,
         "available": false,
         "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
-      }
+      },
+      "sleeve": true,
+      "source_sleeve": "sleeve-photo"
     },
     {
       "id": "M6-043",
@@ -945,7 +947,9 @@
         "cgc10": null,
         "available": false,
         "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
-      }
+      },
+      "sleeve": true,
+      "source_sleeve": "sleeve-photo"
     },
     {
       "id": "M6-021",
@@ -1076,7 +1080,9 @@
         "cgc10": null,
         "available": false,
         "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
-      }
+      },
+      "sleeve": true,
+      "source_sleeve": "sleeve-photo"
     },
     {
       "id": "M6-052",
@@ -1142,7 +1148,9 @@
         "cgc10": null,
         "available": false,
         "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
-      }
+      },
+      "sleeve": true,
+      "source_sleeve": "sleeve-photo"
     },
     {
       "id": "M6-018",
@@ -1151,7 +1159,7 @@
       "set_id": "M6",
       "set_name": "Storm Emeralda",
       "number": "018",
-      "quantity": 1,
+      "quantity": 2,
       "condition": "NM",
       "source": "toploader-photo",
       "lang": "ja",
@@ -1203,7 +1211,9 @@
         "cgc10": null,
         "available": false,
         "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
-      }
+      },
+      "sleeve": true,
+      "id_note_he": "עותק אחד בטופלוודר ועותק אחד בשרוול, שניהם כ-Kyogre נדיר 018/076 (150 HP, לא ex). אם אחד מהם הוא ה-Art Rare (080/076), שכבר באוסף מצילומי Collectr, צריך לעדכן: להשאיר את 018 בכמות 1 ולסמן את 080 כשרוול."
     },
     {
       "id": "me02-041",
@@ -1247,7 +1257,7 @@
         "source": "TCGplayer market via TCGdex",
         "source_updated": "2026-11-20"
       },
-      "fetched_at": "2026-11-21T12:20:21Z",
+      "fetched_at": null,
       "art": "art/me02-041.webp",
       "worth_grading": {
         "status": "unlikely",
@@ -1326,6 +1336,1018 @@
         "available": false,
         "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
       }
+    },
+    {
+      "id": "mee-010",
+      "name": "Basic Fire Energy",
+      "set_id": "mee",
+      "set_name": "Mega Evolution Energy",
+      "number": "010",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "id_note_he": "Basic Fire Energy עם חותמת 30th Celebration: זה MEE 010 (סט Mega Evolution Energy), לא 002 מאותו סט ולא קלף מתוך 30th Celebration עצמו.",
+      "rarity": "Common",
+      "image_base": null,
+      "tcgplayer_product_id": 713249,
+      "price": {
+        "usd": 0.1,
+        "ils": 0.33,
+        "currency_used": "EUR",
+        "variant": "trend",
+        "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:19.097Z",
+        "detail": {
+          "eur": 0.09,
+          "field": "trend"
+        }
+      },
+      "value": {
+        "usd": 0.1,
+        "ils": 0.33,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:14Z",
+      "art": "art/mee-010.jpg",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.33,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "M6-106",
+      "name": "Bubbly Water Energy",
+      "set_id": "M6",
+      "set_name": "Storm Emeralda",
+      "number": "106",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "lang": "ja",
+      "name_ja": "バブル水エネルギー",
+      "set_name_ja": "ストームエメラルダ",
+      "rarity": "Ultra Rare",
+      "image_base": null,
+      "tcgplayer_product_id": 709259,
+      "price": {
+        "usd": 0.61,
+        "ils": 2.04,
+        "currency_used": "EUR",
+        "variant": "trend",
+        "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:19.074Z",
+        "detail": {
+          "eur": 0.56,
+          "field": "trend"
+        }
+      },
+      "value": {
+        "usd": 0.61,
+        "ils": 2.04,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": null,
+      "art": "art/M6-106.jpg",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪2, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 2.04,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "M6-011",
+      "name": "Arcanine",
+      "set_id": "M6",
+      "set_name": "Storm Emeralda",
+      "number": "011",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "lang": "ja",
+      "name_ja": "ウインディ",
+      "set_name_ja": "ストームエメラルダ",
+      "rarity": "Rare",
+      "image_base": null,
+      "tcgplayer_product_id": 709167,
+      "price": {
+        "usd": 0.14,
+        "ils": 0.47,
+        "currency_used": "EUR",
+        "variant": "trend",
+        "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:19.072Z",
+        "detail": {
+          "eur": 0.13,
+          "field": "trend"
+        }
+      },
+      "value": {
+        "usd": 0.14,
+        "ils": 0.47,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": null,
+      "art": "art/M6-011.jpg",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.47,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me03-042",
+      "name": "Binacle",
+      "set_id": "me03",
+      "set_name": "Perfect Order",
+      "number": "042",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "id_note_he": "זוהה כ-Binacle 80 HP מ-Perfect Order (me03-042). קיימת גם גרסת פרומו זהה (mep-087).",
+      "rarity": "Common",
+      "image_base": "https://assets.tcgdex.net/en/me/me03/042",
+      "tcgplayer_product_id": 684334,
+      "price": {
+        "usd": 0.16,
+        "ils": 0.53,
+        "currency_used": "USD",
+        "variant": "normal",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.311Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.19,
+          "high": 19.66,
+          "market": 0.16
+        }
+      },
+      "value": {
+        "usd": 0.16,
+        "ils": 0.53,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:14Z",
+      "art": "art/me03-042.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪1, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.53,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me03-024",
+      "name": "Aurorus",
+      "set_id": "me03",
+      "set_name": "Perfect Order",
+      "number": "024",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "id_note_he": "זוהה כ-Aurorus 170 HP מ-Perfect Order (me03-024, Rare). אם זה פול-ארט, זו ההדפסה 092 Illustration Rare.",
+      "rarity": "Rare",
+      "image_base": "https://assets.tcgdex.net/en/me/me03/024",
+      "tcgplayer_product_id": 684356,
+      "price": {
+        "usd": 0.15,
+        "ils": 0.5,
+        "currency_used": "USD",
+        "variant": "holofoil",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.311Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.2,
+          "high": 19.66,
+          "market": 0.15
+        }
+      },
+      "value": {
+        "usd": 0.15,
+        "ils": 0.5,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:14Z",
+      "art": "art/me03-024.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.5,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me02-012",
+      "name": "Charmeleon",
+      "set_id": "me02",
+      "set_name": "Phantasmal Flames",
+      "number": "012",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "id_note_he": "זוהה כ-Charmeleon 110 HP מ-Phantasmal Flames (me02-012). קיימת גם גרסת פרומו זהה (mep-079).",
+      "rarity": "Common",
+      "image_base": "https://assets.tcgdex.net/en/me/me02/012",
+      "tcgplayer_product_id": 662144,
+      "price": {
+        "usd": 0.15,
+        "ils": 0.5,
+        "currency_used": "USD",
+        "variant": "normal",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.123Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.2,
+          "high": 999,
+          "market": 0.15
+        }
+      },
+      "value": {
+        "usd": 0.15,
+        "ils": 0.5,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:14Z",
+      "art": "art/me02-012.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.5,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me04-013",
+      "name": "Delphox",
+      "set_id": "me04",
+      "set_name": "Chaos Rising",
+      "number": "013",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "id_note_he": "זוהה כ-Delphox 160 HP מ-Chaos Rising (me04-013). קיימת גם גרסת פרומו זהה (mep-074).",
+      "rarity": "Rare",
+      "image_base": "https://assets.tcgdex.net/en/me/me04/013",
+      "tcgplayer_product_id": 693473,
+      "price": {
+        "usd": 0.15,
+        "ils": 0.5,
+        "currency_used": "USD",
+        "variant": "holofoil",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.434Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.2,
+          "high": 6.99,
+          "market": 0.15
+        }
+      },
+      "value": {
+        "usd": 0.15,
+        "ils": 0.5,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:14Z",
+      "art": "art/me04-013.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.5,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me04-029",
+      "name": "Ampharos",
+      "set_id": "me04",
+      "set_name": "Chaos Rising",
+      "number": "029",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "id_note_he": "זוהה כ-Ampharos 160 HP עם היכולת Synchro Pulse, Chaos Rising 029 (Rare). אם זה פול-ארט, זו 090 Illustration Rare.",
+      "rarity": "Rare",
+      "image_base": "https://assets.tcgdex.net/en/me/me04/029",
+      "tcgplayer_product_id": 693445,
+      "price": {
+        "usd": 0.18,
+        "ils": 0.6,
+        "currency_used": "USD",
+        "variant": "holofoil",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.434Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.2,
+          "high": 6.99,
+          "market": 0.18
+        }
+      },
+      "value": {
+        "usd": 0.18,
+        "ils": 0.6,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:15Z",
+      "art": "art/me04-029.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪1, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.6,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me04-027",
+      "name": "Mareep",
+      "set_id": "me04",
+      "set_name": "Chaos Rising",
+      "number": "027",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "rarity": "Common",
+      "image_base": "https://assets.tcgdex.net/en/me/me04/027",
+      "tcgplayer_product_id": 693507,
+      "price": {
+        "usd": 0.11,
+        "ils": 0.37,
+        "currency_used": "USD",
+        "variant": "normal",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.434Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.15,
+          "high": 6.99,
+          "market": 0.11
+        }
+      },
+      "value": {
+        "usd": 0.11,
+        "ils": 0.37,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:15Z",
+      "art": "art/me04-027.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.37,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me04-002",
+      "name": "Kakuna",
+      "set_id": "me04",
+      "set_name": "Chaos Rising",
+      "number": "002",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "rarity": "Common",
+      "image_base": "https://assets.tcgdex.net/en/me/me04/002",
+      "tcgplayer_product_id": 693502,
+      "price": {
+        "usd": 0.19,
+        "ils": 0.63,
+        "currency_used": "USD",
+        "variant": "normal",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.434Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.19,
+          "high": 12,
+          "market": 0.19
+        }
+      },
+      "value": {
+        "usd": 0.19,
+        "ils": 0.63,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:15Z",
+      "art": "art/me04-002.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪1, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.63,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me04-001",
+      "name": "Weedle",
+      "set_id": "me04",
+      "set_name": "Chaos Rising",
+      "number": "001",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "rarity": "Common",
+      "image_base": "https://assets.tcgdex.net/en/me/me04/001",
+      "tcgplayer_product_id": 693561,
+      "price": {
+        "usd": 0.11,
+        "ils": 0.37,
+        "currency_used": "USD",
+        "variant": "normal",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.434Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.16,
+          "high": 5,
+          "market": 0.11
+        }
+      },
+      "value": {
+        "usd": 0.11,
+        "ils": 0.37,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:15Z",
+      "art": "art/me04-001.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.37,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me04-009",
+      "name": "Ninetales",
+      "set_id": "me04",
+      "set_name": "Chaos Rising",
+      "number": "009",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "id_note_he": "זוהה כ-Ninetales 120 HP מ-Chaos Rising (me04-009). ב-Mega Evolution יש גם Ninetales 120 HP (me01-020) עם התקפות אחרות.",
+      "rarity": "Uncommon",
+      "image_base": "https://assets.tcgdex.net/en/me/me04/009",
+      "tcgplayer_product_id": 693526,
+      "price": {
+        "usd": 0.14,
+        "ils": 0.47,
+        "currency_used": "USD",
+        "variant": "normal",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.434Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.15,
+          "high": 4,
+          "market": 0.14
+        }
+      },
+      "value": {
+        "usd": 0.14,
+        "ils": 0.47,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:15Z",
+      "art": "art/me04-009.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.47,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me04-043",
+      "name": "Sudowoodo",
+      "set_id": "me04",
+      "set_name": "Chaos Rising",
+      "number": "043",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "rarity": "Uncommon",
+      "image_base": "https://assets.tcgdex.net/en/me/me04/043",
+      "tcgplayer_product_id": 693550,
+      "price": {
+        "usd": 0.09,
+        "ils": 0.3,
+        "currency_used": "USD",
+        "variant": "normal",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.434Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.15,
+          "high": 6.99,
+          "market": 0.09
+        }
+      },
+      "value": {
+        "usd": 0.09,
+        "ils": 0.3,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:15Z",
+      "art": "art/me04-043.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.3,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me05-020",
+      "name": "Primarina",
+      "set_id": "me05",
+      "set_name": "Pitch Black",
+      "number": "020",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "id_note_he": "זוהה כ-Primarina 150 HP עם היכולת Enriching Melody, Pitch Black 020 (Rare). אם זה פול-ארט, זו 088 Illustration Rare.",
+      "rarity": "Rare",
+      "image_base": "https://assets.tcgdex.net/en/me/me05/020",
+      "tcgplayer_product_id": 704777,
+      "price": {
+        "usd": 0.18,
+        "ils": 0.6,
+        "currency_used": "USD",
+        "variant": "holofoil",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.531Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.2,
+          "high": 3.98,
+          "market": 0.18
+        }
+      },
+      "value": {
+        "usd": 0.18,
+        "ils": 0.6,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:15Z",
+      "art": "art/me05-020.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪1, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.6,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me05-012",
+      "name": "Armarouge",
+      "set_id": "me05",
+      "set_name": "Pitch Black",
+      "number": "012",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "id_note_he": "זוהה כ-Armarouge 140 HP מ-Pitch Black (me05-012, Rare). אם זה פול-ארט, זו 086 Illustration Rare.",
+      "rarity": "Rare",
+      "image_base": "https://assets.tcgdex.net/en/me/me05/012",
+      "tcgplayer_product_id": 704769,
+      "price": {
+        "usd": 0.17,
+        "ils": 0.57,
+        "currency_used": "USD",
+        "variant": "holofoil",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.531Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.2,
+          "high": 2.37,
+          "market": 0.17
+        }
+      },
+      "value": {
+        "usd": 0.17,
+        "ils": 0.57,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:15Z",
+      "art": "art/me05-012.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪1, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.57,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me02-026",
+      "name": "Suicune",
+      "set_id": "me02",
+      "set_name": "Phantasmal Flames",
+      "number": "026",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "rarity": "Rare",
+      "image_base": "https://assets.tcgdex.net/en/me/me02/026",
+      "tcgplayer_product_id": 662229,
+      "price": {
+        "usd": 0.15,
+        "ils": 0.5,
+        "currency_used": "USD",
+        "variant": "holofoil",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.123Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.2,
+          "high": 999,
+          "market": 0.15
+        }
+      },
+      "value": {
+        "usd": 0.15,
+        "ils": 0.5,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:15Z",
+      "art": "art/me02-026.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.5,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
+    },
+    {
+      "id": "me02-074",
+      "name": "Duraludon",
+      "set_id": "me02",
+      "set_name": "Phantasmal Flames",
+      "number": "074",
+      "quantity": 1,
+      "condition": "NM",
+      "source": "sleeve-photo",
+      "sleeve": true,
+      "demo": false,
+      "rarity": "Common",
+      "image_base": "https://assets.tcgdex.net/en/me/me02/074",
+      "tcgplayer_product_id": 662154,
+      "price": {
+        "usd": 0.11,
+        "ils": 0.37,
+        "currency_used": "USD",
+        "variant": "normal",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20",
+        "source_updated_full": "2026-11-20T22:16:34.123Z",
+        "detail": {
+          "low": 0.01,
+          "mid": 0.16,
+          "high": 999,
+          "market": 0.11
+        }
+      },
+      "value": {
+        "usd": 0.11,
+        "ils": 0.37,
+        "usd_low": null,
+        "ils_low": null,
+        "usd_high": null,
+        "ils_high": null,
+        "is_range": false,
+        "kind": "raw_market",
+        "source": "TCGplayer market via TCGdex",
+        "source_updated": "2026-11-20"
+      },
+      "fetched_at": "2026-11-21T12:24:15Z",
+      "art": "art/me02-074.webp",
+      "worth_grading": {
+        "status": "unlikely",
+        "label_he": "כנראה לא משתלם כקלף בודד",
+        "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+        "raw_ils": 0.37,
+        "fee_ils": 260
+      },
+      "graded_prices": {
+        "psa9": null,
+        "psa10": null,
+        "cgc9": null,
+        "cgc10": null,
+        "available": false,
+        "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+      }
     }
   ],
   "sets": [
@@ -1335,9 +2357,9 @@
       "logo": null,
       "official": 76,
       "total": 113,
-      "owned": 15,
-      "pct": 13.3,
-      "pct_official": 19.7,
+      "owned": 17,
+      "pct": 15.0,
+      "pct_official": 22.4,
       "cards": [
         {
           "id": "M6-001",
@@ -1441,7 +2463,8 @@
             "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
           },
           "set_name": "Storm Emeralda",
-          "set_id": "M6"
+          "set_id": "M6",
+          "sleeve": true
         },
         {
           "id": "M6-006",
@@ -1553,12 +2576,57 @@
           "name": "Arcanine",
           "name_ja": "ウインディ",
           "number": "011",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Rare",
+          "owned": true,
           "wanted": false,
           "art": "art/M6-011.jpg",
+          "value": {
+            "usd": 0.14,
+            "ils": 0.47,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.14,
+            "ils": 0.47,
+            "currency_used": "EUR",
+            "variant": "trend",
+            "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:19.072Z",
+            "detail": {
+              "eur": 0.13,
+              "field": "trend"
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.47,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Storm Emeralda",
-          "set_id": "M6"
+          "set_id": "M6",
+          "sleeve": true
         },
         {
           "id": "M6-012",
@@ -1666,7 +2734,7 @@
               "field": "trend"
             }
           },
-          "quantity": 1,
+          "quantity": 2,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -1687,7 +2755,9 @@
           },
           "set_name": "Storm Emeralda",
           "set_id": "M6",
-          "toploader": true
+          "toploader": true,
+          "sleeve": true,
+          "id_note_he": "עותק אחד בטופלוודר ועותק אחד בשרוול, שניהם כ-Kyogre נדיר 018/076 (150 HP, לא ex). אם אחד מהם הוא ה-Art Rare (080/076), שכבר באוסף מצילומי Collectr, צריך לעדכן: להשאיר את 018 בכמות 1 ולסמן את 080 כשרוול."
         },
         {
           "id": "M6-019",
@@ -2073,7 +3143,8 @@
             "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
           },
           "set_name": "Storm Emeralda",
-          "set_id": "M6"
+          "set_id": "M6",
+          "sleeve": true
         },
         {
           "id": "M6-040",
@@ -2165,7 +3236,8 @@
             "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
           },
           "set_name": "Storm Emeralda",
-          "set_id": "M6"
+          "set_id": "M6",
+          "sleeve": true
         },
         {
           "id": "M6-044",
@@ -2362,7 +3434,8 @@
             "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
           },
           "set_name": "Storm Emeralda",
-          "set_id": "M6"
+          "set_id": "M6",
+          "sleeve": true
         },
         {
           "id": "M6-053",
@@ -3227,12 +4300,57 @@
           "name": "Bubbly Water Energy",
           "name_ja": "バブル水エネルギー",
           "number": "106",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Ultra Rare",
+          "owned": true,
           "wanted": false,
           "art": "art/M6-106.jpg",
+          "value": {
+            "usd": 0.61,
+            "ils": 2.04,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.61,
+            "ils": 2.04,
+            "currency_used": "EUR",
+            "variant": "trend",
+            "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:19.074Z",
+            "detail": {
+              "eur": 0.56,
+              "field": "trend"
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪2, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 2.04,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Storm Emeralda",
-          "set_id": "M6"
+          "set_id": "M6",
+          "sleeve": true
         },
         {
           "id": "M6-107",
@@ -3365,9 +4483,9 @@
           "set_id": "M6"
         }
       ],
-      "missing_count": 98,
-      "value_ils": 87.0,
-      "value_usd": 26.15,
+      "missing_count": 96,
+      "value_ils": 89.77,
+      "value_usd": 26.98,
       "partial": true,
       "partial_note_he": "המעקב חלקי: כאן רק הקלפים ששוויים נבדק ב-Collectr. עדיין חסרים קלפים רגילים (common / uncommon / כוכב אחד) שיתווספו מצילום הבינדר.",
       "complete_cost": null,
@@ -3379,33 +4497,127 @@
       "logo": "art/logo-me04.webp",
       "official": 86,
       "total": 122,
-      "owned": 2,
-      "pct": 1.6,
-      "pct_official": 2.3,
+      "owned": 9,
+      "pct": 7.4,
+      "pct_official": 10.5,
       "cards": [
         {
           "id": "me04-001",
           "name": "Weedle",
           "name_ja": null,
           "number": "001",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Common",
+          "owned": true,
           "wanted": false,
           "art": "art/me04-001.webp",
+          "value": {
+            "usd": 0.11,
+            "ils": 0.37,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.11,
+            "ils": 0.37,
+            "currency_used": "USD",
+            "variant": "normal",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.434Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.16,
+              "high": 5,
+              "market": 0.11
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.37,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Chaos Rising",
-          "set_id": "me04"
+          "set_id": "me04",
+          "sleeve": true
         },
         {
           "id": "me04-002",
           "name": "Kakuna",
           "name_ja": null,
           "number": "002",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Common",
+          "owned": true,
           "wanted": false,
           "art": "art/me04-002.webp",
+          "value": {
+            "usd": 0.19,
+            "ils": 0.63,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.19,
+            "ils": 0.63,
+            "currency_used": "USD",
+            "variant": "normal",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.434Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.19,
+              "high": 12,
+              "market": 0.19
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪1, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.63,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Chaos Rising",
-          "set_id": "me04"
+          "set_id": "me04",
+          "sleeve": true
         },
         {
           "id": "me04-003",
@@ -3531,12 +4743,60 @@
           "name": "Ninetales",
           "name_ja": null,
           "number": "009",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Uncommon",
+          "owned": true,
           "wanted": false,
           "art": "art/me04-009.webp",
+          "value": {
+            "usd": 0.14,
+            "ils": 0.47,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.14,
+            "ils": 0.47,
+            "currency_used": "USD",
+            "variant": "normal",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.434Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.15,
+              "high": 4,
+              "market": 0.14
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.47,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Chaos Rising",
-          "set_id": "me04"
+          "set_id": "me04",
+          "sleeve": true,
+          "id_note_he": "זוהה כ-Ninetales 120 HP מ-Chaos Rising (me04-009). ב-Mega Evolution יש גם Ninetales 120 HP (me01-020) עם התקפות אחרות."
         },
         {
           "id": "me04-010",
@@ -3579,12 +4839,60 @@
           "name": "Delphox",
           "name_ja": null,
           "number": "013",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Rare",
+          "owned": true,
           "wanted": false,
           "art": "art/me04-013.webp",
+          "value": {
+            "usd": 0.15,
+            "ils": 0.5,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.15,
+            "ils": 0.5,
+            "currency_used": "USD",
+            "variant": "holofoil",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.434Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.2,
+              "high": 6.99,
+              "market": 0.15
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.5,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Chaos Rising",
-          "set_id": "me04"
+          "set_id": "me04",
+          "sleeve": true,
+          "id_note_he": "זוהה כ-Delphox 160 HP מ-Chaos Rising (me04-013). קיימת גם גרסת פרומו זהה (mep-074)."
         },
         {
           "id": "me04-014",
@@ -3747,12 +5055,59 @@
           "name": "Mareep",
           "name_ja": null,
           "number": "027",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Common",
+          "owned": true,
           "wanted": false,
           "art": "art/me04-027.webp",
+          "value": {
+            "usd": 0.11,
+            "ils": 0.37,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.11,
+            "ils": 0.37,
+            "currency_used": "USD",
+            "variant": "normal",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.434Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.15,
+              "high": 6.99,
+              "market": 0.11
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.37,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Chaos Rising",
-          "set_id": "me04"
+          "set_id": "me04",
+          "sleeve": true
         },
         {
           "id": "me04-028",
@@ -3771,12 +5126,60 @@
           "name": "Ampharos",
           "name_ja": null,
           "number": "029",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Rare",
+          "owned": true,
           "wanted": false,
           "art": "art/me04-029.webp",
+          "value": {
+            "usd": 0.18,
+            "ils": 0.6,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.18,
+            "ils": 0.6,
+            "currency_used": "USD",
+            "variant": "holofoil",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.434Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.2,
+              "high": 6.99,
+              "market": 0.18
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪1, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.6,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Chaos Rising",
-          "set_id": "me04"
+          "set_id": "me04",
+          "sleeve": true,
+          "id_note_he": "זוהה כ-Ampharos 160 HP עם היכולת Synchro Pulse, Chaos Rising 029 (Rare). אם זה פול-ארט, זו 090 Illustration Rare."
         },
         {
           "id": "me04-030",
@@ -3939,12 +5342,59 @@
           "name": "Sudowoodo",
           "name_ja": null,
           "number": "043",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Uncommon",
+          "owned": true,
           "wanted": false,
           "art": "art/me04-043.webp",
+          "value": {
+            "usd": 0.09,
+            "ils": 0.3,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.09,
+            "ils": 0.3,
+            "currency_used": "USD",
+            "variant": "normal",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.434Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.15,
+              "high": 6.99,
+              "market": 0.09
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.3,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Chaos Rising",
-          "set_id": "me04"
+          "set_id": "me04",
+          "sleeve": true
         },
         {
           "id": "me04-044",
@@ -4942,9 +6392,9 @@
           "set_id": "me04"
         }
       ],
-      "missing_count": 120,
-      "value_ils": 4.59,
-      "value_usd": 1.38,
+      "missing_count": 113,
+      "value_ils": 7.83,
+      "value_usd": 2.35,
       "partial": true,
       "partial_note_he": "המעקב חלקי: כאן רק הקלפים ששוויים נבדק ב-Collectr. עדיין חסרים קלפים רגילים (common / uncommon / כוכב אחד) שיתווספו מצילום הבינדר.",
       "complete_cost": null,
@@ -4956,9 +6406,9 @@
       "logo": "art/logo-me02.webp",
       "official": 94,
       "total": 130,
-      "owned": 1,
-      "pct": 0.8,
-      "pct_official": 1.1,
+      "owned": 4,
+      "pct": 3.1,
+      "pct_official": 4.3,
       "cards": [
         {
           "id": "me02-001",
@@ -5097,12 +6547,60 @@
           "name": "Charmeleon",
           "name_ja": null,
           "number": "012",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Common",
+          "owned": true,
           "wanted": false,
           "art": "art/me02-012.webp",
+          "value": {
+            "usd": 0.15,
+            "ils": 0.5,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.15,
+            "ils": 0.5,
+            "currency_used": "USD",
+            "variant": "normal",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.123Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.2,
+              "high": 999,
+              "market": 0.15
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.5,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Phantasmal Flames",
-          "set_id": "me02"
+          "set_id": "me02",
+          "sleeve": true,
+          "id_note_he": "זוהה כ-Charmeleon 110 HP מ-Phantasmal Flames (me02-012). קיימת גם גרסת פרומו זהה (mep-079)."
         },
         {
           "id": "me02-013",
@@ -5265,12 +6763,59 @@
           "name": "Suicune",
           "name_ja": null,
           "number": "026",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Rare",
+          "owned": true,
           "wanted": false,
           "art": "art/me02-026.webp",
+          "value": {
+            "usd": 0.15,
+            "ils": 0.5,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.15,
+            "ils": 0.5,
+            "currency_used": "USD",
+            "variant": "holofoil",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.123Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.2,
+              "high": 999,
+              "market": 0.15
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.5,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Phantasmal Flames",
-          "set_id": "me02"
+          "set_id": "me02",
+          "sleeve": true
         },
         {
           "id": "me02-027",
@@ -5888,12 +7433,59 @@
           "name": "Duraludon",
           "name_ja": null,
           "number": "074",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Common",
+          "owned": true,
           "wanted": false,
           "art": "art/me02-074.webp",
+          "value": {
+            "usd": 0.11,
+            "ils": 0.37,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.11,
+            "ils": 0.37,
+            "currency_used": "USD",
+            "variant": "normal",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.123Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.16,
+              "high": 999,
+              "market": 0.11
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.37,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Phantasmal Flames",
-          "set_id": "me02"
+          "set_id": "me02",
+          "sleeve": true
         },
         {
           "id": "me02-075",
@@ -6568,9 +8160,9 @@
           "set_id": "me02"
         }
       ],
-      "missing_count": 129,
-      "value_ils": 1.76,
-      "value_usd": 0.53,
+      "missing_count": 126,
+      "value_ils": 3.13,
+      "value_usd": 0.94,
       "partial": true,
       "partial_note_he": "המעקב חלקי: כאן רק הקלפים ששוויים נבדק ב-Collectr. עדיין חסרים קלפים רגילים (common / uncommon / כוכב אחד) שיתווספו מצילום הבינדר.",
       "complete_cost": null,
@@ -6582,9 +8174,9 @@
       "logo": "art/logo-me05.webp",
       "official": 84,
       "total": 120,
-      "owned": 1,
-      "pct": 0.8,
-      "pct_official": 1.2,
+      "owned": 3,
+      "pct": 2.5,
+      "pct_official": 3.6,
       "cards": [
         {
           "id": "me05-001",
@@ -6723,12 +8315,60 @@
           "name": "Armarouge",
           "name_ja": null,
           "number": "012",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Rare",
+          "owned": true,
           "wanted": false,
           "art": "art/me05-012.webp",
+          "value": {
+            "usd": 0.17,
+            "ils": 0.57,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.17,
+            "ils": 0.57,
+            "currency_used": "USD",
+            "variant": "holofoil",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.531Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.2,
+              "high": 2.37,
+              "market": 0.17
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪1, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.57,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Pitch Black",
-          "set_id": "me05"
+          "set_id": "me05",
+          "sleeve": true,
+          "id_note_he": "זוהה כ-Armarouge 140 HP מ-Pitch Black (me05-012, Rare). אם זה פול-ארט, זו 086 Illustration Rare."
         },
         {
           "id": "me05-013",
@@ -6819,12 +8459,60 @@
           "name": "Primarina",
           "name_ja": null,
           "number": "020",
-          "rarity": null,
-          "owned": false,
+          "rarity": "Rare",
+          "owned": true,
           "wanted": false,
           "art": "art/me05-020.webp",
+          "value": {
+            "usd": 0.18,
+            "ils": 0.6,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.18,
+            "ils": 0.6,
+            "currency_used": "USD",
+            "variant": "holofoil",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.531Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.2,
+              "high": 3.98,
+              "market": 0.18
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪1, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.6,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
           "set_name": "Pitch Black",
-          "set_id": "me05"
+          "set_id": "me05",
+          "sleeve": true,
+          "id_note_he": "זוהה כ-Primarina 150 HP עם היכולת Enriching Melody, Pitch Black 020 (Rare). אם זה פול-ארט, זו 088 Illustration Rare."
         },
         {
           "id": "me05-021",
@@ -8074,9 +9762,1869 @@
           "set_id": "me05"
         }
       ],
-      "missing_count": 119,
-      "value_ils": 5.26,
-      "value_usd": 1.58,
+      "missing_count": 117,
+      "value_ils": 6.43,
+      "value_usd": 1.93,
+      "partial": true,
+      "partial_note_he": "המעקב חלקי: כאן רק הקלפים ששוויים נבדק ב-Collectr. עדיין חסרים קלפים רגילים (common / uncommon / כוכב אחד) שיתווספו מצילום הבינדר.",
+      "complete_cost": null,
+      "complete_cost_note_he": "עלות השלמת סט מלא דורשת מחיר לכל קלף חסר. כרגע מחושבת עלות לרשימת ההשגה בלבד. אפשר לסמן קלפים חסרים כמבוקשים ולראות את הסכום מתעדכן."
+    },
+    {
+      "id": "me03",
+      "name": "Perfect Order",
+      "logo": "art/logo-me03.webp",
+      "official": 88,
+      "total": 124,
+      "owned": 2,
+      "pct": 1.6,
+      "pct_official": 2.3,
+      "cards": [
+        {
+          "id": "me03-001",
+          "name": "Spinarak",
+          "name_ja": null,
+          "number": "001",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-001.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-002",
+          "name": "Ariados",
+          "name_ja": null,
+          "number": "002",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-002.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-003",
+          "name": "Shaymin",
+          "name_ja": null,
+          "number": "003",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-003.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-004",
+          "name": "Snivy",
+          "name_ja": null,
+          "number": "004",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-004.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-005",
+          "name": "Servine",
+          "name_ja": null,
+          "number": "005",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-005.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-006",
+          "name": "Serperior",
+          "name_ja": null,
+          "number": "006",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-006.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-007",
+          "name": "Scatterbug",
+          "name_ja": null,
+          "number": "007",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-007.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-008",
+          "name": "Spewpa",
+          "name_ja": null,
+          "number": "008",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-008.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-009",
+          "name": "Vivillon",
+          "name_ja": null,
+          "number": "009",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-009.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-010",
+          "name": "Rowlet",
+          "name_ja": null,
+          "number": "010",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-010.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-011",
+          "name": "Dartrix",
+          "name_ja": null,
+          "number": "011",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-011.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-012",
+          "name": "Decidueye ex",
+          "name_ja": null,
+          "number": "012",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-012.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-013",
+          "name": "Fletchinder",
+          "name_ja": null,
+          "number": "013",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-013.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-014",
+          "name": "Talonflame",
+          "name_ja": null,
+          "number": "014",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-014.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-015",
+          "name": "Salandit",
+          "name_ja": null,
+          "number": "015",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-015.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-016",
+          "name": "Salazzle ex",
+          "name_ja": null,
+          "number": "016",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-016.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-017",
+          "name": "Turtonator",
+          "name_ja": null,
+          "number": "017",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-017.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-018",
+          "name": "Seel",
+          "name_ja": null,
+          "number": "018",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-018.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-019",
+          "name": "Dewgong",
+          "name_ja": null,
+          "number": "019",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-019.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-020",
+          "name": "Staryu",
+          "name_ja": null,
+          "number": "020",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-020.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-021",
+          "name": "Mega Starmie ex",
+          "name_ja": null,
+          "number": "021",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-021.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-022",
+          "name": "Lapras ex",
+          "name_ja": null,
+          "number": "022",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-022.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-023",
+          "name": "Amaura",
+          "name_ja": null,
+          "number": "023",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-023.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-024",
+          "name": "Aurorus",
+          "name_ja": null,
+          "number": "024",
+          "rarity": "Rare",
+          "owned": true,
+          "wanted": false,
+          "art": "art/me03-024.webp",
+          "value": {
+            "usd": 0.15,
+            "ils": 0.5,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.15,
+            "ils": 0.5,
+            "currency_used": "USD",
+            "variant": "holofoil",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.311Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.2,
+              "high": 19.66,
+              "market": 0.15
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.5,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
+          "set_name": "Perfect Order",
+          "set_id": "me03",
+          "sleeve": true,
+          "id_note_he": "זוהה כ-Aurorus 170 HP מ-Perfect Order (me03-024, Rare). אם זה פול-ארט, זו ההדפסה 092 Illustration Rare."
+        },
+        {
+          "id": "me03-025",
+          "name": "Volcanion",
+          "name_ja": null,
+          "number": "025",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-025.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-026",
+          "name": "Shinx",
+          "name_ja": null,
+          "number": "026",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-026.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-027",
+          "name": "Luxio",
+          "name_ja": null,
+          "number": "027",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-027.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-028",
+          "name": "Luxray",
+          "name_ja": null,
+          "number": "028",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-028.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-029",
+          "name": "Dedenne",
+          "name_ja": null,
+          "number": "029",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-029.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-030",
+          "name": "Clefairy",
+          "name_ja": null,
+          "number": "030",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-030.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-031",
+          "name": "Mega Clefable ex",
+          "name_ja": null,
+          "number": "031",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-031.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-032",
+          "name": "Mawile",
+          "name_ja": null,
+          "number": "032",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-032.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-033",
+          "name": "Espurr",
+          "name_ja": null,
+          "number": "033",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-033.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-034",
+          "name": "Meowstic",
+          "name_ja": null,
+          "number": "034",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-034.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-035",
+          "name": "Spritzee",
+          "name_ja": null,
+          "number": "035",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-035.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-036",
+          "name": "Aromatisse",
+          "name_ja": null,
+          "number": "036",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-036.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-037",
+          "name": "Nosepass",
+          "name_ja": null,
+          "number": "037",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-037.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-038",
+          "name": "Probopass",
+          "name_ja": null,
+          "number": "038",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-038.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-039",
+          "name": "Hippopotas",
+          "name_ja": null,
+          "number": "039",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-039.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-040",
+          "name": "Hippowdon",
+          "name_ja": null,
+          "number": "040",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-040.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-041",
+          "name": "Landorus",
+          "name_ja": null,
+          "number": "041",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-041.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-042",
+          "name": "Binacle",
+          "name_ja": null,
+          "number": "042",
+          "rarity": "Common",
+          "owned": true,
+          "wanted": false,
+          "art": "art/me03-042.webp",
+          "value": {
+            "usd": 0.16,
+            "ils": 0.53,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.16,
+            "ils": 0.53,
+            "currency_used": "USD",
+            "variant": "normal",
+            "source": "TCGplayer market via TCGdex",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:34.311Z",
+            "detail": {
+              "low": 0.01,
+              "mid": 0.19,
+              "high": 19.66,
+              "market": 0.16
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪1, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.53,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
+          "set_name": "Perfect Order",
+          "set_id": "me03",
+          "sleeve": true,
+          "id_note_he": "זוהה כ-Binacle 80 HP מ-Perfect Order (me03-042). קיימת גם גרסת פרומו זהה (mep-087)."
+        },
+        {
+          "id": "me03-043",
+          "name": "Barbaracle",
+          "name_ja": null,
+          "number": "043",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-043.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-044",
+          "name": "Tyrunt",
+          "name_ja": null,
+          "number": "044",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-044.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-045",
+          "name": "Tyrantrum",
+          "name_ja": null,
+          "number": "045",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-045.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-046",
+          "name": "Hawlucha",
+          "name_ja": null,
+          "number": "046",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-046.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-047",
+          "name": "Mega Zygarde ex",
+          "name_ja": null,
+          "number": "047",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-047.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-048",
+          "name": "Gastly",
+          "name_ja": null,
+          "number": "048",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-048.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-049",
+          "name": "Haunter",
+          "name_ja": null,
+          "number": "049",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-049.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-050",
+          "name": "Gengar",
+          "name_ja": null,
+          "number": "050",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-050.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-051",
+          "name": "Skorupi",
+          "name_ja": null,
+          "number": "051",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-051.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-052",
+          "name": "Drapion",
+          "name_ja": null,
+          "number": "052",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-052.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-053",
+          "name": "Yveltal ex",
+          "name_ja": null,
+          "number": "053",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-053.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-054",
+          "name": "Chien-Pao",
+          "name_ja": null,
+          "number": "054",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-054.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-055",
+          "name": "Mega Skarmory ex",
+          "name_ja": null,
+          "number": "055",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-055.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-056",
+          "name": "Honedge",
+          "name_ja": null,
+          "number": "056",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-056.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-057",
+          "name": "Doublade",
+          "name_ja": null,
+          "number": "057",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-057.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-058",
+          "name": "Aegislash",
+          "name_ja": null,
+          "number": "058",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-058.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-059",
+          "name": "Klefki",
+          "name_ja": null,
+          "number": "059",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-059.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-060",
+          "name": "Rattata",
+          "name_ja": null,
+          "number": "060",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-060.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-061",
+          "name": "Raticate",
+          "name_ja": null,
+          "number": "061",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-061.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-062",
+          "name": "Meowth ex",
+          "name_ja": null,
+          "number": "062",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-062.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-063",
+          "name": "Snorlax",
+          "name_ja": null,
+          "number": "063",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-063.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-064",
+          "name": "Bunnelby",
+          "name_ja": null,
+          "number": "064",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-064.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-065",
+          "name": "Diggersby",
+          "name_ja": null,
+          "number": "065",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-065.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-066",
+          "name": "Fletchling",
+          "name_ja": null,
+          "number": "066",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-066.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-067",
+          "name": "Furfrou",
+          "name_ja": null,
+          "number": "067",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-067.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-068",
+          "name": "Antique Jaw Fossil",
+          "name_ja": null,
+          "number": "068",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-068.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-069",
+          "name": "Antique Sail Fossil",
+          "name_ja": null,
+          "number": "069",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-069.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-070",
+          "name": "Core Memory",
+          "name_ja": null,
+          "number": "070",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-070.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-071",
+          "name": "Crushing Hammer",
+          "name_ja": null,
+          "number": "071",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-071.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-072",
+          "name": "Energy Search",
+          "name_ja": null,
+          "number": "072",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-072.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-073",
+          "name": "Energy Swatter",
+          "name_ja": null,
+          "number": "073",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-073.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-074",
+          "name": "Hole-Digging Shovel",
+          "name_ja": null,
+          "number": "074",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-074.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-075",
+          "name": "Jacinthe",
+          "name_ja": null,
+          "number": "075",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-075.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-076",
+          "name": "Judge",
+          "name_ja": null,
+          "number": "076",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-076.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-077",
+          "name": "Lumiose City",
+          "name_ja": null,
+          "number": "077",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-077.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-078",
+          "name": "Lumiose Galette",
+          "name_ja": null,
+          "number": "078",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-078.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-079",
+          "name": "Naveen",
+          "name_ja": null,
+          "number": "079",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-079.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-080",
+          "name": "Poké Ball",
+          "name_ja": null,
+          "number": "080",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-080.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-081",
+          "name": "Poké Pad",
+          "name_ja": null,
+          "number": "081",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-081.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-082",
+          "name": "Pokémon Catcher",
+          "name_ja": null,
+          "number": "082",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-082.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-083",
+          "name": "Potion",
+          "name_ja": null,
+          "number": "083",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-083.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-084",
+          "name": "Rosa's Encouragement",
+          "name_ja": null,
+          "number": "084",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-084.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-085",
+          "name": "Tarragon",
+          "name_ja": null,
+          "number": "085",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-085.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-086",
+          "name": "Growing Grass Energy",
+          "name_ja": null,
+          "number": "086",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-086.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-087",
+          "name": "Rocky Fighting Energy",
+          "name_ja": null,
+          "number": "087",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-087.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-088",
+          "name": "Telepathic Psychic Energy",
+          "name_ja": null,
+          "number": "088",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-088.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-089",
+          "name": "Spewpa",
+          "name_ja": null,
+          "number": "089",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-089.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-090",
+          "name": "Rowlet",
+          "name_ja": null,
+          "number": "090",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-090.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-091",
+          "name": "Talonflame",
+          "name_ja": null,
+          "number": "091",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-091.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-092",
+          "name": "Aurorus",
+          "name_ja": null,
+          "number": "092",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-092.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-093",
+          "name": "Dedenne",
+          "name_ja": null,
+          "number": "093",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-093.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-094",
+          "name": "Clefairy",
+          "name_ja": null,
+          "number": "094",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-094.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-095",
+          "name": "Espurr",
+          "name_ja": null,
+          "number": "095",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-095.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-096",
+          "name": "Probopass",
+          "name_ja": null,
+          "number": "096",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-096.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-097",
+          "name": "Drapion",
+          "name_ja": null,
+          "number": "097",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-097.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-098",
+          "name": "Doublade",
+          "name_ja": null,
+          "number": "098",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-098.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-099",
+          "name": "Raticate",
+          "name_ja": null,
+          "number": "099",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-099.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-100",
+          "name": "Decidueye ex",
+          "name_ja": null,
+          "number": "100",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-100.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-101",
+          "name": "Salazzle ex",
+          "name_ja": null,
+          "number": "101",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-101.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-102",
+          "name": "Mega Starmie ex",
+          "name_ja": null,
+          "number": "102",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-102.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-103",
+          "name": "Mega Clefable ex",
+          "name_ja": null,
+          "number": "103",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-103.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-104",
+          "name": "Mega Zygarde ex",
+          "name_ja": null,
+          "number": "104",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-104.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-105",
+          "name": "Yveltal ex",
+          "name_ja": null,
+          "number": "105",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-105.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-106",
+          "name": "Mega Skarmory ex",
+          "name_ja": null,
+          "number": "106",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-106.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-107",
+          "name": "Meowth ex",
+          "name_ja": null,
+          "number": "107",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-107.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-108",
+          "name": "Energy Recycler",
+          "name_ja": null,
+          "number": "108",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-108.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-109",
+          "name": "Forest of Vitality",
+          "name_ja": null,
+          "number": "109",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-109.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-110",
+          "name": "Jacinthe",
+          "name_ja": null,
+          "number": "110",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-110.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-111",
+          "name": "Lumiose City",
+          "name_ja": null,
+          "number": "111",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-111.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-112",
+          "name": "Naveen",
+          "name_ja": null,
+          "number": "112",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-112.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-113",
+          "name": "Poké Pad",
+          "name_ja": null,
+          "number": "113",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-113.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-114",
+          "name": "Rosa's Encouragement",
+          "name_ja": null,
+          "number": "114",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-114.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-115",
+          "name": "Sacred Ash",
+          "name_ja": null,
+          "number": "115",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-115.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-116",
+          "name": "Tarragon",
+          "name_ja": null,
+          "number": "116",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-116.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-117",
+          "name": "Wondrous Patch",
+          "name_ja": null,
+          "number": "117",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-117.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-118",
+          "name": "Mega Starmie ex",
+          "name_ja": null,
+          "number": "118",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-118.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-119",
+          "name": "Mega Clefable ex",
+          "name_ja": null,
+          "number": "119",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-119.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-120",
+          "name": "Mega Zygarde ex",
+          "name_ja": null,
+          "number": "120",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-120.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-121",
+          "name": "Meowth ex",
+          "name_ja": null,
+          "number": "121",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-121.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-122",
+          "name": "Jacinthe",
+          "name_ja": null,
+          "number": "122",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-122.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-123",
+          "name": "Rosa's Encouragement",
+          "name_ja": null,
+          "number": "123",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-123.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        },
+        {
+          "id": "me03-124",
+          "name": "Mega Zygarde ex",
+          "name_ja": null,
+          "number": "124",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/me03-124.webp",
+          "set_name": "Perfect Order",
+          "set_id": "me03"
+        }
+      ],
+      "missing_count": 122,
+      "value_ils": 1.03,
+      "value_usd": 0.31,
+      "partial": true,
+      "partial_note_he": "המעקב חלקי: כאן רק הקלפים ששוויים נבדק ב-Collectr. עדיין חסרים קלפים רגילים (common / uncommon / כוכב אחד) שיתווספו מצילום הבינדר.",
+      "complete_cost": null,
+      "complete_cost_note_he": "עלות השלמת סט מלא דורשת מחיר לכל קלף חסר. כרגע מחושבת עלות לרשימת ההשגה בלבד. אפשר לסמן קלפים חסרים כמבוקשים ולראות את הסכום מתעדכן."
+    },
+    {
+      "id": "mee",
+      "name": "Mega Evolution Energy",
+      "logo": null,
+      "official": 16,
+      "total": 16,
+      "owned": 1,
+      "pct": 6.2,
+      "pct_official": 6.2,
+      "cards": [
+        {
+          "id": "mee-001",
+          "name": "Grass Energy",
+          "name_ja": null,
+          "number": "001",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-001.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-002",
+          "name": "Fire Energy",
+          "name_ja": null,
+          "number": "002",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-002.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-003",
+          "name": "Water Energy",
+          "name_ja": null,
+          "number": "003",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-003.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-004",
+          "name": "Lightning Energy",
+          "name_ja": null,
+          "number": "004",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-004.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-005",
+          "name": "Psychic Energy",
+          "name_ja": null,
+          "number": "005",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-005.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-006",
+          "name": "Fighting Energy",
+          "name_ja": null,
+          "number": "006",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-006.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-007",
+          "name": "Darkness Energy",
+          "name_ja": null,
+          "number": "007",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-007.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-008",
+          "name": "Metal Energy",
+          "name_ja": null,
+          "number": "008",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-008.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-009",
+          "name": "Basic Grass Energy",
+          "name_ja": null,
+          "number": "009",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-009.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-010",
+          "name": "Basic Fire Energy",
+          "name_ja": null,
+          "number": "010",
+          "rarity": "Common",
+          "owned": true,
+          "wanted": false,
+          "art": "art/mee-010.jpg",
+          "value": {
+            "usd": 0.1,
+            "ils": 0.33,
+            "usd_low": null,
+            "ils_low": null,
+            "usd_high": null,
+            "ils_high": null,
+            "is_range": false,
+            "kind": "raw_market",
+            "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
+            "source_updated": "2026-11-20"
+          },
+          "price": {
+            "usd": 0.1,
+            "ils": 0.33,
+            "currency_used": "EUR",
+            "variant": "trend",
+            "source": "Cardmarket via TCGdex (converted with Bank of Israel EUR and USD rates)",
+            "source_updated": "2026-11-20",
+            "source_updated_full": "2026-11-20T22:16:19.097Z",
+            "detail": {
+              "eur": 0.09,
+              "field": "trend"
+            }
+          },
+          "quantity": 1,
+          "condition": "NM",
+          "grade": null,
+          "grade_company": null,
+          "worth_grading": {
+            "status": "unlikely",
+            "label_he": "כנראה לא משתלם כקלף בודד",
+            "detail_he": "שווי raw כ-₪0, נמוך מעלות דירוג מישראל (כ-₪260). בלי מחיר PSA 10 חי אי אפשר לדעת אם יש פרמיה שתכסה את זה.",
+            "raw_ils": 0.33,
+            "fee_ils": 260
+          },
+          "graded_prices": {
+            "psa9": null,
+            "psa10": null,
+            "cgc9": null,
+            "cgc10": null,
+            "available": false,
+            "reason_he": "אין מקור חינמי זמין למחירי קלפים מדורגים."
+          },
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee",
+          "sleeve": true,
+          "id_note_he": "Basic Fire Energy עם חותמת 30th Celebration: זה MEE 010 (סט Mega Evolution Energy), לא 002 מאותו סט ולא קלף מתוך 30th Celebration עצמו."
+        },
+        {
+          "id": "mee-011",
+          "name": "Basic Water Energy",
+          "name_ja": null,
+          "number": "011",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-011.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-012",
+          "name": "Basic Lightning Energy",
+          "name_ja": null,
+          "number": "012",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-012.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-013",
+          "name": "Basic Psychic Energy",
+          "name_ja": null,
+          "number": "013",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-013.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-014",
+          "name": "Basic Fighting Energy",
+          "name_ja": null,
+          "number": "014",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-014.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-015",
+          "name": "Basic Darkness Energy",
+          "name_ja": null,
+          "number": "015",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-015.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        },
+        {
+          "id": "mee-016",
+          "name": "Basic Metal Energy",
+          "name_ja": null,
+          "number": "016",
+          "rarity": null,
+          "owned": false,
+          "wanted": false,
+          "art": "art/mee-016.jpg",
+          "set_name": "Mega Evolution Energy",
+          "set_id": "mee"
+        }
+      ],
+      "missing_count": 15,
+      "value_ils": 0.33,
+      "value_usd": 0.1,
       "partial": true,
       "partial_note_he": "המעקב חלקי: כאן רק הקלפים ששוויים נבדק ב-Collectr. עדיין חסרים קלפים רגילים (common / uncommon / כוכב אחד) שיתווספו מצילום הבינדר.",
       "complete_cost": null,
@@ -10089,28 +13637,6 @@
     "missing_prices": 0
   },
   "review": [
-    {
-      "status": "confirm",
-      "name": "Arcanine",
-      "set_name": "Storm Emeralda",
-      "set_id": "M6",
-      "number": "011",
-      "likely_id": "M6-011",
-      "lang": "ja",
-      "rarity": "Rare",
-      "reason_he": "נראה חלקית בצילום. בסט זה Arcanine הוא 011/076."
-    },
-    {
-      "status": "confirm",
-      "name": "Bubbly Water Energy",
-      "set_name": "Storm Emeralda",
-      "set_id": "M6",
-      "number": "106",
-      "likely_id": "M6-106",
-      "lang": "ja",
-      "rarity": "Super Rare",
-      "reason_he": "נראתה אנרגיית מים/בועות יפנית, וגם Super Rare 106/076 מאותו סט. בסט זה 106/076 הוא Bubbly Water Energy (אולטרה נדיר). ייתכן שזה אותו קלף. אחד מהקלפים 041/106 הוצג ב-$0.47, בלי לדעת לאיזה."
-    },
     {
       "status": "confirm",
       "name": "041/076 (reported as Double Rare)",

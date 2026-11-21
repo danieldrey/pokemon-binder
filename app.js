@@ -2,6 +2,19 @@ const B = window.BINDER;
 const shekel = (n, d=0) => n == null ? "—" : "₪" + Number(n).toLocaleString("he-IL", {maximumFractionDigits:d, minimumFractionDigits:d});
 const usd = (n) => n == null ? "" : "$" + Number(n).toLocaleString("en-US", {maximumFractionDigits:2, minimumFractionDigits: n>=10?0:2});
 const ltr = (s) => `<span dir="ltr">${s}</span>`;
+function storageChips(c){
+  let s="";
+  if(c.toploader) s+=`<span class="chip toploader">Toploader</span>`;
+  if(c.sleeve) s+=`<span class="chip sleeve">Sleeve</span>`;
+  return s;
+}
+function storageNote(c){
+  if(c.toploader && c.sleeve) return "עותק אחד בטופלוודר ועותק אחד בשרוול.";
+  if(c.toploader) return "הקלף נשמר בטופלוודר.";
+  if(c.sleeve) return "הקלף נשמר בשרוול פשוט.";
+  return "";
+}
+
 
 function ilsPlaces(n){
   if(n==null) return 0;
@@ -74,14 +87,14 @@ function cardEl(c){
   wrap.className = "pocket";
   const grade = c.grade ? `<span class="chip slab">${c.grade_company||""} ${c.grade}</span>` : "";
   const demo = c.demo ? `<span class="chip demo">דמו</span>` : "";
-  const toploader = c.toploader ? `<span class="chip toploader">Toploader</span>` : "";
+  const storage = storageChips(c);
   wrap.innerHTML = `
     <div class="persp">${holoCard(c.art, c.name)}</div>
     <div class="meta">
       <span class="en">${c.name||""}</span>
       <small>${c.set_name||""} · ${c.number||""}${c.quantity>1?" · ×"+c.quantity:""}</small>
       <div class="val">${valueLabel(c.value)}</div>
-      ${grade}${demo}${toploader}
+      ${grade}${demo}${storage}
     </div>`;
   wrap.querySelector(".card").addEventListener("click", ()=>openFocus(c));
   enableTilt(wrap.querySelector(".card"));
@@ -119,6 +132,7 @@ function visibleCards(){
     if(filter==="slabs" && !c.grade) return false;
     if(filter==="raw" && c.grade) return false;
     if(filter==="toploader" && !c.toploader) return false;
+    if(filter==="sleeve" && !c.sleeve) return false;
     if(!q) return true;
     return [c.name,c.set_name,c.number,c.id].join(" ").toLowerCase().includes(q);
   });
@@ -274,7 +288,7 @@ function fillFocus(c){
     <h3 id="focusHeading">${c.name||""}</h3>
     <div class="kv">
       <span>סט</span><b>${c.set_name||""} · ${c.number||""}</b>
-      <span>מצב</span><b>${c.grade? (c.grade_company+" "+c.grade) : (c.condition||"NM")}${c.toploader? " · Toploader":""}</b>
+      <span>מצב</span><b>${c.grade? (c.grade_company+" "+c.grade) : (c.condition||"NM")}${c.toploader? " · Toploader":""}${c.sleeve? " · Sleeve":""}</b>
       <span>שווי באוסף</span><b>${valueLabel(c.value)}</b>
       <span>Raw NM</span><b>${raw && raw.ils!=null ? ltr(shekel(raw.ils,0)+" ("+usd(raw.usd)+")") : "—"}</b>
       <span>מקור raw</span><b>${(raw && raw.source)||"—"}${(raw && raw.source_updated)?" · "+raw.source_updated:""}</b>
@@ -283,7 +297,7 @@ function fillFocus(c){
       <span>משתלם לדרג?</span><b class="${wg.status==="unlikely"?"bad":"warn"}">${wg.label_he||"—"}</b>
     </div>
     <p class="set-stats">${wg.detail_he||""}</p>
-    ${c.toploader? `<p class="set-stats"><span class="chip toploader">Toploader</span> הקלף נשמר בטופלוודר.</p>`:""}
+    ${storageNote(c)? `<p class="set-stats">${storageChips(c)} ${storageNote(c)}</p>`:""}
     ${c.id_note_he? `<p class="set-stats">${c.id_note_he}</p>`:""}
     ${c.manual_value_note? `<p class="set-stats">${c.manual_value_note}</p>`:""}
   `;
@@ -379,7 +393,7 @@ function albumPocket(c){
         <span class="en">${name}</span>
         <small>${num}${c.quantity>1?" · ×"+c.quantity:""}</small>
         <div class="val">${valueLabel(c.value)}</div>
-        ${c.toploader? `<span class="chip toploader">Toploader</span>`:""}
+        ${storageChips(c)}
       </div>`;
     const card=wrap.querySelector(".card");
     if(card) enableTilt(card);
