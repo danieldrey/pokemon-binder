@@ -75,6 +75,82 @@
           "usd": 0.1
         }
       ]
+    },
+    {
+      "date": "2026-11-21",
+      "captured_at": "2026-11-21T21:24:39+02:00",
+      "ils": 43.1,
+      "usd": 12.69,
+      "unique": 118,
+      "copies": 150,
+      "priced_copies": 150,
+      "fx": {
+        "usd_ils": 3.326,
+        "eur_ils": 3.6503,
+        "usd_date": "2026-11-20",
+        "source": "Bank of Israel"
+      },
+      "missing_ils": 50971.51,
+      "missing_usd": 15324.99,
+      "sets": [
+        {
+          "id": "M6",
+          "name": "Storm Emeralda",
+          "owned": 54,
+          "total": 113,
+          "ils": 13.35,
+          "usd": 3.75
+        },
+        {
+          "id": "me04",
+          "name": "Chaos Rising",
+          "owned": 24,
+          "total": 122,
+          "ils": 10.0,
+          "usd": 3.0
+        },
+        {
+          "id": "me05",
+          "name": "Pitch Black",
+          "owned": 12,
+          "total": 120,
+          "ils": 6.64,
+          "usd": 1.99
+        },
+        {
+          "id": "me02",
+          "name": "Phantasmal Flames",
+          "owned": 12,
+          "total": 130,
+          "ils": 5.9,
+          "usd": 1.77
+        },
+        {
+          "id": "mee",
+          "name": "Mega Evolution Energy",
+          "owned": 7,
+          "total": 16,
+          "ils": 3.3,
+          "usd": 1.01
+        },
+        {
+          "id": "me03",
+          "name": "Perfect Order",
+          "owned": 6,
+          "total": 124,
+          "ils": 2.04,
+          "usd": 0.61
+        },
+        {
+          "id": "30th",
+          "name": "30th Celebration",
+          "owned": 3,
+          "total": 161,
+          "ils": 1.87,
+          "usd": 0.56
+        }
+      ],
+      "note": "Reshoot inventory rebuild"
     }
   ]
 }

@@ -143,17 +143,28 @@ function buildAlbumPages() {
   return pages;
 }
 
-function isHoloRare(c) {
-  const r = (c && c.rarity) || "";
-  return r === "Illustration rare" || r === "Special illustration rare" || r === "Ultra Rare";
+function cardArt(c, wantHigh) {
+  if (!c) return "";
+  if (wantHigh) return c.art_high || c.art || "";
+  return c.art || c.art_high || "";
 }
 
-function holoCard(src, alt, eager, card) {
-  const attr = eager ? `src="${escapeHtml(src || "")}"` : `data-src="${escapeHtml(src || "")}" src=""`;
-  const live = isHoloRare(card) ? " holo-live" : "";
-  return `<div class="card${live}" title="${escapeHtml(alt || "")}">
-    <div class="face"><img ${attr} alt="${escapeHtml(alt || "")}" decoding="async"></div>
-    <div class="foil"></div><div class="sparkle"></div><div class="glare"></div><div class="edge"></div>
+function cardImg(c, alt, eager, big) {
+  const high = cardArt(c, true);
+  const base = cardArt(c, false);
+  const primary = (big ? (high || base) : (base || high)) || "";
+  const srcAttr = eager
+    ? `src="${escapeHtml(primary)}"`
+    : `data-src="${escapeHtml(primary)}" src=""`;
+  let srcsetAttr = "";
+  if (high && high !== primary) {
+    srcsetAttr = eager ? ` srcset="${escapeHtml(high)} 2x"` : ` data-srcset="${escapeHtml(high)} 2x"`;
+  } else if (high && eager) {
+    srcsetAttr = ` srcset="${escapeHtml(high)} 2x"`;
+  }
+  return `<div class="card${big ? " big" : ""}" title="${escapeHtml(alt || "")}">
+    <div class="face"><img ${srcAttr}${srcsetAttr} alt="${escapeHtml(alt || "")}" decoding="async" loading="${eager ? "eager" : "lazy"}"></div>
+    <div class="edge"></div>
   </div>`;
 }
 
@@ -179,7 +190,7 @@ function pocketEl(c, opts) {
   if (owned) {
     wrap.innerHTML = `
       ${badge}
-      <div class="persp">${holoCard(card.art, card.name, false, card)}</div>
+      <div class="persp">${cardImg(card, card.name, false, false)}</div>
       <div class="meta">
         <span class="en">${name}</span>
         <small>${num}${card.quantity > 1 ? " · ×" + card.quantity : ""}</small>
@@ -189,7 +200,7 @@ function pocketEl(c, opts) {
   } else if (card && card.art) {
     const star = wanted.has(card.id) ? "★" : "☆";
     wrap.innerHTML = `
-      <div class="persp">${holoCard(card.art, card.name, false, card)}</div>
+      <div class="persp">${cardImg(card, card.name, false, false)}</div>
       <div class="meta">
         <span class="en">${name}</span>
         <small>${num}</small>
@@ -230,7 +241,7 @@ function fillPage(el, page) {
       <h2>Daniel’s Binder</h2>
       <div class="count">${T.unique || 0} cards · ${sets} sets</div>
       <div class="value">${money(T.ils, T.usd)}</div>
-      <div class="fan">${fan.map(c => holoCard(c.art, c.name, true, c)).join("")}</div>
+      <div class="fan">${fan.map(c => cardImg(c, c.name, true, false)).join("")}</div>
       <p class="hint">Turn the page</p>
     </div>`;
     el.appendChild(inner);
@@ -317,7 +328,7 @@ function makePageEl(page, i, last) {
   if (hard) el.dataset.density = "hard";
   fillPage(el, page);
   if (i < 6) {
-    el.querySelectorAll("img[data-src]").forEach(img => { img.src = img.dataset.src; });
+    el.querySelectorAll("img[data-src]").forEach(img => { img.src = img.dataset.src; if (img.dataset.srcset) img.srcset = img.dataset.srcset; });
   }
   return el;
 }
@@ -366,7 +377,7 @@ function hydrateAround(index) {
   const load = (node) => {
     if (!node) return;
     node.querySelectorAll("img[data-src]").forEach(img => {
-      if (!img.getAttribute("src")) img.src = img.dataset.src;
+      if (!img.getAttribute("src")) img.src = img.dataset.src; if (img.dataset.srcset) img.srcset = img.dataset.srcset;
     });
   };
   for (let i = lo; i <= hi; i++) load(items[i] || null);
@@ -597,7 +608,7 @@ function renderHits() {
         <span class="hit-rank">${String(i + 1).padStart(2, "0")}</span>
         ${rare ? `<span class="hit-rare">${escapeHtml(rare)}</span>` : ""}
       </div>
-      <div class="persp">${holoCard(c.art, c.name, true, c)}</div>
+      <div class="persp">${cardImg(c, c.name, true, false)}</div>
       <h3 class="hit-name">${escapeHtml(c.name || "")}</h3>
       <p class="hit-set">${escapeHtml(c.set_name || "")} · ${escapeHtml(c.number || "")}${copies}</p>
       <p class="hit-val">${valueLabel(c.value)}</p>
@@ -762,7 +773,15 @@ let valueOpen = false;
 let valueTipIndex = -1;
 
 function snapshots() {
-  return (B.snapshots || []).slice().sort((a, b) => String(a.date).localeCompare(String(b.date)));
+  return (B.snapshots || []).slice().sort((a, b) =>
+    String(a.captured_at || a.date).localeCompare(String(b.captured_at || b.date)));
+}
+function snapLabel(s) {
+  const day = formatDay(s.date);
+  const snaps = snapshots();
+  const same = snaps.filter(x => x.date === s.date).length > 1;
+  const t = (s.captured_at || "").slice(11, 16);
+  return same && t ? `${day} ${t}` : day;
 }
 
 function formatDay(isoDate) {
@@ -810,7 +829,7 @@ function renderValueChart(snaps) {
   }).join("");
   const labels = snaps.map((s, i) => {
     if (snaps.length > 8 && i !== 0 && i !== snaps.length - 1 && i % 2) return "";
-    return `<text class="axis" x="${pts[i][0].toFixed(1)}" y="${h - 8}" text-anchor="middle">${escapeHtml(formatDay(s.date))}</text>`;
+    return `<text class="axis" x="${pts[i][0].toFixed(1)}" y="${h - 8}" text-anchor="middle">${escapeHtml(snapLabel(s))}</text>`;
   }).join("");
   const dots = pts.map((p, i) =>
     `<circle class="dot" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="4.5"></circle>
@@ -849,7 +868,7 @@ function renderValue() {
   if (delta != null) {
     const cls = delta > 0 ? "up" : delta < 0 ? "down" : "flat";
     const sign = delta > 0 ? "+" : "";
-    deltaHtml = `<p class="value-delta ${cls}">${sign}${shekel(delta)} since ${formatDay(prev.date)}</p>`;
+    deltaHtml = `<p class="value-delta ${cls}">${sign}${shekel(delta)} since ${snapLabel(prev)}</p>`;
   } else {
     deltaHtml = `<p class="value-delta flat">First snapshot · weekly updates start from here</p>`;
   }
@@ -1353,81 +1372,6 @@ function unlockBody() {
   document.body.style.top = "";
   window.scrollTo(0, focusScrollY);
 }
-function setHoloVars(el, x, y, tracking) {
-  if (!el) return;
-  const cx = Math.min(1, Math.max(0, x));
-  const cy = Math.min(1, Math.max(0, y));
-  el.style.setProperty("--mx", (cx * 100) + "%");
-  el.style.setProperty("--my", (cy * 100) + "%");
-  el.style.setProperty("--ry", ((cx - .5) * 18) + "deg");
-  el.style.setProperty("--rx", ((.5 - cy) * 12) + "deg");
-  el.style.setProperty("--o", "1");
-  el.style.setProperty("--pos", (cx * 100) + "%");
-  el.classList.toggle("is-tracking", !!tracking);
-}
-function resetHoloVars(el) {
-  if (!el) return;
-  el.style.setProperty("--rx", "0deg");
-  el.style.setProperty("--ry", "0deg");
-  el.style.setProperty("--o", el.classList.contains("holo-live") ? ".42" : "0");
-  el.classList.remove("is-tracking");
-}
-
-let tiltListening = false;
-let lastHolo = null;
-
-async function requestHoloTilt() {
-  if (tiltListening) return;
-  try {
-    if (typeof DeviceOrientationEvent !== "undefined" && typeof DeviceOrientationEvent.requestPermission === "function") {
-      const state = await DeviceOrientationEvent.requestPermission();
-      if (state !== "granted") return;
-    } else if (typeof DeviceOrientationEvent === "undefined") {
-      return;
-    }
-  } catch (e) {
-    return;
-  }
-  tiltListening = true;
-  window.addEventListener("deviceorientation", ev => {
-    const x = ((ev.gamma ?? 0) + 30) / 60;
-    const y = ((ev.beta ?? 40) - 10) / 60;
-    document.querySelectorAll(".card.holo-live").forEach(el => setHoloVars(el, x, y, true));
-  }, { passive: true });
-}
-
-function enableTilt(el) {
-  if (!el) return;
-  // Pointer tracking is delegated globally for .holo-live; this keeps a hook
-  // on the focus card too (including non-holo rares, for a light glare).
-  el.addEventListener("pointerdown", () => { if (el.classList.contains("holo-live")) requestHoloTilt(); });
-}
-
-function bindHoloPointer() {
-  if (bindHoloPointer.bound) return;
-  bindHoloPointer.bound = true;
-  const move = ev => {
-    const card = ev.target && ev.target.closest && ev.target.closest(".card.holo-live");
-    if (card) {
-      if (ev.pointerType === "touch" && tiltListening) return;
-      const r = card.getBoundingClientRect();
-      if (!r.width || !r.height) return;
-      setHoloVars(card, (ev.clientX - r.left) / r.width, (ev.clientY - r.top) / r.height, true);
-      lastHolo = card;
-    } else if (lastHolo) {
-      resetHoloVars(lastHolo);
-      lastHolo = null;
-    }
-  };
-  document.addEventListener("pointermove", move, { passive: true });
-  document.addEventListener("pointerdown", ev => {
-    const card = ev.target && ev.target.closest && ev.target.closest(".card.holo-live");
-    if (card) requestHoloTilt();
-  }, { passive: true });
-  document.addEventListener("pointerleave", () => {
-    if (lastHolo) { resetHoloVars(lastHolo); lastHolo = null; }
-  });
-}
 function storageNote(c) {
   if (c.toploader && c.sleeve) return "One copy in a toploader and one in a sleeve.";
   if (c.toploader) return "Kept in a toploader.";
@@ -1436,10 +1380,10 @@ function storageNote(c) {
 }
 function fillFocus(c) {
   const card = $("bigCard");
-  card.className = "card big" + (isHoloRare(c) ? " holo-live" : "");
-  card.innerHTML = `<div class="face"><img src="${escapeHtml(c.art || "")}" alt="${escapeHtml(c.name || "")}"></div>
-    <div class="foil"></div><div class="sparkle"></div><div class="glare"></div><div class="edge"></div>`;
-  enableTilt(card);
+  const high = cardArt(c, true) || cardArt(c, false);
+  card.className = "card big";
+  card.innerHTML = `<div class="face"><img src="${escapeHtml(high)}" alt="${escapeHtml(c.name || "")}" decoding="async"></div>
+    <div class="edge"></div>`;
   const raw = c.price, g = c.graded_prices || {}, wg = c.worth_grading || {};
   const missing = !c.owned;
   const rare = rarityLabel(c);
@@ -1556,7 +1500,6 @@ function init() {
   albumPages = buildAlbumPages();
   renderHud();
   renderToc();
-  bindHoloPointer();
   let started = false;
   const start = () => { if (started) return; started = true; mountBook(0); applyQueryJump(); };
   setTimeout(start, 350);
@@ -1683,7 +1626,7 @@ function init() {
     const snaps = snapshots();
     const s = snaps[Number(hit.dataset.snap)];
     const tip = $("valueTip");
-    if (s && tip) tip.textContent = `${formatDay(s.date)} · ${money(s.ils, s.usd)} · ${s.unique || 0} unique`;
+    if (s && tip) tip.textContent = `${snapLabel(s)} · ${money(s.ils, s.usd)} · ${s.unique || 0} unique`;
   });
   if ($("valueChartWrap")) $("valueChartWrap").addEventListener("click", ev => {
     const hit = ev.target.closest("[data-snap]");
@@ -1691,7 +1634,7 @@ function init() {
     const snaps = snapshots();
     const s = snaps[Number(hit.dataset.snap)];
     const tip = $("valueTip");
-    if (s && tip) tip.textContent = `${formatDay(s.date)} · ${money(s.ils, s.usd)} · ${s.unique || 0} unique`;
+    if (s && tip) tip.textContent = `${snapLabel(s)} · ${money(s.ils, s.usd)} · ${s.unique || 0} unique`;
   });
 
   if ($("tradeBtn")) $("tradeBtn").addEventListener("click", () => $("trade").hidden ? openTrade() : closeTrade());
