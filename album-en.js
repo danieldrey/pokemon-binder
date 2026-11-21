@@ -53,20 +53,46 @@ function useSpread() {
 }
 
 function featuredCards() {
+  return topHits(3);
+}
+
+function cardValueIls(c) {
+  return (c && c.value && c.value.ils != null) ? Number(c.value.ils) : -1;
+}
+
+function topHits(n = 12) {
   return (B.cards || [])
-    .filter(c => c.art && c.value && c.value.ils != null)
-    .sort((a, b) => (b.value.ils || 0) - (a.value.ils || 0))
-    .slice(0, 3);
+    .filter(c => c.art && cardValueIls(c) >= 0)
+    .sort((a, b) => cardValueIls(b) - cardValueIls(a) || (b.quantity || 1) - (a.quantity || 1))
+    .slice(0, n);
+}
+
+function rarityLabel(c) {
+  const r = (c && c.rarity) || "";
+  const map = {
+    "Illustration rare": "IR",
+    "Special illustration rare": "SAR",
+    "Ultra Rare": "UR",
+    "Double rare": "ex",
+    "Pikachu Rare": "Pikachu Rare",
+  };
+  return map[r] || r;
 }
 
 /* ---------- page model: one continuous album ---------- */
 let albumPages = [];
 let setStarts = {}; // set id -> page index of its divider
+let cardStarts = {}; // card id -> page index of its grid page
+let hitsPageIndex = 1;
 
 function buildAlbumPages() {
   const pages = [];
   const sets = B.sets || [];
+  setStarts = {};
+  cardStarts = {};
   pages.push({ type: "cover" });
+  hitsPageIndex = pages.length;
+  pages.push({ type: "hits", cards: topHits(9) });
   pages.push({ type: "index" });
   sets.forEach(set => {
     setStarts[set.id] = pages.length;
@@ -75,6 +101,8 @@ function buildAlbumPages() {
     let n = 1;
     for (let i = 0; i < cards.length; i += 9) {
       const chunk = cards.slice(i, i + 9);
+      const idx = pages.length;
+      chunk.forEach(c => { if (c && c.id && c.owned && cardStarts[c.id] == null) cardStarts[c.id] = idx; });
       pages.push({
         type: "grid",
         set,
@@ -106,17 +134,21 @@ function storageChips(c) {
   return s;
 }
 
-function pocketEl(c) {
+function pocketEl(c, opts) {
   const wrap = document.createElement("div");
   const card = enrich(c);
   const owned = !!(card && card.owned);
+  const rank = opts && opts.rank;
   wrap.className = "pocket " + (owned ? "owned" : "missing") + (card && card.art ? "" : " ghost");
   wrap.dataset.id = (card && card.id) || "";
+  if (rank) wrap.dataset.rank = String(rank);
   if (owned) wrap.setAttribute("role", "button");
   const name = escapeHtml((card && card.name) || "");
   const num = escapeHtml((card && card.number) || "");
+  const badge = rank ? `<span class="rank" aria-label="Rank ${rank}">${rank}</span>` : "";
   if (owned) {
     wrap.innerHTML = `
+      ${badge}
       <div class="persp">${holoCard(card.art, card.name, false)}</div>
       <div class="meta">
         <span class="en">${name}</span>
@@ -170,6 +202,28 @@ function fillPage(el, page) {
       <div class="fan">${fan.map(c => holoCard(c.art, c.name, true)).join("")}</div>
       <p class="hint">Turn the page</p>
     </div>`;
+    el.appendChild(inner);
+    return;
+  }
+
+  if (page.type === "hits") {
+    const cards = page.cards || topHits(9);
+    const sum = cards.reduce((s, c) => s + Math.max(0, cardValueIls(c)) * (c.quantity || 1), 0);
+    inner.innerHTML = `<div class="page-label">
+      <span>Top Hits</span>
+      <span class="num">Most valuable · ${money(sum)}</span>
+    </div>`;
+    const grid = document.createElement("div");
+    grid.className = "grid-3";
+    for (let i = 0; i < 9; i++) {
+      const c = cards[i];
+      if (!c) {
+        const e = document.createElement("div");
+        e.className = "pocket empty-slot";
+        grid.appendChild(e);
+      } else grid.appendChild(pocketEl(c, { rank: i + 1 }));
+    }
+    inner.appendChild(grid);
     el.appendChild(inner);
     return;
   }
@@ -297,6 +351,7 @@ function pageTitle(p) {
   if (!p) return "";
   if (p.type === "cover") return "Cover";
   if (p.type === "back") return "Back cover";
+  if (p.type === "hits") return "Top Hits";
   if (p.type === "index") return "Contents";
   if (p.type === "divider") return (p.set && p.set.name) || "Set";
   if (p.type === "grid") return `${(p.set && p.set.name) || ""} · p. ${p.pageNo}`;
@@ -418,6 +473,27 @@ function jumpToSet(id) {
   pageFlip.turnToPage(idx);
   updatePager();
   closeToc();
+  closeHits();
+}
+
+function jumpToCard(id) {
+  if (!id || !pageFlip) return;
+  const idx = cardStarts[id];
+  closeFocus();
+  closeHits();
+  closeToc();
+  if (idx == null) return;
+  pageFlip.turnToPage(idx);
+  updatePager();
+  requestAnimationFrame(() => highlightPocket(id));
+}
+
+function highlightPocket(id) {
+  const nodes = document.querySelectorAll(`#bookHost .pocket[data-id="${CSS.escape(id)}"]`);
+  nodes.forEach(n => {
+    n.classList.add("flash");
+    setTimeout(() => n.classList.remove("flash"), 1600);
+  });
 }
 
 function currentSetFromPage() {
@@ -445,6 +521,7 @@ function renderToc() {
 function openToc() {
   const toc = $("toc");
   if (!toc) return;
+  closeHits();
   toc.hidden = false;
   $("contentsBtn").setAttribute("aria-expanded", "true");
 }
@@ -453,6 +530,54 @@ function closeToc() {
   if (!toc) return;
   toc.hidden = true;
   $("contentsBtn").setAttribute("aria-expanded", "false");
+}
+
+/* ---------- Top Hits overlay ---------- */
+let hitsOpen = false;
+function hitsTotal(cards) {
+  return cards.reduce((s, c) => s + Math.max(0, cardValueIls(c)) * (c.quantity || 1), 0);
+}
+function renderHits() {
+  const root = $("hitsGrid");
+  const sub = $("hitsSub");
+  if (!root) return;
+  const cards = topHits(12);
+  const T = B.totals || {};
+  if (sub) {
+    sub.textContent = `${cards.length} most valuable cards · ${money(hitsTotal(cards))} of ${money(T.ils, T.usd)}`;
+  }
+  root.innerHTML = cards.map((c, i) => {
+    const rare = rarityLabel(c);
+    const copies = c.quantity > 1 ? `<span class="hit-copies"> · ×${c.quantity}</span>` : "";
+    return `<article class="hit" role="button" tabindex="0" data-id="${escapeHtml(c.id)}">
+      <div class="hit-top">
+        <span class="hit-rank">${String(i + 1).padStart(2, "0")}</span>
+        ${rare ? `<span class="hit-rare">${escapeHtml(rare)}</span>` : ""}
+      </div>
+      <div class="persp">${holoCard(c.art, c.name, true)}</div>
+      <h3 class="hit-name">${escapeHtml(c.name || "")}</h3>
+      <p class="hit-set">${escapeHtml(c.set_name || "")} · ${escapeHtml(c.number || "")}${copies}</p>
+      <p class="hit-val">${valueLabel(c.value)}</p>
+      <button type="button" class="hit-jump" data-jump-card="${escapeHtml(c.id)}">Show in album →</button>
+    </article>`;
+  }).join("");
+}
+function openHits() {
+  const el = $("hits");
+  if (!el) return;
+  closeToc();
+  renderHits();
+  el.hidden = false;
+  hitsOpen = true;
+  if ($("hitsBtn")) $("hitsBtn").setAttribute("aria-expanded", "true");
+  if ($("hitsClose")) $("hitsClose").focus();
+}
+function closeHits() {
+  const el = $("hits");
+  if (!el || el.hidden) return;
+  el.hidden = true;
+  hitsOpen = false;
+  if ($("hitsBtn")) $("hitsBtn").setAttribute("aria-expanded", "false");
 }
 
 /* ---------- card modal ---------- */
@@ -517,7 +642,9 @@ function fillFocus(c) {
     </div>
     <p class="set-stats">${escapeHtml(detail)}</p>
     ${storageNote(c) ? `<p class="set-stats">${storageChips(c)} ${storageNote(c)}</p>` : ""}
+    ${c.quantity > 1 ? `<p class="set-stats">Copies in the collection: ×${c.quantity}</p>` : ""}
     ${c.id_note_he ? `<p class="set-stats">${escapeHtml(c.id_note_he)}</p>` : ""}
+    ${cardStarts[c.id] != null ? `<div class="focus-actions"><button type="button" class="hud-btn" data-jump-card="${escapeHtml(c.id)}">Show in album</button></div>` : ""}
   `;
 }
 function openFocus(c) {
@@ -558,10 +685,18 @@ function renderHud() {
 
 function applyQueryJump() {
   try {
-    const id = new URLSearchParams(location.search).get("set");
+    const q = new URLSearchParams(location.search);
+    const id = q.get("set");
     if (id && setStarts[id] != null) {
       pageFlip.turnToPage(setStarts[id]);
       updatePager();
+    }
+    const card = q.get("card");
+    if (card && cardStarts[card] != null) {
+      jumpToCard(card);
+    }
+    if (q.get("hits") === "1" || q.get("hits") === "true" || location.hash === "#hits") {
+      setTimeout(openHits, 200);
     }
   } catch (e) {}
 }
@@ -606,12 +741,16 @@ function init() {
   document.addEventListener("keydown", ev => {
     if (focusOpen) return;
     if (ev.target.matches && ev.target.matches("input,select,textarea,button")) {
-      if (ev.key === "Escape") closeToc();
+      if (ev.key === "Escape") { closeToc(); closeHits(); }
+      return;
+    }
+    if (hitsOpen) {
+      if (ev.key === "Escape") { ev.preventDefault(); closeHits(); }
       return;
     }
     if (ev.key === "ArrowRight" || ev.key === "PageDown") { ev.preventDefault(); nextPage(); }
     if (ev.key === "ArrowLeft" || ev.key === "PageUp") { ev.preventDefault(); prevPage(); }
-    if (ev.key === "Escape") closeToc();
+    if (ev.key === "Escape") { closeToc(); closeHits(); }
   });
 
   $("contentsBtn").addEventListener("click", () => $("toc").hidden ? openToc() : closeToc());
@@ -620,6 +759,28 @@ function init() {
   $("toc").addEventListener("click", ev => {
     const jump = ev.target.closest("[data-jump]");
     if (jump) { ev.preventDefault(); jumpToSet(jump.dataset.jump); }
+  });
+
+  if ($("hitsBtn")) $("hitsBtn").addEventListener("click", () => $("hits").hidden ? openHits() : closeHits());
+  if ($("hitsClose")) $("hitsClose").addEventListener("click", closeHits);
+  if ($("hitsBackdrop")) $("hitsBackdrop").addEventListener("click", closeHits);
+  if ($("hits")) $("hits").addEventListener("click", ev => {
+    const go = ev.target.closest("[data-jump-card]");
+    if (go) { ev.preventDefault(); ev.stopPropagation(); jumpToCard(go.dataset.jumpCard); return; }
+    const hit = ev.target.closest(".hit");
+    if (hit && hit.dataset.id) {
+      ev.preventDefault();
+      const card = byId.get(hit.dataset.id);
+      if (card) openFocus(enrich(card));
+    }
+  });
+  if ($("hitsGrid")) $("hitsGrid").addEventListener("keydown", ev => {
+    if (ev.key !== "Enter" && ev.key !== " ") return;
+    const hit = ev.target.closest(".hit");
+    if (!hit || !hit.dataset.id) return;
+    ev.preventDefault();
+    const card = byId.get(hit.dataset.id);
+    if (card) openFocus(enrich(card));
   });
 
   $("soundToggle").addEventListener("click", () => {
@@ -631,6 +792,10 @@ function init() {
 
   $("focusClose").addEventListener("click", ev => { ev.preventDefault(); ev.stopPropagation(); closeFocus(); });
   $("focusBackdrop").addEventListener("click", ev => { ev.preventDefault(); closeFocus(); });
+  if ($("focusMeta")) $("focusMeta").addEventListener("click", ev => {
+    const go = ev.target.closest("[data-jump-card]");
+    if (go) { ev.preventDefault(); ev.stopPropagation(); jumpToCard(go.dataset.jumpCard); }
+  });
   document.addEventListener("keydown", ev => { if (ev.key === "Escape" && focusOpen) closeFocus(); });
   window.addEventListener("popstate", () => { if (focusOpen) closeFocus(true); });
 

@@ -20,7 +20,10 @@
       </div>
     </div>
     <div class="hud-meta" id="hudMeta"></div>
-    <button type="button" class="hud-btn" id="contentsBtn" aria-expanded="false">Contents</button>
+    <div class="hud-actions">
+      <button type="button" class="hud-btn gold" id="hitsBtn" aria-expanded="false">Top Hits</button>
+      <button type="button" class="hud-btn" id="contentsBtn" aria-expanded="false">Contents</button>
+    </div>
   </header>
 
   <main class="stage">
@@ -49,6 +52,21 @@
       <div id="tocList"></div>
     </div>
     <button type="button" class="toc-backdrop" id="tocBackdrop" aria-label="Close contents"></button>
+  </aside>
+
+  <aside id="hits" class="hits" hidden>
+    <div class="hits-panel" role="dialog" aria-modal="true" aria-labelledby="hitsHeading">
+      <div class="hits-head">
+        <div>
+          <p class="eyebrow">Daniel’s Binder</p>
+          <h2 id="hitsHeading">Top Hits</h2>
+          <p class="hits-sub" id="hitsSub"></p>
+        </div>
+        <button type="button" class="focus-x small" id="hitsClose" aria-label="Close Top Hits">✕</button>
+      </div>
+      <div class="hits-grid" id="hitsGrid"></div>
+    </div>
+    <button type="button" class="hits-backdrop" id="hitsBackdrop" aria-label="Close Top Hits"></button>
   </aside>
 
   <div id="focus" hidden>

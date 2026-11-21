@@ -44,6 +44,12 @@ button,input{font:inherit}
 .hud-btn:hover,.hud-btn:focus{outline:2px solid var(--gold);background:#ffffff18}
 .hud-btn.quiet{opacity:.8;padding:5px 10px;font-size:12px}
 .hud-btn[aria-pressed="true"]{background:#e8c36a33;border-color:var(--gold)}
+.hud-actions{display:flex;align-items:center;gap:8px;flex:0 0 auto}
+.hud-btn.gold{background:linear-gradient(180deg,#e8c36a33,#e8c36a14);
+  border-color:#e8c36a66;color:var(--gold2);letter-spacing:.06em;text-transform:uppercase;
+  font-size:12px;font-weight:600}
+.hud-btn.gold:hover,.hud-btn.gold:focus{background:linear-gradient(180deg,#e8c36a55,#e8c36a22)}
+.hud-btn[aria-expanded="true"]{background:#e8c36a33;border-color:var(--gold)}
 
 .dock{height:calc(var(--dock-h) + var(--safe-b));padding-bottom:var(--safe-b);
   justify-content:space-between;color:var(--muted);font-size:13px}
@@ -226,9 +232,96 @@ body.focus-lock{overflow:hidden;position:fixed;left:0;right:0;width:100%;touch-a
   .hud-meta{display:none}
   .stage .nav{display:none} /* arrows in the dock, not over the cards */
   .dock-nav{display:flex}
+  .hud-btn{padding:6px 11px;font-size:12px}
+  .hud-btn.gold{font-size:11px;letter-spacing:.05em;padding:6px 10px}
+  .hud-actions{gap:6px}
 }
 @media(orientation:landscape) and (max-height:500px){
   :root{--hud-h:44px;--dock-h:34px}
   .hud h1{font-size:16px}
   .hud-logo{width:28px;height:28px}
 }
+
+/* Rank badge on Top Hits album page */
+.pocket .rank{position:absolute;z-index:3;top:4px;left:4px;width:22px;height:22px;
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-family:"Cormorant Garamond",Georgia,serif;font-weight:700;font-size:12px;
+  background:linear-gradient(180deg,#f3deb0,#c9a24a);color:#2a1a10;
+  box-shadow:0 4px 10px #0008;border:1px solid #fff6}
+.pocket{position:relative}
+.pocket[data-rank="1"] .rank,.pocket[data-rank="2"] .rank,.pocket[data-rank="3"] .rank{
+  width:24px;height:24px;font-size:13px}
+
+/* Top Hits overlay */
+.hits{position:fixed;inset:0;z-index:40;display:flex;align-items:center;justify-content:center;
+  padding:max(12px,var(--safe-t)) max(12px,env(safe-area-inset-right)) max(12px,var(--safe-b)) max(12px,env(safe-area-inset-left))}
+.hits[hidden]{display:none!important}
+.hits-backdrop{position:absolute;inset:0;border:0;background:#050204cc;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);cursor:pointer}
+.hits-panel{position:relative;z-index:1;width:min(1080px,100%);max-height:min(92dvh,920px);
+  display:flex;flex-direction:column;overflow:hidden;
+  background:
+    radial-gradient(80% 40% at 50% 0%,#e8c36a22,transparent 60%),
+    linear-gradient(180deg,#2c1c16,#120c0a);
+  border:1px solid #e8c36a33;border-radius:22px;
+  box-shadow:0 30px 80px #000c,0 0 0 1px #0008,inset 0 1px 0 #fff1;
+  padding:18px 18px 12px}
+.hits-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;
+  padding:2px 6px 14px;border-bottom:1px solid #e8c36a22;margin-bottom:14px}
+.hits-head h2{margin:2px 0 4px;font-size:clamp(28px,5vw,44px);line-height:.95;
+  background:linear-gradient(180deg,#fff6e4,#e4c27a);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hits-sub{margin:0;color:var(--muted);font-size:13px}
+.hits-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px 12px;
+  overflow:auto;padding:2px 4px 8px;flex:1;min-height:0;-webkit-overflow-scrolling:touch}
+.hit{display:flex;flex-direction:column;gap:8px;background:linear-gradient(180deg,#1c120fcc,#100a08cc);
+  border:1px solid #ffffff14;border-radius:16px;padding:10px 10px 12px;cursor:pointer;
+  text-align:left;color:inherit;font:inherit;width:100%;
+  box-shadow:0 10px 24px #0006;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease}
+.hit:hover,.hit:focus{outline:none;border-color:#e8c36a77;transform:translateY(-2px);
+  box-shadow:0 16px 32px #0008,0 0 0 1px #e8c36a33}
+.hit-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.hit-rank{font-family:Outfit,system-ui,sans-serif;font-weight:700;font-size:13px;
+  color:var(--gold2);letter-spacing:.08em;min-width:1.6em;font-variant-numeric:tabular-nums}
+.hit:nth-child(-n+3) .hit-rank{background:linear-gradient(180deg,#f3deb0,#c9a24a);
+  color:#2a1a10;border-radius:999px;width:28px;height:28px;display:flex;align-items:center;
+  justify-content:center;font-size:13px;letter-spacing:0;box-shadow:0 4px 10px #0007}
+.hit-rare{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);
+  background:#e8c36a1a;border:1px solid #e8c36a33;border-radius:999px;padding:2px 7px;white-space:nowrap}
+.hit .persp{width:100%;display:flex;justify-content:center}
+.hit .card{width:min(100%,148px)}
+.hit-name{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-size:18px;font-weight:600;
+  line-height:1.15}
+.hit-set{margin:0;font-size:11px;color:var(--muted)}
+.hit-val{margin:0;color:var(--good);font-size:13px;font-weight:500;font-variant-numeric:tabular-nums}
+.hit-copies{color:var(--gold2);font-weight:600}
+.hit-jump{align-self:flex-start;margin-top:2px;padding:4px 0;border:0;background:none;
+  color:var(--gold);font-size:12px;font-weight:500;cursor:pointer;letter-spacing:.03em}
+.hit-jump:hover,.hit-jump:focus{outline:none;text-decoration:underline}
+
+.focus-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.focus-actions .hud-btn{font-size:12px}
+
+@media(max-width:900px){
+  .hits-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .hits{align-items:flex-end;padding:0}
+  .hits-panel{width:100%;max-height:92dvh;border-radius:20px 20px 0 0;padding:14px 12px max(12px,var(--safe-b))}
+  .hits-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .hits-head h2{font-size:32px}
+  .hit-name{font-size:16px}
+  .hit .card{width:min(100%,160px)}
+}
+@media(orientation:landscape) and (max-height:500px){
+  .hits-panel{max-height:100dvh;border-radius:16px;padding:10px 12px}
+  .hits-head{padding-bottom:8px;margin-bottom:8px}
+  .hits-head h2{font-size:24px}
+  .hits-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+  .hit{padding:6px 6px 8px}
+  .hit-name{font-size:13px}
+  .hit-set,.hit-val,.hit-jump{font-size:10px}
+}
+
+.pocket.flash{outline:2px solid var(--gold);box-shadow:0 0 0 4px #e8c36a55,0 8px 24px #0008;
+  animation:hitflash 1.4s ease}
+@keyframes hitflash{0%,100%{box-shadow:0 0 0 0 #e8c36a00}20%,60%{box-shadow:0 0 0 4px #e8c36a77,0 8px 24px #0008}}
