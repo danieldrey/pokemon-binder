@@ -2,31 +2,31 @@
   "meta": {
     "title": "הבינדר של דניאל",
     "brand": "Next Pull IL",
-    "generated_at": "2026-11-21T22:27:11.456637+02:00",
-    "generated_at_label": "2026-11-21 22:27 שעון ישראל",
+    "generated_at": "2026-11-21T22:33:39.255245+02:00",
+    "generated_at_label": "2026-11-21 22:33 שעון ישראל",
     "fx": {
       "usd_ils": 3.326,
       "eur_ils": 3.6503,
       "usd_date": "2026-11-20",
       "eur_date": "2026-11-20",
       "source": "Bank of Israel",
-      "fetched_at": "2026-11-21T20:26:52Z",
+      "fetched_at": "2026-11-21T20:33:21Z",
       "usd_last_update": "2026-11-20T10:21:05.8283621Z",
       "eur_last_update": "2026-11-20T10:21:05.8283621Z"
     },
     "fx_label": "שער יציג בנק ישראל: $1 = ₪3.326 (פורסם 2026-11-20)",
-    "demo_note_he": "האוסף משלב את הצילום החוזר (ארבעה סרטונים + תמונת הפניקין) עם קלפים שכבר זוהו מתמונות סליבים, טופלואדרים וצילומי Collectr. קלפים שהופיעו בסרטונים הישנים ולא נראו בצילום החוזר נשמרו וממתינים לאישור.",
+    "demo_note_he": "האוסף משלב את הסרטונים הישנים (מקור סמכות לערמת הקלפים החופשיים) עם מה שהצילום החוזר הוסיף, ועם קלפים מתמונות סליבים, טופלואדרים וצילומי Collectr.",
     "collectr_portfolio_total_usd": 28.97,
     "collectr_portfolio_date": "2026-11-21"
   },
   "totals": {
-    "usd": 46.92,
-    "ils": 157.15,
-    "ils_low": 157.15,
-    "ils_high": 157.15,
+    "usd": 47.32,
+    "ils": 158.55,
+    "ils_low": 158.55,
+    "ils_high": 158.55,
     "has_range": false,
-    "priced_copies": 203,
-    "copies": 203,
+    "priced_copies": 208,
+    "copies": 208,
     "unique": 163
   },
   "cards": [
@@ -38,10 +38,10 @@
       "number": "001",
       "lang": "ja",
       "rarity": "Common",
-      "quantity": 2,
+      "quantity": 1,
       "condition": "NM",
-      "source": "refilm",
-      "notes": "Heracross appeared in r01 and again later in r02; counted as two copies.",
+      "source": "loose-box-video+refilm",
+      "notes": "Heracross appeared in r01 and again later in r02; counted as two copies. Heracross: only evidence is an appearance in r01 and again in r02. Old slower video found 1. Not clearly a second copy.",
       "name_ja": "ヘラクロス",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -161,7 +161,7 @@
       "quantity": 2,
       "condition": "NM",
       "source": "refilm",
-      "notes": "Masquerain アメモース shown twice in r02 with other cards in between.",
+      "notes": "Masquerain アメモース shown twice in r02 with other cards in between. Masquerain: shown twice in r02 with other cards in between. Adopt ×2. Old videos had 1; using the reshoot count because it is a clear extra copy.",
       "name_ja": "アメモース",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -218,10 +218,10 @@
       "number": "004",
       "lang": "ja",
       "rarity": "Common",
-      "quantity": 2,
+      "quantity": 1,
       "condition": "NM",
-      "source": "refilm",
-      "notes": "Cacnea サボネア in r01 and again in r02.",
+      "source": "loose-box-video+refilm",
+      "notes": "Cacnea サボネア in r01 and again in r02. Cacnea: same pattern (r01 then r02). Old video found 1. Keep ×1.",
       "name_ja": "サボネア",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -398,10 +398,10 @@
       "number": "008",
       "lang": "ja",
       "rarity": "Common",
-      "quantity": 2,
+      "quantity": 1,
       "condition": "NM",
-      "source": "refilm",
-      "notes": "Wimpod コソクムシ in r01 and again in r02.",
+      "source": "loose-box-video+refilm",
+      "notes": "Wimpod コソクムシ in r01 and again in r02. Wimpod JP: same pattern (r01 then r02). Old video found 1. Keep ×1.",
       "name_ja": "コソクムシ",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -698,10 +698,10 @@
       "number": "016",
       "lang": "ja",
       "rarity": "Common",
-      "quantity": 2,
+      "quantity": 3,
       "condition": "NM",
-      "source": "refilm",
-      "notes": "Heatmor クイタラン r03; at least 2, a third is possible.",
+      "source": "loose-box-video+refilm",
+      "notes": "Heatmor クイタラン r03; at least 2, a third is possible. Quantity restored to 3 from the old loose-box videos (Daniel: those clips are authoritative).",
       "name_ja": "クイタラン",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -821,7 +821,7 @@
       "quantity": 2,
       "condition": "NM",
       "source": "refilm",
-      "notes": "Frillish プルリル r01; two visible in a fan.",
+      "notes": "Frillish プルリル r01; two visible in a fan. Frillish: reshoot shows two in a fan at once. Adopt ×2. Old videos had 1; using the reshoot count because it is a clear extra copy.",
       "name_ja": "プルリル",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -1238,10 +1238,10 @@
       "number": "028",
       "lang": "ja",
       "rarity": "Uncommon",
-      "quantity": 1,
+      "quantity": 2,
       "condition": "NM",
-      "source": "refilm",
-      "notes": "Kilowattrel タイカイデン r01 Uncommon. A second copy is possible.",
+      "source": "loose-box-video+refilm",
+      "notes": "Kilowattrel タイカイデン r01 Uncommon. A second copy is possible. Quantity restored to 2 from the old loose-box videos (Daniel: those clips are authoritative).",
       "name_ja": "タイカイデン",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -1418,10 +1418,10 @@
       "number": "032",
       "lang": "ja",
       "rarity": "Common",
-      "quantity": 3,
+      "quantity": 4,
       "condition": "NM",
-      "source": "refilm",
-      "notes": "Golett ゴビット r03; three used as a conservative mid-count (a fourth is possible).",
+      "source": "loose-box-video+refilm",
+      "notes": "Golett ゴビット r03; three used as a conservative mid-count (a fourth is possible). Quantity restored to 4 from the old loose-box videos (Daniel: those clips are authoritative).",
       "name_ja": "ゴビット",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -1658,10 +1658,10 @@
       "number": "037",
       "lang": "ja",
       "rarity": "Common",
-      "quantity": 2,
+      "quantity": 3,
       "condition": "NM",
-      "source": "refilm",
-      "notes": "Onix イワーク r03; at least 2, a third is possible.",
+      "source": "loose-box-video+refilm",
+      "notes": "Onix イワーク r03; at least 2, a third is possible. Quantity restored to 3 from the old loose-box videos (Daniel: those clips are authoritative).",
       "name_ja": "イワーク",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -1898,10 +1898,10 @@
       "number": "042",
       "lang": "ja",
       "rarity": "Common",
-      "quantity": 2,
+      "quantity": 1,
       "condition": "NM",
-      "source": "refilm",
-      "notes": "Nidorina ニドリーナ once in the mid-r01 water stretch and once with the poison stack.",
+      "source": "loose-box-video+refilm",
+      "notes": "Nidorina ニドリーナ once in the mid-r01 water stretch and once with the poison stack. Nidorina: mid-r01 water stretch and later the poison stack, which was put down and picked up. Not clearly a second copy. Keep ×1.",
       "name_ja": "ニドリーナ",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -2678,10 +2678,10 @@
       "number": "061",
       "lang": "ja",
       "rarity": "Common",
-      "quantity": 2,
+      "quantity": 4,
       "condition": "NM",
-      "source": "refilm",
-      "notes": "Fletchinder ヒノヤコマ 061/076 r01; at least 2.",
+      "source": "loose-box-video+refilm",
+      "notes": "Fletchinder ヒノヤコマ 061/076 r01; at least 2. Quantity restored to 4 from the old loose-box videos (Daniel: those clips are authoritative).",
       "name_ja": "ヒノヤコマ",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -3398,10 +3398,10 @@
       "number": "024",
       "lang": "en",
       "rarity": "Uncommon",
-      "quantity": 1,
+      "quantity": 2,
       "condition": "NM",
-      "source": "refilm",
-      "notes": "Avalugg r01, Iceberg Breaker / Frost Stamp, 024/086 U.",
+      "source": "loose-box-video+refilm",
+      "notes": "Avalugg r01, Iceberg Breaker / Frost Stamp, 024/086 U. Quantity restored to 2 from the old loose-box videos (Daniel: those clips are authoritative).",
       "image_base": "https://assets.tcgdex.net/en/me/me04/024",
       "tcgplayer_product_id": 693448,
       "price": {
@@ -4838,10 +4838,10 @@
       "number": "032",
       "lang": "en",
       "rarity": "Uncommon",
-      "quantity": 1,
+      "quantity": 2,
       "condition": "NM",
-      "source": "refilm",
-      "notes": "Deoxys r03, HP 120 Psyspear, 032/086 U. A second copy may be in the same fan.",
+      "source": "loose-box-video+refilm",
+      "notes": "Deoxys r03, HP 120 Psyspear, 032/086 U. A second copy may be in the same fan. Quantity restored to 2 from the old loose-box videos (Daniel: those clips are authoritative).",
       "image_base": "https://assets.tcgdex.net/en/me/me04/032",
       "tcgplayer_product_id": 693475,
       "price": {
@@ -4958,10 +4958,10 @@
       "number": "039",
       "lang": "en",
       "rarity": "Rare",
-      "quantity": 1,
+      "quantity": 2,
       "condition": "NM",
-      "source": "refilm",
-      "notes": "Trevenant r03 Uncommon. A second copy is possible but not locked.",
+      "source": "loose-box-video+refilm",
+      "notes": "Trevenant r03 Uncommon. A second copy is possible but not locked. Quantity restored to 2 from the old loose-box videos (Daniel: those clips are authoritative).",
       "image_base": "https://assets.tcgdex.net/en/me/me04/039",
       "tcgplayer_product_id": 693556,
       "price": {
@@ -8142,7 +8142,6 @@
       "source": "toploader-photo",
       "sleeve": true,
       "toploader": true,
-      "id_note_he": "עותק אחד בטופלוודר ועותק אחד בשרוול, שניהם כ-Kyogre נדיר 018/076 (150 HP, לא ex). אם אחד מהם הוא ה-Art Rare (080/076), שכבר באוסף מצילומי Collectr, צריך לעדכן: להשאיר את 018 בכמות 1 ולסמן את 080 כשרוול.",
       "name_ja": "カイオーガ",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -8263,7 +8262,6 @@
       "condition": "NM",
       "source": "toploader-photo",
       "toploader": true,
-      "id_note_he": "זוהה לפי התיאור כ-Aarune SAR המלא (111/076, ギリー). באוסף כבר יש את ההדפסה 101/076. אם על הקלף כתוב 101/076, זה הקלף שכבר היה באוסף.",
       "name_ja": "ギリー",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -8443,7 +8441,6 @@
       "condition": "NM",
       "source": "sleeve-photo",
       "sleeve": true,
-      "id_note_he": "זוהה כ-Binacle 80 HP מ-Perfect Order (me03-042). קיימת גם גרסת פרומו זהה (mep-087).",
       "image_base": "https://assets.tcgdex.net/en/me/me03/042",
       "tcgplayer_product_id": 684334,
       "price": {
@@ -8503,7 +8500,6 @@
       "condition": "NM",
       "source": "sleeve-photo",
       "sleeve": true,
-      "id_note_he": "זוהה כ-Aurorus 170 HP מ-Perfect Order (me03-024, Rare). אם זה פול-ארט, זו ההדפסה 092 Illustration Rare.",
       "image_base": "https://assets.tcgdex.net/en/me/me03/024",
       "tcgplayer_product_id": 684356,
       "price": {
@@ -8563,7 +8559,6 @@
       "condition": "NM",
       "source": "sleeve-photo",
       "sleeve": true,
-      "id_note_he": "זוהה כ-Delphox 160 HP מ-Chaos Rising (me04-013). קיימת גם גרסת פרומו זהה (mep-074).",
       "image_base": "https://assets.tcgdex.net/en/me/me04/013",
       "tcgplayer_product_id": 693473,
       "price": {
@@ -8623,7 +8618,6 @@
       "condition": "NM",
       "source": "sleeve-photo",
       "sleeve": true,
-      "id_note_he": "זוהה כ-Ampharos 160 HP עם היכולת Synchro Pulse, Chaos Rising 029 (Rare). אם זה פול-ארט, זו 090 Illustration Rare.",
       "image_base": "https://assets.tcgdex.net/en/me/me04/029",
       "tcgplayer_product_id": 693445,
       "price": {
@@ -8801,7 +8795,6 @@
       "condition": "NM",
       "source": "sleeve-photo",
       "sleeve": true,
-      "id_note_he": "זוהה כ-Ninetales 120 HP מ-Chaos Rising (me04-009). ב-Mega Evolution יש גם Ninetales 120 HP (me01-020) עם התקפות אחרות.",
       "image_base": "https://assets.tcgdex.net/en/me/me04/009",
       "tcgplayer_product_id": 693526,
       "price": {
@@ -8920,7 +8913,6 @@
       "condition": "NM",
       "source": "sleeve-photo",
       "sleeve": true,
-      "id_note_he": "זוהה כ-Primarina 150 HP עם היכולת Enriching Melody, Pitch Black 020 (Rare). אם זה פול-ארט, זו 088 Illustration Rare.",
       "image_base": "https://assets.tcgdex.net/en/me/me05/020",
       "tcgplayer_product_id": 704777,
       "price": {
@@ -8980,7 +8972,6 @@
       "condition": "NM",
       "source": "sleeve-photo",
       "sleeve": true,
-      "id_note_he": "זוהה כ-Armarouge 140 HP מ-Pitch Black (me05-012, Rare). אם זה פול-ארט, זו 086 Illustration Rare.",
       "image_base": "https://assets.tcgdex.net/en/me/me05/012",
       "tcgplayer_product_id": 704769,
       "price": {
@@ -9157,10 +9148,8 @@
       "rarity": "Common",
       "quantity": 1,
       "condition": "NM",
-      "source": "loose-box-video-unseen-in-reshoot",
-      "notes": "Loose-box video. part6 f0004 Controlled Burn Kept from the old loose-box videos; not seen in the reshoot. Please confirm you still have this card.",
-      "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-      "needs_confirm": true,
+      "source": "loose-box-video",
+      "notes": "Loose-box video. part6 f0004 Controlled Burn Seen in the old loose-box videos (authoritative; not clearly in the reshoot).",
       "image_base": "https://assets.tcgdex.net/en/me/me05/009",
       "tcgplayer_product_id": 704766,
       "price": {
@@ -9219,10 +9208,8 @@
       "rarity": "Rare",
       "quantity": 1,
       "condition": "NM",
-      "source": "loose-box-video-unseen-in-reshoot",
-      "notes": "Loose-box video. part6 f0064 080/128 Pikachu stamp, Midnight Ray / Lunar Blast, holo Rare. One copy on top of a mixed stack Kept from the old loose-box videos; not seen in the reshoot. Please confirm you still have this card.",
-      "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-      "needs_confirm": true,
+      "source": "loose-box-video",
+      "notes": "Loose-box video. part6 f0064 080/128 Pikachu stamp, Midnight Ray / Lunar Blast, holo Rare. One copy on top of a mixed stack Seen in the old loose-box videos (authoritative; not clearly in the reshoot).",
       "image_base": "https://assets.tcgdex.net/en/me/30th/080",
       "tcgplayer_product_id": 716476,
       "price": {
@@ -9281,10 +9268,8 @@
       "rarity": "Common",
       "quantity": 1,
       "condition": "NM",
-      "source": "loose-box-video-unseen-in-reshoot",
-      "notes": "Loose-box video. part5 f0043-0051 Kept from the old loose-box videos; not seen in the reshoot. Please confirm you still have this card.",
-      "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-      "needs_confirm": true,
+      "source": "loose-box-video",
+      "notes": "Loose-box video. part5 f0043-0051 Seen in the old loose-box videos (authoritative; not clearly in the reshoot).",
       "image_base": "https://assets.tcgdex.net/en/me/me05/067",
       "tcgplayer_product_id": 704824,
       "price": {
@@ -9343,10 +9328,8 @@
       "rarity": "Uncommon",
       "quantity": 1,
       "condition": "NM",
-      "source": "loose-box-video-unseen-in-reshoot",
-      "notes": "Loose-box video. part5 f0045 POR 061/088 Scrape Off / Retaliatory Incisors, HP 90 Kept from the old loose-box videos; not seen in the reshoot. Please confirm you still have this card.",
-      "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-      "needs_confirm": true,
+      "source": "loose-box-video",
+      "notes": "Loose-box video. part5 f0045 POR 061/088 Scrape Off / Retaliatory Incisors, HP 90 Seen in the old loose-box videos (authoritative; not clearly in the reshoot).",
       "image_base": "https://assets.tcgdex.net/en/me/me03/061",
       "tcgplayer_product_id": 684438,
       "price": {
@@ -9405,10 +9388,8 @@
       "rarity": "Uncommon",
       "quantity": 2,
       "condition": "NM",
-      "source": "loose-box-video-unseen-in-reshoot",
-      "notes": "Loose-box video. part5 f0045-0067 トルネロス 059/076 U; at least 2 Qty: at least 2; a third copy is possible. Kept from the old loose-box videos; not seen in the reshoot. Please confirm you still have this card.",
-      "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-      "needs_confirm": true,
+      "source": "loose-box-video",
+      "notes": "Loose-box video. part5 f0045-0067 トルネロス 059/076 U; at least 2 Qty: at least 2; a third copy is possible. Seen in the old loose-box videos (authoritative; not clearly in the reshoot).",
       "name_ja": "トルネロス",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -9467,10 +9448,8 @@
       "rarity": "Common",
       "quantity": 2,
       "condition": "NM",
-      "source": "loose-box-video-unseen-in-reshoot",
-      "notes": "Loose-box video. part5 f0079-0083 ヤヤコマ HP 60; two copies in the flip Kept from the old loose-box videos; not seen in the reshoot. Please confirm you still have this card.",
-      "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-      "needs_confirm": true,
+      "source": "loose-box-video",
+      "notes": "Loose-box video. part5 f0079-0083 ヤヤコマ HP 60; two copies in the flip Seen in the old loose-box videos (authoritative; not clearly in the reshoot).",
       "name_ja": "ヤヤコマ",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -9529,10 +9508,8 @@
       "rarity": "Uncommon",
       "quantity": 1,
       "condition": "NM",
-      "source": "loose-box-video-unseen-in-reshoot",
-      "notes": "Loose-box video. part5 f0084 in front of / with Gladion at the join; counted once Kept from the old loose-box videos; not seen in the reshoot. Please confirm you still have this card.",
-      "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-      "needs_confirm": true,
+      "source": "loose-box-video",
+      "notes": "Loose-box video. part5 f0084 in front of / with Gladion at the join; counted once Seen in the old loose-box videos (authoritative; not clearly in the reshoot).",
       "image_base": "https://assets.tcgdex.net/en/me/me05/081",
       "tcgplayer_product_id": 704838,
       "price": {
@@ -9591,10 +9568,8 @@
       "rarity": "Uncommon",
       "quantity": 1,
       "condition": "NM",
-      "source": "loose-box-video-unseen-in-reshoot",
-      "notes": "Loose-box video. part4 f0005-0008 Kept from the old loose-box videos; not seen in the reshoot. Please confirm you still have this card.",
-      "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-      "needs_confirm": true,
+      "source": "loose-box-video",
+      "notes": "Loose-box video. part4 f0005-0008 Seen in the old loose-box videos (authoritative; not clearly in the reshoot).",
       "image_base": "https://assets.tcgdex.net/en/me/me05/080",
       "tcgplayer_product_id": 704837,
       "price": {
@@ -9653,10 +9628,8 @@
       "rarity": "Uncommon",
       "quantity": 1,
       "condition": "NM",
-      "source": "loose-box-video-unseen-in-reshoot",
-      "notes": "Loose-box video. part4 f0012 behind AZ and f0018 フウとランの修行 Kept from the old loose-box videos; not seen in the reshoot. Please confirm you still have this card.",
-      "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-      "needs_confirm": true,
+      "source": "loose-box-video",
+      "notes": "Loose-box video. part4 f0012 behind AZ and f0018 フウとランの修行 Seen in the old loose-box videos (authoritative; not clearly in the reshoot).",
       "name_ja": "フウとランの修行",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -9715,10 +9688,8 @@
       "rarity": "Uncommon",
       "quantity": 1,
       "condition": "NM",
-      "source": "loose-box-video-unseen-in-reshoot",
-      "notes": "Loose-box video. part4 f0014 and f0020-0022 ギリー 068/076 U (regular uncommon; the album already has the M6-101 / M6-111 printings from photos) Kept from the old loose-box videos; not seen in the reshoot. Please confirm you still have this card.",
-      "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-      "needs_confirm": true,
+      "source": "loose-box-video",
+      "notes": "Loose-box video. part4 f0014 and f0020-0022 ギリー 068/076 U (regular uncommon; the album already has the M6-101 / M6-111 printings from photos) Seen in the old loose-box videos (authoritative; not clearly in the reshoot).",
       "name_ja": "ギリー",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -9777,10 +9748,8 @@
       "rarity": "Common",
       "quantity": 3,
       "condition": "NM",
-      "source": "loose-box-video-unseen-in-reshoot",
-      "notes": "Loose-box video. part4 f0028 two 067/076 C in hand plus at least one in the discard; later discard fan shows several. Published as 3 Qty: at least 3; a fourth copy is possible. Kept from the old loose-box videos; not seen in the reshoot. Please confirm you still have this card.",
-      "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-      "needs_confirm": true,
+      "source": "loose-box-video",
+      "notes": "Loose-box video. part4 f0028 two 067/076 C in hand plus at least one in the discard; later discard fan shows several. Published as 3 Qty: at least 3; a fourth copy is possible. Seen in the old loose-box videos (authoritative; not clearly in the reshoot).",
       "name_ja": "MCの盛り上げ",
       "set_name_ja": "ストームエメラルダ",
       "image_base": null,
@@ -9876,7 +9845,7 @@
               "field": "trend"
             }
           },
-          "quantity": 2,
+          "quantity": 1,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -9898,7 +9867,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "refilm"
+          "source": "loose-box-video+refilm"
         },
         {
           "id": "M6-002",
@@ -10053,7 +10022,7 @@
               "field": "trend"
             }
           },
-          "quantity": 2,
+          "quantity": 1,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -10075,7 +10044,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "refilm"
+          "source": "loose-box-video+refilm"
         },
         {
           "id": "M6-005",
@@ -10290,7 +10259,7 @@
               "field": "trend"
             }
           },
-          "quantity": 2,
+          "quantity": 1,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -10312,7 +10281,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "refilm"
+          "source": "loose-box-video+refilm"
         },
         {
           "id": "M6-009",
@@ -10743,7 +10712,7 @@
               "field": "trend"
             }
           },
-          "quantity": 2,
+          "quantity": 3,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -10765,7 +10734,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "refilm"
+          "source": "loose-box-video+refilm"
         },
         {
           "id": "M6-017",
@@ -10885,8 +10854,7 @@
           "toploader": true,
           "sleeve": true,
           "lang": "ja",
-          "source": "toploader-photo",
-          "id_note_he": "עותק אחד בטופלוודר ועותק אחד בשרוול, שניהם כ-Kyogre נדיר 018/076 (150 HP, לא ex). אם אחד מהם הוא ה-Art Rare (080/076), שכבר באוסף מצילומי Collectr, צריך לעדכן: להשאיר את 018 בכמות 1 ולסמן את 080 כשרוול."
+          "source": "toploader-photo"
         },
         {
           "id": "M6-019",
@@ -11456,7 +11424,7 @@
               "field": "trend"
             }
           },
-          "quantity": 1,
+          "quantity": 2,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -11478,7 +11446,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "refilm"
+          "source": "loose-box-video+refilm"
         },
         {
           "id": "M6-029",
@@ -11671,7 +11639,7 @@
               "field": "trend"
             }
           },
-          "quantity": 3,
+          "quantity": 4,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -11693,7 +11661,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "refilm"
+          "source": "loose-box-video+refilm"
         },
         {
           "id": "M6-033",
@@ -11945,7 +11913,7 @@
               "field": "trend"
             }
           },
-          "quantity": 2,
+          "quantity": 3,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -11967,7 +11935,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "refilm"
+          "source": "loose-box-video+refilm"
         },
         {
           "id": "M6-038",
@@ -12241,7 +12209,7 @@
               "field": "trend"
             }
           },
-          "quantity": 2,
+          "quantity": 1,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -12263,7 +12231,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "refilm"
+          "source": "loose-box-video+refilm"
         },
         {
           "id": "M6-043",
@@ -13248,9 +13216,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "loose-box-video-unseen-in-reshoot",
-          "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-          "needs_confirm": true
+          "source": "loose-box-video"
         },
         {
           "id": "M6-060",
@@ -13309,9 +13275,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "loose-box-video-unseen-in-reshoot",
-          "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-          "needs_confirm": true
+          "source": "loose-box-video"
         },
         {
           "id": "M6-061",
@@ -13348,7 +13312,7 @@
               "field": "trend"
             }
           },
-          "quantity": 2,
+          "quantity": 4,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -13370,7 +13334,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "refilm"
+          "source": "loose-box-video+refilm"
         },
         {
           "id": "M6-062",
@@ -13682,9 +13646,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "loose-box-video-unseen-in-reshoot",
-          "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-          "needs_confirm": true
+          "source": "loose-box-video"
         },
         {
           "id": "M6-068",
@@ -13743,9 +13705,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "loose-box-video-unseen-in-reshoot",
-          "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-          "needs_confirm": true
+          "source": "loose-box-video"
         },
         {
           "id": "M6-069",
@@ -13863,9 +13823,7 @@
           "set_name": "Storm Emeralda",
           "set_id": "M6",
           "lang": "ja",
-          "source": "loose-box-video-unseen-in-reshoot",
-          "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-          "needs_confirm": true
+          "source": "loose-box-video"
         },
         {
           "id": "M6-071",
@@ -15679,8 +15637,7 @@
           "set_id": "M6",
           "toploader": true,
           "lang": "ja",
-          "source": "toploader-photo",
-          "id_note_he": "זוהה לפי התיאור כ-Aarune SAR המלא (111/076, ギリー). באוסף כבר יש את ההדפסה 101/076. אם על הקלף כתוב 101/076, זה הקלף שכבר היה באוסף."
+          "source": "toploader-photo"
         },
         {
           "id": "M6-112",
@@ -15760,8 +15717,8 @@
         }
       ],
       "missing_count": 37,
-      "value_ils": 104.39,
-      "value_usd": 31.07,
+      "value_ils": 104.66,
+      "value_usd": 31.13,
       "complete_cost": {
         "ils": 2225.58,
         "usd": 669.14,
@@ -16245,8 +16202,7 @@
           "set_name": "Chaos Rising",
           "set_id": "me04",
           "sleeve": true,
-          "source": "sleeve-photo",
-          "id_note_he": "זוהה כ-Ninetales 120 HP מ-Chaos Rising (me04-009). ב-Mega Evolution יש גם Ninetales 120 HP (me01-020) עם התקפות אחרות."
+          "source": "sleeve-photo"
         },
         {
           "id": "me04-010",
@@ -16448,8 +16404,7 @@
           "set_name": "Chaos Rising",
           "set_id": "me04",
           "sleeve": true,
-          "source": "sleeve-photo",
-          "id_note_he": "זוהה כ-Delphox 160 HP מ-Chaos Rising (me04-013). קיימת גם גרסת פרומו זהה (mep-074)."
+          "source": "sleeve-photo"
         },
         {
           "id": "me04-014",
@@ -16930,7 +16885,7 @@
               "market": 0.1
             }
           },
-          "quantity": 1,
+          "quantity": 2,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -16952,7 +16907,7 @@
           "set_name": "Chaos Rising",
           "set_id": "me04",
           "lang": "en",
-          "source": "refilm"
+          "source": "loose-box-video+refilm"
         },
         {
           "id": "me04-025",
@@ -17216,8 +17171,7 @@
           "set_name": "Chaos Rising",
           "set_id": "me04",
           "sleeve": true,
-          "source": "sleeve-photo",
-          "id_note_he": "זוהה כ-Ampharos 160 HP עם היכולת Synchro Pulse, Chaos Rising 029 (Rare). אם זה פול-ארט, זו 090 Illustration Rare."
+          "source": "sleeve-photo"
         },
         {
           "id": "me04-030",
@@ -17378,7 +17332,7 @@
               "market": 0.11
             }
           },
-          "quantity": 1,
+          "quantity": 2,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -17400,7 +17354,7 @@
           "set_name": "Chaos Rising",
           "set_id": "me04",
           "lang": "en",
-          "source": "refilm"
+          "source": "loose-box-video+refilm"
         },
         {
           "id": "me04-033",
@@ -17700,7 +17654,7 @@
               "market": 0.13
             }
           },
-          "quantity": 1,
+          "quantity": 2,
           "condition": "NM",
           "grade": null,
           "grade_company": null,
@@ -17722,7 +17676,7 @@
           "set_name": "Chaos Rising",
           "set_id": "me04",
           "lang": "en",
-          "source": "refilm"
+          "source": "loose-box-video+refilm"
         },
         {
           "id": "me04-040",
@@ -21340,8 +21294,8 @@
         }
       ],
       "missing_count": 90,
-      "value_ils": 17.83,
-      "value_usd": 5.35,
+      "value_ils": 18.96,
+      "value_usd": 5.69,
       "complete_cost": {
         "ils": 1282.68,
         "usd": 385.63,
@@ -21741,9 +21695,7 @@
           "set_name": "Pitch Black",
           "set_id": "me05",
           "lang": "en",
-          "source": "loose-box-video-unseen-in-reshoot",
-          "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-          "needs_confirm": true
+          "source": "loose-box-video"
         },
         {
           "id": "me05-010",
@@ -21905,8 +21857,7 @@
           "set_name": "Pitch Black",
           "set_id": "me05",
           "sleeve": true,
-          "source": "sleeve-photo",
-          "id_note_he": "זוהה כ-Armarouge 140 HP מ-Pitch Black (me05-012, Rare). אם זה פול-ארט, זו 086 Illustration Rare."
+          "source": "sleeve-photo"
         },
         {
           "id": "me05-013",
@@ -22268,8 +22219,7 @@
           "set_name": "Pitch Black",
           "set_id": "me05",
           "sleeve": true,
-          "source": "sleeve-photo",
-          "id_note_he": "זוהה כ-Primarina 150 HP עם היכולת Enriching Melody, Pitch Black 020 (Rare). אם זה פול-ארט, זו 088 Illustration Rare."
+          "source": "sleeve-photo"
         },
         {
           "id": "me05-021",
@@ -24338,9 +24288,7 @@
           "set_name": "Pitch Black",
           "set_id": "me05",
           "lang": "en",
-          "source": "loose-box-video-unseen-in-reshoot",
-          "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-          "needs_confirm": true
+          "source": "loose-box-video"
         },
         {
           "id": "me05-068",
@@ -24923,9 +24871,7 @@
           "set_name": "Pitch Black",
           "set_id": "me05",
           "lang": "en",
-          "source": "loose-box-video-unseen-in-reshoot",
-          "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-          "needs_confirm": true
+          "source": "loose-box-video"
         },
         {
           "id": "me05-081",
@@ -24986,9 +24932,7 @@
           "set_name": "Pitch Black",
           "set_id": "me05",
           "lang": "en",
-          "source": "loose-box-video-unseen-in-reshoot",
-          "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-          "needs_confirm": true
+          "source": "loose-box-video"
         },
         {
           "id": "me05-082",
@@ -33157,8 +33101,7 @@
           "set_name": "Perfect Order",
           "set_id": "me03",
           "sleeve": true,
-          "source": "sleeve-photo",
-          "id_note_he": "זוהה כ-Aurorus 170 HP מ-Perfect Order (me03-024, Rare). אם זה פול-ארט, זו ההדפסה 092 Illustration Rare."
+          "source": "sleeve-photo"
         },
         {
           "id": "me03-025",
@@ -33920,8 +33863,7 @@
           "set_name": "Perfect Order",
           "set_id": "me03",
           "sleeve": true,
-          "source": "sleeve-photo",
-          "id_note_he": "זוהה כ-Binacle 80 HP מ-Perfect Order (me03-042). קיימת גם גרסת פרומו זהה (mep-087)."
+          "source": "sleeve-photo"
         },
         {
           "id": "me03-043",
@@ -34723,9 +34665,7 @@
           "set_name": "Perfect Order",
           "set_id": "me03",
           "lang": "en",
-          "source": "loose-box-video-unseen-in-reshoot",
-          "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-          "needs_confirm": true
+          "source": "loose-box-video"
         },
         {
           "id": "me03-062",
@@ -41396,9 +41336,7 @@
           "set_name": "30th Celebration",
           "set_id": "30th",
           "lang": "en",
-          "source": "loose-box-video-unseen-in-reshoot",
-          "id_note_he": "הופיע בסרטונים הישנים ולא זוהה בצילום החוזר. נשמר באלבום — אפשר לאשר אם הוא עדיין אצלך.",
-          "needs_confirm": true
+          "source": "loose-box-video"
         },
         {
           "id": "30th-081",
@@ -44807,12 +44745,12 @@
     },
     {
       "date": "2026-11-21",
-      "captured_at": "2026-11-21T22:27:11+02:00",
-      "ils": 157.15,
-      "usd": 46.92,
+      "captured_at": "2026-11-21T22:33:39+02:00",
+      "ils": 158.55,
+      "usd": 47.32,
       "unique": 163,
-      "copies": 203,
-      "priced_copies": 203,
+      "copies": 208,
+      "priced_copies": 208,
       "fx": {
         "usd_ils": 3.326,
         "eur_ils": 3.6503,
@@ -44827,16 +44765,16 @@
           "name": "Storm Emeralda",
           "owned": 76,
           "total": 113,
-          "ils": 104.39,
-          "usd": 31.07
+          "ils": 104.66,
+          "usd": 31.13
         },
         {
           "id": "me04",
           "name": "Chaos Rising",
           "owned": 32,
           "total": 122,
-          "ils": 17.83,
-          "usd": 5.35
+          "ils": 18.96,
+          "usd": 5.69
         },
         {
           "id": "me05",
@@ -44879,7 +44817,7 @@
           "usd": 1.21
         }
       ],
-      "note": "Reshoot plus restored sleeve, toploader, Collectr, and unsighted old-video cards"
+      "note": "Old loose-box videos authoritative; reshoot used only for additions"
     }
   ]
 }
