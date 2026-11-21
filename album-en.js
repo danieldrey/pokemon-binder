@@ -37,10 +37,23 @@ let soundOn = false;
 try { soundOn = localStorage.getItem(LS_SOUND) === "on"; } catch (e) {}
 
 const byId = new Map((B.cards || []).map(c => [c.id, c]));
+const allById = new Map();
+(B.sets || []).forEach(s => (s.cards || []).forEach(c => { if (c && c.id) allById.set(c.id, c); }));
 function enrich(c) {
   if (!c) return c;
   const extra = byId.get(c.id);
   return extra ? Object.assign({}, c, extra, { owned: true }) : c;
+}
+function cardById(id) {
+  if (!id) return null;
+  const owned = byId.get(id);
+  if (owned) return enrich(owned);
+  return allById.get(id) || null;
+}
+function allMissing() {
+  const out = [];
+  (B.sets || []).forEach(s => (s.cards || []).forEach(c => { if (c && !c.owned) out.push(c); }));
+  return out;
 }
 
 function useSpread() {
@@ -75,6 +88,11 @@ function rarityLabel(c) {
     "Ultra Rare": "UR",
     "Double rare": "ex",
     "Pikachu Rare": "Pikachu Rare",
+    "RGB Rare": "RGB",
+    "Mega Hyper Rare": "MHR",
+    "Hyper Rare": "HR",
+    "Art Rare": "AR",
+    "Super Rare": "SR",
   };
   return map[r] || r;
 }
@@ -102,7 +120,7 @@ function buildAlbumPages() {
     for (let i = 0; i < cards.length; i += 9) {
       const chunk = cards.slice(i, i + 9);
       const idx = pages.length;
-      chunk.forEach(c => { if (c && c.id && c.owned && cardStarts[c.id] == null) cardStarts[c.id] = idx; });
+      chunk.forEach(c => { if (c && c.id && cardStarts[c.id] == null) cardStarts[c.id] = idx; });
       pages.push({
         type: "grid",
         set,
@@ -142,7 +160,7 @@ function pocketEl(c, opts) {
   wrap.className = "pocket " + (owned ? "owned" : "missing") + (card && card.art ? "" : " ghost");
   wrap.dataset.id = (card && card.id) || "";
   if (rank) wrap.dataset.rank = String(rank);
-  if (owned) wrap.setAttribute("role", "button");
+  if (owned || (card && card.art)) wrap.setAttribute("role", "button");
   const name = escapeHtml((card && card.name) || "");
   const num = escapeHtml((card && card.number) || "");
   const badge = rank ? `<span class="rank" aria-label="Rank ${rank}">${rank}</span>` : "";
@@ -163,6 +181,7 @@ function pocketEl(c, opts) {
       <div class="meta">
         <span class="en">${name}</span>
         <small>${num}</small>
+        <div class="val">${valueLabel(card.value)}</div>
       </div>
       <button type="button" class="want-btn" title="Mark as wanted" aria-label="Mark as wanted">${star}</button>`;
     if (wanted.has(card.id)) wrap.classList.add("wanted-pocket");
@@ -474,6 +493,7 @@ function jumpToSet(id) {
   updatePager();
   closeToc();
   closeHits();
+  closeWish();
 }
 
 function jumpToCard(id) {
@@ -481,6 +501,7 @@ function jumpToCard(id) {
   const idx = cardStarts[id];
   closeFocus();
   closeHits();
+  closeWish();
   closeToc();
   if (idx == null) return;
   pageFlip.turnToPage(idx);
@@ -522,6 +543,7 @@ function openToc() {
   const toc = $("toc");
   if (!toc) return;
   closeHits();
+  closeWish();
   toc.hidden = false;
   $("contentsBtn").setAttribute("aria-expanded", "true");
 }
@@ -566,6 +588,7 @@ function openHits() {
   const el = $("hits");
   if (!el) return;
   closeToc();
+  closeWish();
   renderHits();
   el.hidden = false;
   hitsOpen = true;
@@ -578,6 +601,132 @@ function closeHits() {
   el.hidden = true;
   hitsOpen = false;
   if ($("hitsBtn")) $("hitsBtn").setAttribute("aria-expanded", "false");
+}
+
+
+/* ---------- Wishlist / missing cards ---------- */
+let wishOpen = false;
+const wishState = { set: "all", scope: "all", min: 0 };
+const WISH_MINS = [
+  { v: 0, label: "Any price" },
+  { v: 1, label: "₪1+" },
+  { v: 5, label: "₪5+" },
+  { v: 10, label: "₪10+" },
+  { v: 50, label: "₪50+" },
+  { v: 100, label: "₪100+" },
+];
+
+function toggleWanted(id) {
+  if (!id) return;
+  if (wanted.has(id)) wanted.delete(id); else wanted.add(id);
+  saveWanted(wanted);
+  refreshWanted();
+  if (wishOpen) renderWish();
+}
+
+function wishCards() {
+  let cards = allMissing();
+  if (wishState.set !== "all") cards = cards.filter(c => c.set_id === wishState.set);
+  if (wishState.scope === "starred") cards = cards.filter(c => wanted.has(c.id));
+  if (wishState.min > 0) cards = cards.filter(c => cardValueIls(c) >= wishState.min);
+  cards.sort((a, b) => cardValueIls(b) - cardValueIls(a) || String(a.number).localeCompare(String(b.number), undefined, { numeric: true }));
+  return cards;
+}
+
+function wishSum(cards) {
+  let ils = 0, usd = 0, priced = 0, unpriced = 0;
+  cards.forEach(c => {
+    const v = c.value || {};
+    if (v.ils != null) { ils += Number(v.ils); usd += Number(v.usd || 0); priced++; }
+    else unpriced++;
+  });
+  return { ils, usd, priced, unpriced, count: cards.length };
+}
+
+function renderWishFilters() {
+  const root = $("wishFilters");
+  if (!root) return;
+  const sets = [{ id: "all", name: "All sets" }].concat((B.sets || []).map(s => ({ id: s.id, name: s.name })));
+  const setChips = sets.map(s =>
+    `<button type="button" class="wish-chip" data-wish-set="${escapeHtml(s.id)}" aria-pressed="${wishState.set === s.id ? "true" : "false"}">${escapeHtml(s.name)}</button>`
+  ).join("");
+  const scopeChips = [
+    ["all", "All missing"],
+    ["starred", "Starred"],
+  ].map(([v, label]) =>
+    `<button type="button" class="wish-chip" data-wish-scope="${v}" aria-pressed="${wishState.scope === v ? "true" : "false"}">${label}</button>`
+  ).join("");
+  const minChips = WISH_MINS.map(m =>
+    `<button type="button" class="wish-chip" data-wish-min="${m.v}" aria-pressed="${wishState.min === m.v ? "true" : "false"}">${m.label}</button>`
+  ).join("");
+  root.innerHTML = `<div class="wish-row" role="toolbar" aria-label="Filter by set">${setChips}</div>
+    <div class="wish-row" role="toolbar" aria-label="Filter by list">${scopeChips}${minChips}</div>`;
+}
+
+function renderWish() {
+  const root = $("wishList");
+  const sub = $("wishSub");
+  if (!root) return;
+  renderWishFilters();
+  const cards = wishCards();
+  const sum = wishSum(cards);
+  const unpriced = sum.unpriced ? ` · ${sum.unpriced} unpriced` : "";
+  if (sub) {
+    const verb = wishState.scope === "starred" ? "starred" : "missing";
+    sub.textContent = `${sum.count} ${verb} · ${money(sum.ils, sum.usd)} to complete${unpriced}. Sorted by price.`;
+  }
+  if (!cards.length) {
+    root.innerHTML = `<p class="wish-empty">${wishState.scope === "starred" ? "No starred cards match these filters. Tap the star on a missing card to add it." : "No missing cards match these filters."}</p>`;
+    return;
+  }
+  const groups = [];
+  if (wishState.set === "all") {
+    // One price-sorted list so the most expensive chases appear first.
+    groups.push({ id: "all", name: "All sets", cards });
+  } else {
+    const set = (B.sets || []).find(s => s.id === wishState.set);
+    groups.push({ id: wishState.set, name: (set && set.name) || wishState.set, cards });
+  }
+  root.innerHTML = groups.map(g => {
+    const gs = wishSum(g.cards);
+    const items = g.cards.map(c => {
+      const rare = rarityLabel(c);
+      const on = wanted.has(c.id);
+      return `<article class="wish-item" role="button" tabindex="0" data-id="${escapeHtml(c.id)}">
+        <img src="${escapeHtml(c.art || "")}" alt="" loading="lazy" width="52" height="72">
+        <div>
+          <h3 class="wish-name">${escapeHtml(c.name || "")}${rare ? `<span class="wish-rare">${escapeHtml(rare)}</span>` : ""}</h3>
+          <p class="wish-meta">${escapeHtml(c.set_name || "")} · ${escapeHtml(c.number || "")}</p>
+        </div>
+        <div class="wish-side">
+          <p class="wish-val">${valueLabel(c.value)}</p>
+          <button type="button" class="wish-star" data-wish-star="${escapeHtml(c.id)}" aria-pressed="${on ? "true" : "false"}" aria-label="${on ? "Remove from starred" : "Star as wanted"}">${on ? "★" : "☆"}</button>
+          <button type="button" class="wish-jump" data-jump-card="${escapeHtml(c.id)}">Show in album →</button>
+        </div>
+      </article>`;
+    }).join("");
+    const head = g.id === "all" ? "" : `<h3 class="wish-group-h">${escapeHtml(g.name)} <span>${g.cards.length} · ${money(gs.ils, gs.usd)}</span></h3>`;
+    return `<section class="wish-group">${head}${items}</section>`;
+  }).join("");
+}
+
+function openWish() {
+  const el = $("wish");
+  if (!el) return;
+  closeToc();
+  closeHits();
+  renderWish();
+  el.hidden = false;
+  wishOpen = true;
+  if ($("wishBtn")) $("wishBtn").setAttribute("aria-expanded", "true");
+  if ($("wishClose")) $("wishClose").focus();
+}
+function closeWish() {
+  const el = $("wish");
+  if (!el || el.hidden) return;
+  el.hidden = true;
+  wishOpen = false;
+  if ($("wishBtn")) $("wishBtn").setAttribute("aria-expanded", "false");
 }
 
 /* ---------- card modal ---------- */
@@ -623,6 +772,26 @@ function fillFocus(c) {
     <div class="foil"></div><div class="sparkle"></div><div class="glare"></div><div class="edge"></div>`;
   enableTilt(card);
   const raw = c.price, g = c.graded_prices || {}, wg = c.worth_grading || {};
+  const missing = !c.owned;
+  const rare = rarityLabel(c);
+  if (missing) {
+    const starred = wanted.has(c.id);
+    $("focusMeta").innerHTML = `
+      <h3 id="focusHeading">${escapeHtml(c.name || "")}</h3>
+      <div class="kv">
+        <span>Set</span><b>${escapeHtml(c.set_name || "")} · ${escapeHtml(c.number || "")}</b>
+        <span>Rarity</span><b>${escapeHtml(rare || "—")}</b>
+        <span>Status</span><b>Not in the collection yet</b>
+        <span>Market price</span><b>${valueLabel(c.value)}</b>
+        <span>Source</span><b>${escapeHtml((raw && raw.source) || "—")}${(raw && raw.source_updated) ? " · " + raw.source_updated : ""}</b>
+      </div>
+      <div class="focus-actions">
+        <button type="button" class="hud-btn gold" data-wish-star="${escapeHtml(c.id)}" aria-pressed="${starred ? "true" : "false"}">${starred ? "★ Starred" : "☆ Star on wishlist"}</button>
+        ${cardStarts[c.id] != null ? `<button type="button" class="hud-btn" data-jump-card="${escapeHtml(c.id)}">Show in album</button>` : ""}
+      </div>
+    `;
+    return;
+  }
   const worth = wg.status === "unlikely"
     ? "Probably not worth grading on its own"
     : (wg.label_he || "—");
@@ -698,6 +867,9 @@ function applyQueryJump() {
     if (q.get("hits") === "1" || q.get("hits") === "true" || location.hash === "#hits") {
       setTimeout(openHits, 200);
     }
+    if (q.get("wish") === "1" || q.get("wish") === "true" || q.get("wishlist") === "1" || location.hash === "#wishlist" || location.hash === "#wish") {
+      setTimeout(openWish, 200);
+    }
   } catch (e) {}
 }
 
@@ -719,18 +891,14 @@ function init() {
     if (btn) {
       ev.preventDefault(); ev.stopPropagation();
       const id = btn.closest(".pocket").dataset.id;
-      if (!id) return;
-      if (wanted.has(id)) wanted.delete(id); else wanted.add(id);
-      saveWanted(wanted);
-      refreshWanted();
+      toggleWanted(id);
       return;
     }
-    const pocket = ev.target.closest(".pocket.owned");
-    if (pocket) {
+    const pocket = ev.target.closest(".pocket");
+    if (pocket && pocket.dataset.id) {
       ev.preventDefault(); ev.stopPropagation();
-      const id = pocket.dataset.id;
-      const card = byId.get(id) || (currentSetFromPage() || { cards: [] }).cards.find(c => c.id === id);
-      if (card) openFocus(enrich(card));
+      const card = cardById(pocket.dataset.id) || (currentSetFromPage() || { cards: [] }).cards.find(c => c.id === pocket.dataset.id);
+      if (card) openFocus(card.owned ? enrich(card) : card);
     }
   }, true);
 
@@ -741,16 +909,20 @@ function init() {
   document.addEventListener("keydown", ev => {
     if (focusOpen) return;
     if (ev.target.matches && ev.target.matches("input,select,textarea,button")) {
-      if (ev.key === "Escape") { closeToc(); closeHits(); }
+      if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); }
       return;
     }
     if (hitsOpen) {
       if (ev.key === "Escape") { ev.preventDefault(); closeHits(); }
       return;
     }
+    if (wishOpen) {
+      if (ev.key === "Escape") { ev.preventDefault(); closeWish(); }
+      return;
+    }
     if (ev.key === "ArrowRight" || ev.key === "PageDown") { ev.preventDefault(); nextPage(); }
     if (ev.key === "ArrowLeft" || ev.key === "PageUp") { ev.preventDefault(); prevPage(); }
-    if (ev.key === "Escape") { closeToc(); closeHits(); }
+    if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); }
   });
 
   $("contentsBtn").addEventListener("click", () => $("toc").hidden ? openToc() : closeToc());
@@ -770,8 +942,8 @@ function init() {
     const hit = ev.target.closest(".hit");
     if (hit && hit.dataset.id) {
       ev.preventDefault();
-      const card = byId.get(hit.dataset.id);
-      if (card) openFocus(enrich(card));
+      const card = cardById(hit.dataset.id);
+      if (card) openFocus(card);
     }
   });
   if ($("hitsGrid")) $("hitsGrid").addEventListener("keydown", ev => {
@@ -779,8 +951,39 @@ function init() {
     const hit = ev.target.closest(".hit");
     if (!hit || !hit.dataset.id) return;
     ev.preventDefault();
-    const card = byId.get(hit.dataset.id);
-    if (card) openFocus(enrich(card));
+    const card = cardById(hit.dataset.id);
+    if (card) openFocus(card);
+  });
+
+  if ($("wishBtn")) $("wishBtn").addEventListener("click", () => $("wish").hidden ? openWish() : closeWish());
+  if ($("wishClose")) $("wishClose").addEventListener("click", closeWish);
+  if ($("wishBackdrop")) $("wishBackdrop").addEventListener("click", closeWish);
+  const onWishClick = ev => {
+    const star = ev.target.closest("[data-wish-star]");
+    if (star) { ev.preventDefault(); ev.stopPropagation(); toggleWanted(star.dataset.wishStar); return; }
+    const set = ev.target.closest("[data-wish-set]");
+    if (set) { ev.preventDefault(); wishState.set = set.dataset.wishSet; renderWish(); return; }
+    const scope = ev.target.closest("[data-wish-scope]");
+    if (scope) { ev.preventDefault(); wishState.scope = scope.dataset.wishScope; renderWish(); return; }
+    const min = ev.target.closest("[data-wish-min]");
+    if (min) { ev.preventDefault(); wishState.min = Number(min.dataset.wishMin); renderWish(); return; }
+    const go = ev.target.closest("[data-jump-card]");
+    if (go) { ev.preventDefault(); ev.stopPropagation(); jumpToCard(go.dataset.jumpCard); return; }
+    const item = ev.target.closest(".wish-item");
+    if (item && item.dataset.id) {
+      ev.preventDefault();
+      const card = cardById(item.dataset.id);
+      if (card) openFocus(card);
+    }
+  };
+  if ($("wish")) $("wish").addEventListener("click", onWishClick);
+  if ($("wishList")) $("wishList").addEventListener("keydown", ev => {
+    if (ev.key !== "Enter" && ev.key !== " ") return;
+    const item = ev.target.closest(".wish-item");
+    if (!item || !item.dataset.id) return;
+    ev.preventDefault();
+    const card = cardById(item.dataset.id);
+    if (card) openFocus(card);
   });
 
   $("soundToggle").addEventListener("click", () => {
@@ -793,6 +996,14 @@ function init() {
   $("focusClose").addEventListener("click", ev => { ev.preventDefault(); ev.stopPropagation(); closeFocus(); });
   $("focusBackdrop").addEventListener("click", ev => { ev.preventDefault(); closeFocus(); });
   if ($("focusMeta")) $("focusMeta").addEventListener("click", ev => {
+    const star = ev.target.closest("[data-wish-star]");
+    if (star) {
+      ev.preventDefault(); ev.stopPropagation();
+      toggleWanted(star.dataset.wishStar);
+      const card = cardById(star.dataset.wishStar);
+      if (card && focusOpen) fillFocus(card);
+      return;
+    }
     const go = ev.target.closest("[data-jump-card]");
     if (go) { ev.preventDefault(); ev.stopPropagation(); jumpToCard(go.dataset.jumpCard); }
   });

@@ -227,14 +227,16 @@ body.focus-lock{overflow:hidden;position:fixed;left:0;right:0;width:100%;touch-a
 .bad{color:#f0a0a0} .warn{color:#ffd27a}
 
 @media(max-width:700px){
-  :root{--hud-h:52px}
+  :root{--hud-h:90px}
+  .hud{flex-wrap:wrap;row-gap:6px;padding-bottom:8px}
+  .hud-brand{flex:1 1 auto}
   .hud h1{font-size:18px}
   .hud-meta{display:none}
   .stage .nav{display:none} /* arrows in the dock, not over the cards */
   .dock-nav{display:flex}
   .hud-btn{padding:6px 11px;font-size:12px}
   .hud-btn.gold{font-size:11px;letter-spacing:.05em;padding:6px 10px}
-  .hud-actions{gap:6px}
+  .hud-actions{flex:1 0 100%;justify-content:flex-end;gap:6px;order:3}
 }
 @media(orientation:landscape) and (max-height:500px){
   :root{--hud-h:44px;--dock-h:34px}
@@ -325,3 +327,54 @@ body.focus-lock{overflow:hidden;position:fixed;left:0;right:0;width:100%;touch-a
 .pocket.flash{outline:2px solid var(--gold);box-shadow:0 0 0 4px #e8c36a55,0 8px 24px #0008;
   animation:hitflash 1.4s ease}
 @keyframes hitflash{0%,100%{box-shadow:0 0 0 0 #e8c36a00}20%,60%{box-shadow:0 0 0 4px #e8c36a77,0 8px 24px #0008}}
+
+
+/* Wishlist overlay — compact priced list, portrait-first */
+.wish-filters{display:flex;flex-direction:column;gap:8px;padding:0 2px 10px;
+  border-bottom:1px solid #e8c36a22;margin-bottom:10px}
+.wish-row{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;padding-bottom:1px}
+.wish-row::-webkit-scrollbar{display:none}
+.wish-chip{flex:0 0 auto;border:1px solid #ffffff22;background:#ffffff0c;color:var(--ink);
+  border-radius:999px;padding:5px 11px;font-size:12px;font-weight:500;cursor:pointer;
+  letter-spacing:.02em;white-space:nowrap}
+.wish-chip:hover,.wish-chip:focus{outline:none;border-color:#e8c36a77;background:#e8c36a18}
+.wish-chip[aria-pressed="true"]{background:#e8c36a33;border-color:var(--gold);color:var(--gold2)}
+.wish-list{overflow:auto;flex:1;min-height:0;-webkit-overflow-scrolling:touch;padding:0 2px 8px}
+.wish-group{margin:0 0 12px}
+.wish-group-h{position:sticky;top:0;z-index:1;display:flex;align-items:baseline;justify-content:space-between;
+  gap:8px;padding:8px 4px 6px;margin:0;
+  background:linear-gradient(180deg,#1a120fcc 70%,#1a120f00);
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.wish-group-h span{letter-spacing:.02em;text-transform:none;color:var(--muted);font-weight:500}
+.wish-item{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:8px 10px;align-items:center;
+  width:100%;border:0;border-bottom:1px solid #ffffff10;background:transparent;color:inherit;font:inherit;
+  text-align:left;padding:8px 4px;cursor:pointer;border-radius:8px}
+.wish-item:hover,.wish-item:focus{outline:none;background:#ffffff0c}
+.wish-item img{width:52px;height:72px;object-fit:cover;border-radius:6px;box-shadow:0 6px 14px #0008;
+  background:#100a08;opacity:.92}
+.wish-item .wish-name{margin:0;font-family:"Cormorant Garamond",Georgia,serif;font-size:17px;font-weight:600;
+  line-height:1.15}
+.wish-item .wish-meta{margin:2px 0 0;font-size:11px;color:var(--muted)}
+.wish-item .wish-val{margin:0;color:var(--good);font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;
+  text-align:right;white-space:nowrap}
+.wish-item .wish-side{display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.wish-star,.wish-jump{border:0;background:transparent;color:var(--gold);cursor:pointer;padding:0;
+  font-size:16px;line-height:1}
+.wish-star{font-size:18px;color:#e8c36aaa}
+.wish-star[aria-pressed="true"]{color:var(--gold2)}
+.wish-jump{font-size:11px;letter-spacing:.03em;font-weight:500}
+.wish-jump:hover,.wish-star:hover,.wish-jump:focus,.wish-star:focus{outline:none;text-decoration:underline}
+.wish-empty{margin:24px 8px;color:var(--muted);text-align:center;font-size:14px}
+.wish-rare{display:inline-block;margin-left:6px;font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--gold);background:#e8c36a1a;border:1px solid #e8c36a33;border-radius:999px;padding:1px 6px;
+  vertical-align:middle}
+
+@media(max-width:700px){
+  .wish-item{grid-template-columns:48px minmax(0,1fr) auto;padding:8px 2px}
+  .wish-item img{width:48px;height:66px}
+  .wish-item .wish-name{font-size:16px}
+}
+@media(min-width:900px){
+  .wish-item img{width:56px;height:78px}
+}
