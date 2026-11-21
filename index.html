@@ -2,7 +2,7 @@
 <html lang="he" dir="rtl">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>הבינדר של דניאל · Next Pull IL</title>
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -25,13 +25,29 @@
   <div id="reviewBox" class="review-box" hidden></div>
 
   <nav class="tabs" role="tablist">
-    <button class="tab on" data-tab="binder">הבינדר</button>
+    <button class="tab on" data-tab="binder">האלבום</button>
+    <button class="tab" data-tab="list">רשימה</button>
     <button class="tab" data-tab="sets">השלמת סטים</button>
     <button class="tab" data-tab="wishlist">רשימת השגה</button>
     <button class="tab" data-tab="tools">דירוג ודילים</button>
   </nav>
 
   <section id="panel-binder" class="panel on">
+    <div class="album-shell">
+      <div class="set-picker" id="setPicker" role="tablist" aria-label="בחירת סט"></div>
+      <div class="album-status" id="albumStatus"></div>
+      <div class="book-wrap">
+        <button type="button" class="book-nav prev" id="pagePrev" aria-label="העמוד הקודם">‹</button>
+        <div class="book" id="book">
+          <div class="book-stage" id="bookStage"></div>
+        </div>
+        <button type="button" class="book-nav next" id="pageNext" aria-label="העמוד הבא">›</button>
+      </div>
+      <div class="page-counter" id="pageCounter" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section id="panel-list" class="panel">
     <div class="toolbar">
       <label>מיון
         <select id="sort">
@@ -46,6 +62,7 @@
           <option value="all">הכול</option>
           <option value="slabs">סלאבים</option>
           <option value="raw">קלפים רגילים</option>
+          <option value="toploader">Toploaders</option>
         </select>
       </label>
       <label class="grow">חיפוש

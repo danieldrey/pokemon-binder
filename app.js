@@ -3,14 +3,19 @@ const shekel = (n, d=0) => n == null ? "—" : "₪" + Number(n).toLocaleString(
 const usd = (n) => n == null ? "" : "$" + Number(n).toLocaleString("en-US", {maximumFractionDigits:2, minimumFractionDigits: n>=10?0:2});
 const ltr = (s) => `<span dir="ltr">${s}</span>`;
 
+function ilsPlaces(n){
+  if(n==null) return 0;
+  return Math.abs(Number(n)) < 10 ? 2 : 2;
+}
 function valueLabel(v){
   if(!v || v.ils==null) return "אין מחיר";
   if(v.is_range && v.ils_low!=null) {
-    const ils = `${shekel(v.ils_low,0)}–${shekel(v.ils_high,0).replace("₪","")}`;
+    const d=2;
+    const ils = `${shekel(v.ils_low,d)}–${shekel(v.ils_high,d).replace("₪","")}`;
     const dol = (v.usd_low!=null && v.usd_high!=null) ? ` (${usd(v.usd_low)}–${usd(v.usd_high)})` : "";
     return ltr(ils + dol);
   }
-  return ltr(`${shekel(v.ils,0)} (${usd(v.usd)})`);
+  return ltr(`${shekel(v.ils,ilsPlaces(v.ils))} (${usd(v.usd)})`);
 }
 
 document.getElementById("title").textContent = B.meta.title;
@@ -39,7 +44,7 @@ document.getElementById("share").textContent = B.share.how_he;
 
 const T = B.totals;
 document.getElementById("totals").innerHTML = `
-  <div class="pill"><b>${ltr(T.has_range ? shekel(T.ils_low,0)+"–"+shekel(T.ils_high,0).replace("₪","") : shekel(T.ils,0))}</b><span>שווי אוסף מוערך</span></div>
+  <div class="pill"><b>${ltr(T.has_range ? shekel(T.ils_low,2)+"–"+shekel(T.ils_high,2).replace("₪","") : shekel(T.ils,2))}</b><span>שווי אוסף מוערך</span></div>
   <div class="pill"><b>${ltr(usd(T.usd))}</b><span>בדולרים</span></div>
   <div class="pill"><b>${T.unique}</b><span>קלפים ייחודיים · ${T.copies} עותקים</span></div>
   <div class="pill"><b>${B.sets.length}</b><span>סטים במעקב</span></div>`;
@@ -69,13 +74,14 @@ function cardEl(c){
   wrap.className = "pocket";
   const grade = c.grade ? `<span class="chip slab">${c.grade_company||""} ${c.grade}</span>` : "";
   const demo = c.demo ? `<span class="chip demo">דמו</span>` : "";
+  const toploader = c.toploader ? `<span class="chip toploader">Toploader</span>` : "";
   wrap.innerHTML = `
     <div class="persp">${holoCard(c.art, c.name)}</div>
     <div class="meta">
       <span class="en">${c.name||""}</span>
       <small>${c.set_name||""} · ${c.number||""}${c.quantity>1?" · ×"+c.quantity:""}</small>
       <div class="val">${valueLabel(c.value)}</div>
-      ${grade}${demo}
+      ${grade}${demo}${toploader}
     </div>`;
   wrap.querySelector(".card").addEventListener("click", ()=>openFocus(c));
   enableTilt(wrap.querySelector(".card"));
@@ -112,6 +118,7 @@ function visibleCards(){
   let list = B.cards.filter(c=>{
     if(filter==="slabs" && !c.grade) return false;
     if(filter==="raw" && c.grade) return false;
+    if(filter==="toploader" && !c.toploader) return false;
     if(!q) return true;
     return [c.name,c.set_name,c.number,c.id].join(" ").toLowerCase().includes(q);
   });
@@ -173,7 +180,7 @@ function renderSets(){
     block.innerHTML = `<div class="set-head">
       <div>
         <h2>${s.name}</h2>
-        <div class="set-stats">${s.owned} מתוך ${s.total} · ${s.pct}%${s.official!==s.total?` · ${s.owned}/${s.official} במספור הרשמי (${s.pct_official}%)`:""} · ${s.missing_count} חסרים</div>
+        <div class="set-stats">${ltr(String(s.owned))} מתוך ${ltr(String(s.total))} · ${s.pct}%${s.official!==s.total?` · ${ltr(s.owned+"/"+s.official)} במספור הרשמי (${s.pct_official}%)`:""} · ${s.missing_count} חסרים</div>
         ${s.partial? `<div class="partial">${s.partial_note_he||"מעקב חלקי"}</div>`:""}
       </div>
       <div class="bar" style="flex:1;max-width:280px"><i style="width:${Math.min(100,s.pct)}%"></i></div>
@@ -193,7 +200,7 @@ function renderSets(){
           ev.stopPropagation();
           if(wanted.has(c.id)) wanted.delete(c.id); else wanted.add(c.id);
           saveWanted(wanted);
-          renderSets(); renderWishlist();
+          renderSets(); renderWishlist(); refreshAlbumWanted();
         };
       }
       grid.appendChild(fig);
@@ -232,7 +239,7 @@ function renderWishlist(){
     fig.innerHTML=`<img src="${it.art||""}" alt="${it.name||""}">
       <figcaption>${it.name||it.id}<br>${p.ils!=null?shekel(p.ils,0):"אין מחיר"}</figcaption>
       <button class="want-btn">★</button>`;
-    fig.querySelector(".want-btn").onclick=()=>{ wanted.delete(it.id); saveWanted(wanted); renderSets(); renderWishlist(); };
+    fig.querySelector(".want-btn").onclick=()=>{ wanted.delete(it.id); saveWanted(wanted); renderSets(); renderWishlist(); refreshAlbumWanted(); };
     root.appendChild(fig);
   });
 }
@@ -267,7 +274,7 @@ function fillFocus(c){
     <h3 id="focusHeading">${c.name||""}</h3>
     <div class="kv">
       <span>סט</span><b>${c.set_name||""} · ${c.number||""}</b>
-      <span>מצב</span><b>${c.grade? (c.grade_company+" "+c.grade) : (c.condition||"NM")}</b>
+      <span>מצב</span><b>${c.grade? (c.grade_company+" "+c.grade) : (c.condition||"NM")}${c.toploader? " · Toploader":""}</b>
       <span>שווי באוסף</span><b>${valueLabel(c.value)}</b>
       <span>Raw NM</span><b>${raw && raw.ils!=null ? ltr(shekel(raw.ils,0)+" ("+usd(raw.usd)+")") : "—"}</b>
       <span>מקור raw</span><b>${(raw && raw.source)||"—"}${(raw && raw.source_updated)?" · "+raw.source_updated:""}</b>
@@ -276,6 +283,8 @@ function fillFocus(c){
       <span>משתלם לדרג?</span><b class="${wg.status==="unlikely"?"bad":"warn"}">${wg.label_he||"—"}</b>
     </div>
     <p class="set-stats">${wg.detail_he||""}</p>
+    ${c.toploader? `<p class="set-stats"><span class="chip toploader">Toploader</span> הקלף נשמר בטופלוודר.</p>`:""}
+    ${c.id_note_he? `<p class="set-stats">${c.id_note_he}</p>`:""}
     ${c.manual_value_note? `<p class="set-stats">${c.manual_value_note}</p>`:""}
   `;
 }
@@ -315,6 +324,408 @@ window.addEventListener("popstate", ()=>{
 if(location.hash==="#card"){
   history.replaceState(null, "", location.pathname + location.search);
 }
+
+
+/* ===== Flip-through album =====
+   The chrome is RTL Hebrew, but the book itself turns like a physical LTR binder:
+   the next page is to the right, swipe left or press ArrowRight to go forward.
+*/
+function isMobileBook(){
+  return window.matchMedia("(max-width: 800px)").matches;
+}
+
+let currentSetId = null;
+let albumPages = [];
+let pageIndex = 0;
+let flipping = false;
+
+function collectionCard(id){
+  return (B.cards||[]).find(c=>c.id===id) || null;
+}
+
+function escapeHtml(s){
+  return String(s??"").replace(/[&<>"']/g, c=>({ "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;" }[c]));
+}
+
+function buildAlbumPages(set){
+  const pages=[{type:"cover", set}];
+  const cards=set.cards||[];
+  let pageNo=1;
+  for(let i=0;i<cards.length;i+=9){
+    const chunk=cards.slice(i,i+9);
+    pages.push({
+      type:"grid",
+      pageNo,
+      from:i+1,
+      to:i+chunk.length,
+      cards:chunk
+    });
+    pageNo++;
+  }
+  return pages;
+}
+
+function albumPocket(c){
+  const wrap=document.createElement("div");
+  const owned=!!c.owned;
+  wrap.className="pocket "+(owned?"owned":"missing")+(c.art?"":" ghost");
+  wrap.dataset.id=c.id||"";
+  const name=escapeHtml(c.name||"");
+  const num=escapeHtml(c.number||"");
+  if(owned){
+    wrap.innerHTML=`
+      <div class="persp">${holoCard(c.art, c.name)}</div>
+      <div class="meta">
+        <span class="en">${name}</span>
+        <small>${num}${c.quantity>1?" · ×"+c.quantity:""}</small>
+        <div class="val">${valueLabel(c.value)}</div>
+        ${c.toploader? `<span class="chip toploader">Toploader</span>`:""}
+      </div>`;
+    const card=wrap.querySelector(".card");
+    if(card) enableTilt(card);
+  } else if(c.art){
+    const star = wanted.has(c.id)?"★":"☆";
+    wrap.innerHTML=`
+      <div class="persp">${holoCard(c.art, c.name)}</div>
+      <div class="meta">
+        <span class="en">${name}</span>
+        <small>${num}</small>
+      </div>
+      <button type="button" class="want-btn" title="סמן כמבוקש" aria-label="סמן כמבוקש">${star}</button>`;
+    if(wanted.has(c.id)) wrap.classList.add("wanted-pocket");
+  } else {
+    const star = wanted.has(c.id)?"★":"☆";
+    wrap.innerHTML=`
+      <div class="silhouette">${num}<br>${name||"אין תמונה"}</div>
+      <div class="meta"><span class="en">${name}</span><small>${num}</small></div>
+      <button type="button" class="want-btn" title="סמן כמבוקש" aria-label="סמן כמבוקש">${star}</button>`;
+    if(wanted.has(c.id)) wrap.classList.add("wanted-pocket");
+  }
+  return wrap;
+}
+
+function renderLeaf(page, side){
+  const leaf=document.createElement("div");
+  leaf.className="leaf "+(side||"")+(page?"":" blank");
+  if(isMobileBook() && side==="left") leaf.classList.add("hidden-mobile");
+  const inner=document.createElement("div");
+  inner.className="page-inner";
+  if(!page){
+    leaf.appendChild(inner);
+    return leaf;
+  }
+  if(page.type==="cover"){
+    const s=page.set;
+    inner.innerHTML = `<div class="cover-page">
+      ${s.logo? `<img class="set-logo" src="${escapeHtml(s.logo)}" alt="">`:""}
+      <h2>${escapeHtml(s.name||"")}</h2>
+      <div class="cover-count">${ltr((s.owned||0)+" / "+(s.total||0))}</div>
+      <div class="bar"><i style="width:${Math.min(100,s.pct||0)}%"></i></div>
+      <div class="set-stats">${s.value_ils!=null? ltr(shekel(s.value_ils,2)+" ("+usd(s.value_usd)+")") : ""}</div>
+    </div>`;
+    leaf.appendChild(inner);
+    return leaf;
+  }
+  inner.innerHTML = `<div class="page-label"><span>עמוד ${page.pageNo}</span><span>${ltr(page.from+"–"+page.to)}</span></div>`;
+  const grid=document.createElement("div");
+  grid.className="grid-3";
+  for(let i=0;i<9;i++){
+    const c=page.cards[i];
+    if(!c){
+      const e=document.createElement("div");
+      e.className="pocket empty-slot";
+      grid.appendChild(e);
+    } else grid.appendChild(albumPocket(c));
+  }
+  inner.appendChild(grid);
+  leaf.appendChild(inner);
+  return leaf;
+}
+
+function spreadFor(index){
+  if(isMobileBook()){
+    return {left:null, right:albumPages[index]||null, single:true};
+  }
+  const i=index - (index%2);
+  return {left:albumPages[i]||null, right:albumPages[i+1]||null, single:false};
+}
+
+function renderSpread(){
+  const stage=document.getElementById("bookStage");
+  const spread=spreadFor(pageIndex);
+  stage.innerHTML="";
+  if(spread.single){
+    const leaf=renderLeaf(spread.right, "right");
+    leaf.style.width="100%";
+    stage.appendChild(leaf);
+  } else {
+    stage.appendChild(renderLeaf(spread.left, "left"));
+    stage.appendChild(renderLeaf(spread.right, "right"));
+  }
+  updatePager();
+}
+
+function pageCountLabel(){
+  const n=albumPages.length;
+  if(!n) return "";
+  if(isMobileBook()){
+    const p=albumPages[pageIndex];
+    if(p && p.type==="cover") return `כריכה · 1 מתוך ${n}`;
+    return `עמוד ${pageIndex+1} מתוך ${n}`;
+  }
+  const left=pageIndex+1;
+  const right=Math.min(pageIndex+2, n);
+  const l=albumPages[pageIndex];
+  const r=albumPages[pageIndex+1];
+  const name= (p)=>{
+    if(!p) return "";
+    if(p.type==="cover") return "כריכה";
+    return "עמוד "+p.pageNo;
+  };
+  if(!r) return `${name(l)} מתוך ${n} עמודים`;
+  return `${name(l)} – ${name(r)} · ${n} עמודים`;
+}
+
+function updatePager(){
+  const n=albumPages.length;
+  const max = isMobileBook()? n-1 : (n%2===0? n-2 : n-1 - ((n-1)%2===0?0:0));
+  // desktop last even index
+  const last = isMobileBook()? Math.max(0,n-1) : Math.max(0, n-1 - ((n-1)%2));
+  document.getElementById("pagePrev").disabled = pageIndex<=0 || flipping;
+  document.getElementById("pageNext").disabled = pageIndex>=last || flipping;
+  document.getElementById("pageCounter").textContent = pageCountLabel();
+}
+
+function clampIndex(i){
+  const n=albumPages.length;
+  if(n<=0) return 0;
+  if(isMobileBook()) return Math.max(0, Math.min(i, n-1));
+  i = i - (i%2);
+  const last = Math.max(0, n % 2 === 0 ? n-2 : n-1);
+  // if n is 5 (0..4), last even left is 4 (right blank). last = n-1 if odd, n-2 if even? 
+  // n=5 pages: spreads (0,1)(2,3)(4,blank) last=4
+  // n=4 pages: spreads (0,1)(2,3) last=2
+  const lastEven = (n%2===0)? n-2 : n-1;
+  return Math.max(0, Math.min(i, lastEven));
+}
+
+function animateFlip(from, to){
+  if(flipping || from===to) return;
+  const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if(reduce){
+    pageIndex=to;
+    renderSpread();
+    return;
+  }
+  flipping=true;
+  updatePager();
+  const stage=document.getElementById("bookStage");
+  const mobile=isMobileBook();
+  const goingForward=to>from;
+  const flipper=document.createElement("div");
+  const front=document.createElement("div");
+  front.className="flip-face flip-front";
+  const back=document.createElement("div");
+  back.className="flip-face flip-back";
+  flipper.appendChild(front);
+  flipper.appendChild(back);
+
+  if(mobile){
+    flipper.className="flipper right";
+    flipper.style.width="100%";
+    if(goingForward){
+      front.appendChild(renderLeaf(albumPages[from], "right"));
+      front.firstChild.style.width="100%";
+      back.appendChild(renderLeaf(albumPages[to], "right"));
+      back.firstChild.style.width="100%";
+    } else {
+      front.appendChild(renderLeaf(albumPages[to], "right"));
+      front.firstChild.style.width="100%";
+      back.appendChild(renderLeaf(albumPages[from], "right"));
+      back.firstChild.style.width="100%";
+      flipper.style.transform="rotateY(-180deg)";
+    }
+    // put the destination page underneath
+    stage.innerHTML="";
+    const under=renderLeaf(albumPages[goingForward?to:from], "right");
+    under.style.width="100%";
+    stage.appendChild(under);
+    stage.appendChild(flipper);
+  } else {
+    const cur=spreadFor(from);
+    const nxt=spreadFor(to);
+    if(goingForward){
+      flipper.className="flipper right";
+      front.appendChild(renderLeaf(cur.right, "right"));
+      back.appendChild(renderLeaf(nxt.left, "left"));
+      stage.innerHTML="";
+      stage.appendChild(renderLeaf(cur.left, "left"));
+      stage.appendChild(renderLeaf(nxt.right, "right"));
+      stage.appendChild(flipper);
+    } else {
+      flipper.className="flipper left";
+      front.appendChild(renderLeaf(cur.left, "left"));
+      back.appendChild(renderLeaf(nxt.right, "right"));
+      stage.innerHTML="";
+      stage.appendChild(renderLeaf(nxt.left, "left"));
+      stage.appendChild(renderLeaf(cur.right, "right"));
+      stage.appendChild(flipper);
+    }
+  }
+
+  const finish=()=>{
+    pageIndex=to;
+    flipping=false;
+    renderSpread();
+  };
+  const start=()=>{
+    const cls = goingForward? "turning-forward" : "turning-back";
+    if(mobile && !goingForward){
+      // return from -180 to 0
+      flipper.style.transition="transform .7s cubic-bezier(.2,.7,.2,1)";
+      requestAnimationFrame(()=>{ flipper.style.transform="rotateY(0deg)"; });
+    } else {
+      flipper.classList.add(cls);
+    }
+  };
+  let done=false;
+  const once=()=>{ if(done) return; done=true; finish(); };
+  flipper.addEventListener("transitionend", ev=>{
+    if(ev.target!==flipper) return;
+    once();
+  });
+  requestAnimationFrame(()=>requestAnimationFrame(start));
+  setTimeout(once, 850);
+}
+
+function goToPage(i){
+  if(flipping) return;
+  const to=clampIndex(i);
+  if(to===pageIndex) return;
+  animateFlip(pageIndex, to);
+}
+function nextPage(){ goToPage(pageIndex + (isMobileBook()?1:2)); }
+function prevPage(){ goToPage(pageIndex - (isMobileBook()?1:2)); }
+
+function currentSet(){
+  return (B.sets||[]).find(s=>s.id===currentSetId) || (B.sets||[])[0] || null;
+}
+
+function renderAlbumStatus(){
+  const s=currentSet();
+  const box=document.getElementById("albumStatus");
+  if(!s){ box.innerHTML=""; return; }
+  box.innerHTML = `<div class="set-head">
+      <div>
+        <h2 style="margin:0;font-size:22px">${escapeHtml(s.name||"")}</h2>
+        <div class="set-stats">${ltr(String(s.owned))} מתוך ${ltr(String(s.total))} · ${s.pct}%${s.official!==s.total?` · ${ltr(s.owned+"/"+s.official)} במספור הרשמי (${s.pct_official}%)`:""} · ${s.missing_count} חסרים</div>
+        ${s.partial? `<div class="partial">${s.partial_note_he||"מעקב חלקי"}</div>`:""}
+      </div>
+      <div>
+        <div class="pill" style="min-width:auto;padding:8px 12px"><b>${s.value_ils!=null?ltr(shekel(s.value_ils,2)): "—"}</b><span>שווי הסט באוסף${s.value_usd!=null? " · "+usd(s.value_usd):""}</span></div>
+      </div>
+    </div>
+    <p class="album-hint">האלבום נפתח משמאל לימין, כמו בינדר פיזי. בעמוד אפשר להחליק, ובמחשב גם עם החצים.</p>`;
+}
+
+function renderSetPicker(){
+  const root=document.getElementById("setPicker");
+  root.innerHTML="";
+  (B.sets||[]).forEach(s=>{
+    const btn=document.createElement("button");
+    btn.type="button";
+    btn.className="set-chip"+(s.id===currentSetId?" on":"");
+    btn.innerHTML=`<b>${escapeHtml(s.name||s.id)}</b><small>${ltr((s.owned||0)+"/"+(s.total||0))}</small>`;
+    btn.onclick=()=>selectSet(s.id);
+    root.appendChild(btn);
+  });
+}
+
+function selectSet(id, keepPage){
+  const s=(B.sets||[]).find(x=>x.id===id);
+  if(!s) return;
+  currentSetId=s.id;
+  albumPages=buildAlbumPages(s);
+  if(!keepPage) pageIndex=0;
+  else pageIndex=clampIndex(pageIndex);
+  renderSetPicker();
+  renderAlbumStatus();
+  renderSpread();
+}
+
+function refreshAlbumWanted(){
+  document.querySelectorAll("#bookStage .pocket.missing, #bookStage .pocket.ghost").forEach(p=>{
+    const id=p.dataset.id;
+    const on=wanted.has(id);
+    p.classList.toggle("wanted-pocket", on);
+    const btn=p.querySelector(".want-btn");
+    if(btn) btn.textContent=on?"★":"☆";
+  });
+}
+
+function initAlbum(){
+  const sets=B.sets||[];
+  if(!sets.length){
+    document.getElementById("bookStage").innerHTML="<p class='demo-note'>אין עדיין סטים באלבום.</p>";
+    return;
+  }
+  if(!currentSetId) currentSetId=sets[0].id;
+  const stage=document.getElementById("bookStage");
+  stage.addEventListener("click", ev=>{
+    if(flipping) return;
+    const btn=ev.target.closest(".want-btn");
+    if(btn){
+      ev.preventDefault(); ev.stopPropagation();
+      const id=btn.closest(".pocket").dataset.id;
+      if(!id) return;
+      if(wanted.has(id)) wanted.delete(id); else wanted.add(id);
+      saveWanted(wanted);
+      refreshAlbumWanted();
+      renderSets(); renderWishlist();
+      return;
+    }
+    const pocket=ev.target.closest(".pocket.owned");
+    if(pocket){
+      const id=pocket.dataset.id;
+      const card=collectionCard(id) || ((currentSet()||{}).cards||[]).find(c=>c.id===id);
+      if(card) openFocus(card);
+    }
+  });
+  document.getElementById("pagePrev").addEventListener("click", prevPage);
+  document.getElementById("pageNext").addEventListener("click", nextPage);
+  document.addEventListener("keydown", ev=>{
+    if(focusOpen) return;
+    if(ev.target.matches && ev.target.matches("input,select,textarea")) return;
+    const binderOn=document.getElementById("panel-binder").classList.contains("on");
+    if(!binderOn) return;
+    if(ev.key==="ArrowRight" || ev.key==="PageDown"){ ev.preventDefault(); nextPage(); }
+    if(ev.key==="ArrowLeft" || ev.key==="PageUp"){ ev.preventDefault(); prevPage(); }
+  });
+  const book=document.getElementById("book");
+  let sx=0, sy=0, tracking=false;
+  book.addEventListener("touchstart", ev=>{
+    if(focusOpen || flipping) return;
+    const t=ev.changedTouches[0];
+    sx=t.clientX; sy=t.clientY; tracking=true;
+  }, {passive:true});
+  book.addEventListener("touchend", ev=>{
+    if(!tracking) return;
+    tracking=false;
+    const t=ev.changedTouches[0];
+    const dx=t.clientX-sx, dy=t.clientY-sy;
+    if(Math.abs(dx)>50 && Math.abs(dx)>Math.abs(dy)*1.2){
+      if(dx<0) nextPage(); else prevPage();
+    }
+  }, {passive:true});
+  window.addEventListener("resize", ()=>{
+    if(flipping) return;
+    pageIndex=clampIndex(pageIndex);
+    renderSpread();
+  });
+  selectSet(currentSetId);
+}
+
+initAlbum();
 
 /* tools tab copy */
 document.getElementById("gradedCard").innerHTML = `
