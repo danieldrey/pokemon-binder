@@ -536,3 +536,22 @@ body.trade-page{overflow:auto;height:auto;min-height:100dvh}
   .center-grade b{font-size:18px}
   .center-pane .hits-panel{max-height:100dvh;border-radius:16px 16px 0 0}
 }
+
+/* Shopping list */
+.shop-intro{margin:0 2px 14px;color:var(--muted);font-size:13px;line-height:1.45}
+.shop-priority{margin:0 2px 16px;padding:10px 12px;border:1px solid var(--line);border-radius:12px;background:#ffffff08}
+.shop-priority b{color:var(--gold2);font-weight:600}
+.shop-priority ol{margin:8px 0 0;padding:0 0 0 20px}
+.shop-priority li{margin:0 0 4px;font-size:13px}
+.shop-group{margin:0 0 22px}
+.shop-group-h{position:sticky;top:0;z-index:1;display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:6px 12px;
+  margin:0 0 8px;padding:8px 2px 6px;background:linear-gradient(#1a140ecc,#1a140ed9 70%,#1a140e00);font-size:15px}
+.shop-group-h b{font-family:"Cormorant Garamond",Georgia,serif;font-size:20px;font-weight:600}
+.shop-group-h span{color:var(--muted);font-size:12px}
+.shop-actions{display:flex;flex-wrap:wrap;gap:8px;margin:0 2px 10px}
+.shop-copy{cursor:pointer}
+.shop-copy[data-copied="true"]{border-color:var(--gold);color:var(--gold2)}
+.shop-mass{display:none}
+.shop-item .wish-meta .shop-num{color:var(--ink);opacity:.8}
+.shop-section-title{margin:18px 2px 8px;font-family:"Cormorant Garamond",Georgia,serif;font-size:22px;font-weight:600}
+.shop-section-lead{margin:0 2px 10px;color:var(--muted);font-size:13px;line-height:1.45}

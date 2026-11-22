@@ -204,7 +204,7 @@ function renderSets(){
     block.innerHTML = `<div class="set-head">
       <div>
         <h2>${s.name}</h2>
-        <div class="set-stats">${ltr(String(s.owned))} מתוך ${ltr(String(s.total))} · ${s.pct}%${s.official!==s.total?` · ${ltr(s.owned+"/"+s.official)} במספור הרשמי (${s.pct_official}%)`:""} · ${s.missing_count} חסרים</div>
+        <div class="set-stats">${ltr(String(s.owned_official!=null?s.owned_official:s.owned))} מתוך ${ltr(String(s.official||s.total))} במספור הרשמי (${s.pct_official}%) · ${ltr(String(s.owned))} מתוך ${ltr(String(s.total))} כולל סודיים · ${(s.missing_official!=null?s.missing_official:s.missing_count)} חסרים בסט הרגיל</div>
         ${s.partial? `<div class="partial">${s.partial_note_he||"מעקב חלקי"}</div>`:""}
       </div>
       <div class="bar" style="flex:1;max-width:280px"><i style="width:${Math.min(100,s.pct)}%"></i></div>

@@ -75,9 +75,50 @@ function featuredCards() {
   return topHits(3);
 }
 
+
 function cardValueIls(c) {
   return (c && c.value && c.value.ils != null) ? Number(c.value.ils) : -1;
 }
+
+function cardNum(c) {
+  const m = String((c && c.number) || "").match(/^0*(\d+)/);
+  return m ? parseInt(m[1], 10) : null;
+}
+function isMainSetCard(c, set) {
+  const official = set && set.official;
+  const n = cardNum(c);
+  return official != null && n != null && n >= 1 && n <= official;
+}
+function officialStats(s) {
+  const official = (s && s.official) || 0;
+  let owned = s && s.owned_official;
+  if (owned == null && official) {
+    owned = (s.cards || []).filter(c => c.owned && isMainSetCard(c, s)).length;
+  }
+  owned = owned || 0;
+  const missing = (s && s.missing_official != null)
+    ? s.missing_official
+    : Math.max(0, official - owned);
+  const pct = official
+    ? (s && s.pct_official != null ? s.pct_official : Math.round(1000 * owned / official) / 10)
+    : 0;
+  const cost = (s && s.complete_cost_official) || (s && s.complete_cost) || {};
+  return { owned, official, missing, pct, cost, secretsOwned: Math.max(0, (s && s.owned || 0) - owned) };
+}
+function completionLabel(s) {
+  const o = officialStats(s);
+  if (!o.official) return `${(s && s.owned) || 0} of ${(s && s.total) || 0}`;
+  return `${o.owned} of ${o.official} · ${o.pct}%`;
+}
+function completionNote(s) {
+  const o = officialStats(s);
+  if (!o.official || (s.total && s.total === o.official && !o.secretsOwned)) return "";
+  const bits = [];
+  if (o.secretsOwned) bits.push(`${o.secretsOwned} secret rare${o.secretsOwned === 1 ? "" : "s"} owned`);
+  if (s.total && s.total !== o.official) bits.push(`${s.owned || 0} of ${s.total} including secrets`);
+  return bits.join(" · ");
+}
+
 
 function topHits(n = 12) {
   return (B.cards || [])
@@ -286,7 +327,7 @@ function fillPage(el, page) {
       const val = s.value_ils != null ? money(s.value_ils, s.value_usd) : "";
       return `<li><button type="button" data-jump="${escapeHtml(s.id)}">
         <span class="frac">${String(i + 1).padStart(2, "0")}</span>
-        <span class="nm"><b>${escapeHtml(s.name || s.id)}</b><span>${s.owned || 0} of ${s.total || 0} · ${s.pct || 0}%</span></span>
+        <span class="nm"><b>${escapeHtml(s.name || s.id)}</b><span>${completionLabel(s)}</span></span>
         <span class="frac">${escapeHtml(val)}</span>
       </button></li>`;
     }).join("");
@@ -303,10 +344,10 @@ function fillPage(el, page) {
     inner.innerHTML = `<div class="hero">
       ${s.logo ? `<img class="set-logo" src="${escapeHtml(s.logo)}" alt="">` : `<p class="kicker">Set</p>`}
       <h2>${escapeHtml(s.name || "")}</h2>
-      <div class="count">${s.owned || 0} <span style="opacity:.6">/</span> ${s.total || 0}</div>
-      <div class="bar"><i style="width:${Math.min(100, s.pct || 0)}%"></i></div>
+      <div class="count">${officialStats(s).owned} <span style="opacity:.6">/</span> ${officialStats(s).official || s.total || 0}</div>
+      <div class="bar"><i style="width:${Math.min(100, officialStats(s).pct || 0)}%"></i></div>
       <div class="value">${s.value_ils != null ? money(s.value_ils, s.value_usd) : ""}</div>
-      <p class="tagline">${s.pct || 0}% complete</p>
+      <p class="tagline">${officialStats(s).official ? officialStats(s).pct + "% of the main set" : (s.pct || 0) + "% complete"}${completionNote(s) ? `<br><span style="opacity:.75">${completionNote(s)}</span>` : ""}</p>
     </div>`;
     el.appendChild(inner);
     return;
@@ -530,7 +571,7 @@ function jumpToSet(id) {
   closeWish();
   closeValue();
   closeTrade();
-  closePack(); closeCenter();
+  closePack(); closeCenter(); closeShop();
 }
 
 function jumpToCard(id) {
@@ -541,7 +582,7 @@ function jumpToCard(id) {
   closeWish();
   closeValue();
   closeTrade();
-  closePack(); closeCenter();
+  closePack(); closeCenter(); closeShop();
   closeToc();
   if (idx == null) return;
   pageFlip.turnToPage(idx);
@@ -574,7 +615,7 @@ function renderToc() {
     `<li><button type="button" data-jump="${escapeHtml(s.id)}">
       <span class="frac">${String(i + 1).padStart(2, "0")}</span>
       <span class="nm"><b>${escapeHtml(s.name || s.id)}</b>
-        <span>${s.owned || 0} of ${s.total || 0} · ${s.pct || 0}%</span></span>
+        <span>${completionLabel(s)}</span></span>
       <span class="frac">${s.value_ils != null ? money(s.value_ils, s.value_usd) : ""}</span>
     </button></li>`
   ).join("") + "</ol>";
@@ -586,7 +627,7 @@ function openToc() {
   closeWish();
   closeValue();
   closeTrade();
-  closePack(); closeCenter();
+  closePack(); closeCenter(); closeShop();
   toc.hidden = false;
   $("contentsBtn").setAttribute("aria-expanded", "true");
 }
@@ -634,7 +675,7 @@ function openHits() {
   closeWish();
   closeValue();
   closeTrade();
-  closePack(); closeCenter();
+  closePack(); closeCenter(); closeShop();
   renderHits();
   el.hidden = false;
   hitsOpen = true;
@@ -777,7 +818,7 @@ function openWish() {
   closeHits();
   closeValue();
   closeTrade();
-  closePack(); closeCenter();
+  closePack(); closeCenter(); closeShop();
   renderWish();
   el.hidden = false;
   wishOpen = true;
@@ -910,7 +951,7 @@ function renderValue() {
     $("valueSets").innerHTML = (B.sets || []).map(s =>
       `<div class="value-set">
         <b>${escapeHtml(s.name || s.id)}</b>
-        <span class="pct">${s.owned || 0} / ${s.total || 0}</span>
+        <span class="pct">${completionLabel(s)}</span>
         <span class="val">${s.value_ils != null ? money(s.value_ils, s.value_usd) : "—"}</span>
       </div>`
     ).join("");
@@ -921,7 +962,7 @@ function renderValue() {
 function openValue() {
   const el = $("value");
   if (!el) return;
-  closeToc(); closeHits(); closeWish(); closeTrade(); closePack(); closeCenter();
+  closeToc(); closeHits(); closeWish(); closeTrade(); closePack(); closeCenter(); closeShop();
   renderValue();
   el.hidden = false;
   valueOpen = true;
@@ -1032,7 +1073,7 @@ function renderTrade() {
 function openTrade() {
   const el = $("trade");
   if (!el) return;
-  closeToc(); closeHits(); closeWish(); closeValue(); closePack(); closeCenter();
+  closeToc(); closeHits(); closeWish(); closeValue(); closePack(); closeCenter(); closeShop();
   renderTrade();
   el.hidden = false;
   tradeOpen = true;
@@ -1095,6 +1136,11 @@ function applyOneAdd(add, recount) {
       set.owned = (set.owned || 0) + 1;
       if (set.missing_count != null) set.missing_count = Math.max(0, set.missing_count - 1);
       if (set.total) set.pct = Math.round(1000 * set.owned / set.total) / 10;
+      if (isMainSetCard(sc, set) && set.official) {
+        set.owned_official = (set.owned_official || 0) + 1;
+        set.missing_official = Math.max(0, (set.missing_official != null ? set.missing_official : set.official) - 1);
+        set.pct_official = Math.round(1000 * set.owned_official / set.official) / 10;
+      }
     }
     if (add.art && !sc.art) sc.art = add.art;
     if (add.rarity && !sc.rarity) sc.rarity = add.rarity;
@@ -1349,7 +1395,7 @@ function confirmPackCard(shot, card, fromEl) {
   shot.confirmed = card.name || card.id;
   renderHud();
   const art = card.art || shot.url;
-  closePack(); closeCenter();
+  closePack(); closeCenter(); closeShop();
   flyIntoAlbum(art, () => {
     albumPages = buildAlbumPages();
     const idx = cardStarts[card.id] != null ? cardStarts[card.id] : (pageFlip ? pageFlip.getCurrentPageIndex() : 0);
@@ -1369,7 +1415,7 @@ function dropAdd(index) {
 function openPack() {
   const el = $("pack");
   if (!el) return;
-  closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); closeCenter();
+  closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); closeCenter(); closeShop();
   renderPack();
   el.hidden = false;
   packOpen = true;
@@ -1494,7 +1540,182 @@ function renderHud() {
   }
 }
 
+
+let shopOpen = false;
+
+const SHOP_PRIORITY = ["M6", "me04", "me05", "me03", "me02", "30th"];
+const NICE_RARITIES = /illustration rare|special illustration rare|ultra rare|pikachu rare/i;
+const DREAM_RARITIES = /special illustration rare|mega hyper rare|hyper rare/i;
+
+function shopPrioritySets() {
+  const sets = B.sets || [];
+  const pref = (B.shop && B.shop.priority) || SHOP_PRIORITY;
+  const out = [];
+  pref.forEach(id => {
+    const s = sets.find(x => x.id === id);
+    if (s) out.push(s);
+  });
+  sets.forEach(s => {
+    if (s.id === "mee") return;
+    if (!out.includes(s)) out.push(s);
+  });
+  return out;
+}
+function missingMain(s) {
+  return (s.cards || []).filter(c => !c.owned && isMainSetCard(c, s));
+}
+function massEntryLine(c, s) {
+  const name = (c.name || c.id || "").trim();
+  const abbr = s.abbreviation || "";
+  const n = cardNum(c);
+  const num = n != null ? String(n) : String(c.number || "").replace(/^0+/, "") || "";
+  if (s.id === "M6") {
+    const denom = s.official || 76;
+    const printed = String(c.number || "").padStart(3, "0");
+    return `1x ${name} ${printed}/${denom}`;
+  }
+  if (abbr) return `1 ${name} [${abbr}] ${num}`;
+  return `1 ${name} ${num}`;
+}
+function massEntryBlock(s) {
+  return missingMain(s).map(c => massEntryLine(c, s)).join("\n");
+}
+function renderShop() {
+  const root = $("shopList");
+  const sub = $("shopSub");
+  if (!root) return;
+  const sets = shopPrioritySets();
+  const fx = (B.meta && B.meta.fx) || {};
+  const fxBit = fx.usd_ils ? `$1 = ₪${Number(fx.usd_ils).toFixed(3)}` + (fx.usd_date ? ` (${fx.usd_date})` : "") : "";
+  if (sub) sub.textContent = fxBit ? `Prices from the weekly TCGdex refresh · ${fxBit}` : "Prices from the weekly TCGdex refresh";
+
+  const first = sets.filter(s => (s.id === "M6" || s.id === "me04"));
+  const prioHtml = first.map(s => {
+    const o = officialStats(s);
+    const cost = o.cost && o.cost.ils != null ? money(o.cost.ils, o.cost.usd) : "—";
+    return `<li><b>${escapeHtml(s.name)}</b> — ${o.missing} missing, ${cost} to finish the main set</li>`;
+  }).join("");
+
+  let html = `<p class="shop-intro">${escapeHtml((B.shop && B.shop.note) || "Official completion counts only main-set cards. Secret rares are in the lists below.")}</p>
+    <div class="shop-priority"><b>Start here</b>
+      <ol>${prioHtml}</ol>
+    </div>`;
+
+  sets.forEach(s => {
+    const o = officialStats(s);
+    const miss = missingMain(s);
+    if (!o.official && !miss.length) return;
+    const cost = o.cost && o.cost.ils != null ? money(o.cost.ils, o.cost.usd) : "—";
+    const unpriced = o.cost && o.cost.unpriced ? ` · ${o.cost.unpriced} unpriced` : "";
+    const copyLabel = s.id === "M6" ? "Copy for Cardmarket" : "Copy for TCGplayer Mass Entry";
+    const items = miss.map(c => {
+      const ils = c.price && c.price.ils != null ? c.price.ils : null;
+      const usd = c.price && c.price.usd;
+      return `<button type="button" class="wish-item shop-item" data-id="${escapeHtml(c.id)}" data-jump-card="${escapeHtml(c.id)}">
+        <img src="${escapeHtml(c.art || "")}" alt="" loading="lazy">
+        <div>
+          <p class="wish-name">${escapeHtml(c.name || c.id)}${c.rarity ? `<span class="wish-rare">${escapeHtml(c.rarity)}</span>` : ""}</p>
+          <p class="wish-meta"><span class="shop-num">#${escapeHtml(c.number || "")}</span></p>
+        </div>
+        <div class="wish-side"><p class="wish-val">${ils != null ? money(ils, usd) : "—"}</p></div>
+      </button>`;
+    }).join("");
+    html += `<section class="shop-group" id="shop-${escapeHtml(s.id)}">
+      <div class="shop-group-h"><b>${escapeHtml(s.name)}</b><span>${o.owned} of ${o.official} · ${cost} to complete${unpriced}</span></div>
+      <div class="shop-actions">
+        <button type="button" class="hud-btn shop-copy" data-shop-copy="${escapeHtml(s.id)}">${copyLabel}</button>
+      </div>
+      ${items || `<p class="wish-empty">The main set is complete.</p>`}
+    </section>`;
+  });
+
+  const nice = [];
+  const dream = [];
+  (B.sets || []).forEach(s => {
+    (s.cards || []).forEach(c => {
+      if (c.owned) return;
+      const ils = c.price && c.price.ils != null ? Number(c.price.ils) : null;
+      if (ils == null) return;
+      const r = c.rarity || "";
+      const rec = { c, s, ils, usd: c.price && c.price.usd };
+      if (NICE_RARITIES.test(r) && ils <= 40) nice.push(rec);
+      const isRgbMew = s.id === "30th" && /^(R|B|G)$/i.test(String(c.number || ""));
+      if (DREAM_RARITIES.test(r) && ils >= 250 && !isRgbMew) dream.push(rec);
+    });
+  });
+  nice.sort((a, b) => b.ils - a.ils);
+  dream.sort((a, b) => b.ils - a.ils);
+
+  function hitRow(rec) {
+    const c = rec.c, s = rec.s;
+    return `<button type="button" class="wish-item shop-item" data-id="${escapeHtml(c.id)}" data-jump-card="${escapeHtml(c.id)}">
+      <img src="${escapeHtml(c.art || "")}" alt="" loading="lazy">
+      <div>
+        <p class="wish-name">${escapeHtml(c.name || c.id)}${c.rarity ? `<span class="wish-rare">${escapeHtml(c.rarity)}</span>` : ""}</p>
+        <p class="wish-meta">${escapeHtml(s.name || s.id)} · #${escapeHtml(c.number || "")}</p>
+      </div>
+      <div class="wish-side"><p class="wish-val">${money(rec.ils, rec.usd)}</p></div>
+    </button>`;
+  }
+
+  html += `<h3 class="shop-section-title">Nice hits under ₪40</h3>
+    <p class="shop-section-lead">Illustration rares, ultra rares and special art that are still missing, priced at ₪40 or less. Top of the list first.</p>`;
+  html += nice.slice(0, 12).map(hitRow).join("") || `<p class="wish-empty">Nothing in this range right now.</p>`;
+
+  html += `<h3 class="shop-section-title">Dream chase</h3>
+    <p class="shop-section-lead">The headline secret rares still missing. Buy these as singles only if you really want the card — they are not a cheap way to complete a set.</p>`;
+  html += dream.slice(0, 8).map(hitRow).join("") || `<p class="wish-empty">No chase cards in this range.</p>`;
+
+  root.innerHTML = html;
+}
+function copyShopList(sid) {
+  const s = (B.sets || []).find(x => x.id === sid);
+  if (!s) return;
+  const text = massEntryBlock(s);
+  const done = () => {
+    const btn = document.querySelector(`[data-shop-copy="${CSS.escape(sid)}"]`);
+    if (!btn) return;
+    const prev = btn.textContent;
+    btn.textContent = "Copied";
+    btn.dataset.copied = "true";
+    setTimeout(() => { btn.textContent = prev; btn.dataset.copied = "false"; }, 1600);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else fallbackCopy(text, done);
+}
+function fallbackCopy(text, done) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.setAttribute("readonly", "");
+  ta.style.position = "fixed";
+  ta.style.left = "-9999px";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch (e) {}
+  document.body.removeChild(ta);
+  if (done) done();
+}
+function openShop() {
+  const el = $("shop");
+  if (!el) return;
+  closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); closeCenter();
+  renderShop();
+  el.hidden = false;
+  shopOpen = true;
+  if ($("shopBtn")) $("shopBtn").setAttribute("aria-expanded", "true");
+  if ($("shopClose")) $("shopClose").focus();
+}
+function closeShop() {
+  const el = $("shop");
+  if (!el || el.hidden) return;
+  el.hidden = true;
+  shopOpen = false;
+  if ($("shopBtn")) $("shopBtn").setAttribute("aria-expanded", "false");
+}
+
 function applyQueryJump() {
+
   try {
     const q = new URLSearchParams(location.search);
     const id = q.get("set");
@@ -1517,6 +1738,9 @@ function applyQueryJump() {
     }
     if (q.get("trade") === "1" || q.get("trade") === "true" || location.hash === "#trade") {
       setTimeout(openTrade, 200);
+    }
+    if (q.get("shop") === "1" || q.get("shop") === "true" || q.get("shopping") === "1" || location.hash === "#shop" || location.hash === "#shopping") {
+      setTimeout(openShop, 200);
     }
     if (q.get("pack") === "1" || q.get("pack") === "true" || location.hash === "#pack") {
       setTimeout(openPack, 200);
@@ -1564,7 +1788,7 @@ function init() {
   document.addEventListener("keydown", ev => {
     if (focusOpen) return;
     if (ev.target.matches && ev.target.matches("input,select,textarea,button")) {
-      if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); closeCenter(); }
+      if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); closeCenter(); closeShop(); }
       return;
     }
     if (hitsOpen) {
@@ -1575,17 +1799,21 @@ function init() {
       if (ev.key === "Escape") { ev.preventDefault(); closeWish(); }
       return;
     }
+    if (shopOpen) {
+      if (ev.key === "Escape") { ev.preventDefault(); closeShop(); }
+      return;
+    }
     if (valueOpen) {
       if (ev.key === "Escape") { ev.preventDefault(); closeValue(); }
       return;
     }
     if (tradeOpen) {
-      if (ev.key === "Escape") { ev.preventDefault(); closeTrade(); closePack(); closeCenter(); }
+      if (ev.key === "Escape") { ev.preventDefault(); closeTrade(); closePack(); closeCenter(); closeShop(); }
       return;
     }
     if (ev.key === "ArrowRight" || ev.key === "PageDown") { ev.preventDefault(); nextPage(); }
     if (ev.key === "ArrowLeft" || ev.key === "PageUp") { ev.preventDefault(); prevPage(); }
-    if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); closeCenter(); }
+    if (ev.key === "Escape") { closeToc(); closeHits(); closeWish(); closeValue(); closeTrade(); closePack(); closeCenter(); closeShop(); }
   });
 
   $("contentsBtn").addEventListener("click", () => $("toc").hidden ? openToc() : closeToc());
@@ -1673,6 +1901,22 @@ function init() {
   if ($("tradeBtn")) $("tradeBtn").addEventListener("click", () => $("trade").hidden ? openTrade() : closeTrade());
   if ($("tradeClose")) $("tradeClose").addEventListener("click", closeTrade);
   if ($("tradeBackdrop")) $("tradeBackdrop").addEventListener("click", closeTrade);
+
+  if ($("shopBtn")) $("shopBtn").addEventListener("click", () => $("shop").hidden ? openShop() : closeShop());
+  if ($("shopClose")) $("shopClose").addEventListener("click", closeShop);
+  if ($("shopBackdrop")) $("shopBackdrop").addEventListener("click", closeShop);
+  if ($("shop")) $("shop").addEventListener("click", ev => {
+    const copy = ev.target.closest("[data-shop-copy]");
+    if (copy) { ev.preventDefault(); ev.stopPropagation(); copyShopList(copy.dataset.shopCopy); return; }
+    const go = ev.target.closest("[data-jump-card]");
+    if (go) { ev.preventDefault(); ev.stopPropagation(); jumpToCard(go.dataset.jumpCard); return; }
+    const item = ev.target.closest(".shop-item");
+    if (item && item.dataset.id) {
+      ev.preventDefault();
+      const card = cardById(item.dataset.id);
+      if (card) openFocus(card);
+    }
+  });
   if ($("tradeShare")) $("tradeShare").addEventListener("click", shareTradeList);
   if ($("trade")) $("trade").addEventListener("click", ev => {
     const set = ev.target.closest("[data-trade-set]");
