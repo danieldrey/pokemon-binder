@@ -227,6 +227,81 @@
         }
       ],
       "note": "Removed misidentified Aarune SAR M6-111; M6-101 confirmed in toploader"
+    },
+    {
+      "date": "2026-11-23",
+      "captured_at": "2026-11-23T22:01:48+02:00",
+      "ils": 137.22,
+      "usd": 40.73,
+      "unique": 162,
+      "copies": 207,
+      "priced_copies": 207,
+      "fx": {
+        "usd_ils": 3.343,
+        "eur_ils": 3.665,
+        "usd_date": "2026-11-23",
+        "source": "Bank of Israel"
+      },
+      "missing_ils": 51579.87,
+      "missing_usd": 15429.24,
+      "sets": [
+        {
+          "id": "M6",
+          "name": "Storm Emeralda",
+          "owned": 75,
+          "total": 113,
+          "ils": 82.4,
+          "usd": 24.3
+        },
+        {
+          "id": "me04",
+          "name": "Chaos Rising",
+          "owned": 32,
+          "total": 122,
+          "ils": 18.87,
+          "usd": 5.65
+        },
+        {
+          "id": "me05",
+          "name": "Pitch Black",
+          "owned": 19,
+          "total": 120,
+          "ils": 14.78,
+          "usd": 4.42
+        },
+        {
+          "id": "me02",
+          "name": "Phantasmal Flames",
+          "owned": 15,
+          "total": 130,
+          "ils": 9.42,
+          "usd": 2.82
+        },
+        {
+          "id": "me03",
+          "name": "Perfect Order",
+          "owned": 9,
+          "total": 124,
+          "ils": 3.77,
+          "usd": 1.13
+        },
+        {
+          "id": "mee",
+          "name": "Mega Evolution Energy",
+          "owned": 7,
+          "total": 16,
+          "ils": 3.81,
+          "usd": 1.16
+        },
+        {
+          "id": "30th",
+          "name": "30th Celebration",
+          "owned": 5,
+          "total": 161,
+          "ils": 4.17,
+          "usd": 1.25
+        }
+      ]
     }
   ]
 }
