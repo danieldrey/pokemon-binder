@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>מיפוי הבינדר הפיזי · הבינדר של דניאל</title>
+  <meta name="description" content="איך הבינדר הפיזי מאמזון ייראה, דף אחר דף: 12 כיסים בכל צד, עם סליב או בלי, וקופסת טופלואדרים.">
+  <link rel="stylesheet" href="vendor/fonts/fonts.css">
+  <link rel="stylesheet" href="album-en.css">
+  <link rel="stylesheet" href="physical.css">
+</head>
+<body class="album-en physical-page">
+  <div class="room" aria-hidden="true"></div>
+  <header class="hud trade-hud">
+    <a class="hud-brand" href="album-en.html">
+      <img class="hud-logo" src="logo.png" alt="">
+      <div>
+        <p class="eyebrow">Next Pull IL</p>
+        <h1>הבינדר הפיזי</h1>
+      </div>
+    </a>
+    <div class="hud-meta" id="hudMeta"></div>
+    <div class="hud-actions">
+      <a class="hud-btn" href="album-en.html">האלבום</a>
+      <a class="hud-btn" href="index.html">האתר</a>
+    </div>
+  </header>
+
+  <main class="phys-main">
+    <section class="phys-intro" id="intro">
+      <p class="phys-lead" id="binderNote"></p>
+      <p class="phys-rule" id="sleeveRule"></p>
+      <div class="phys-stats" id="stats"></div>
+    </section>
+
+    <section class="phys-box" id="toploaderSection">
+      <h2>קופסת טופלואדרים</h2>
+      <p class="phys-box-lead">הכיסים בבינדר לא מתאימים לטופלואדר. את הקלפים האלה שומרים בחוץ, לפי סט ומספר.</p>
+      <div class="phys-box-grid" id="toploaderGrid"></div>
+    </section>
+
+    <section class="phys-map">
+      <div class="phys-map-head">
+        <h2>הבינדר, מפתח אחר מפתח</h2>
+        <div class="phys-jump" id="setJump"></div>
+      </div>
+      <div class="phys-pager">
+        <button type="button" class="hud-btn" id="prevSpread" aria-label="המפתח הקודם">‹ הקודם</button>
+        <div class="phys-pager-status" id="spreadStatus"></div>
+        <button type="button" class="hud-btn" id="nextSpread" aria-label="המפתח הבא">הבא ›</button>
+      </div>
+      <div class="phys-spread-host" id="spreadHost"></div>
+    </section>
+  </main>
+  <script src="data.js"></script>
+  <script src="physical.js"></script>
+</body>
+</html>

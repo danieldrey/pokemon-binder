@@ -229,79 +229,280 @@
       "note": "Removed misidentified Aarune SAR M6-111; M6-101 confirmed in toploader"
     },
     {
-      "date": "2026-11-23",
-      "captured_at": "2026-11-23T22:01:48+02:00",
-      "ils": 137.22,
-      "usd": 40.73,
-      "unique": 162,
-      "copies": 207,
-      "priced_copies": 207,
+      "date": "2026-11-26",
+      "captured_at": "2026-11-26T20:33:23+02:00",
+      "ils": 150.72,
+      "usd": 44.86,
+      "unique": 173,
+      "copies": 218,
+      "priced_copies": 218,
       "fx": {
-        "usd_ils": 3.343,
-        "eur_ils": 3.665,
-        "usd_date": "2026-11-23",
+        "usd_ils": 3.334,
+        "eur_ils": 3.6594,
+        "usd_date": "2026-11-26",
         "source": "Bank of Israel"
       },
-      "missing_ils": 51579.87,
-      "missing_usd": 15429.24,
+      "missing_ils": 54442.73,
+      "missing_usd": 16329.59,
       "sets": [
         {
           "id": "M6",
           "name": "Storm Emeralda",
           "owned": 75,
           "total": 113,
-          "ils": 82.4,
-          "usd": 24.3
+          "ils": 80.9,
+          "usd": 23.9
         },
         {
           "id": "me04",
           "name": "Chaos Rising",
           "owned": 32,
           "total": 122,
-          "ils": 18.87,
-          "usd": 5.65
+          "ils": 19.29,
+          "usd": 5.79
         },
         {
           "id": "me05",
           "name": "Pitch Black",
-          "owned": 19,
+          "owned": 25,
           "total": 120,
-          "ils": 14.78,
-          "usd": 4.42
+          "ils": 19.76,
+          "usd": 5.93
         },
         {
           "id": "me02",
           "name": "Phantasmal Flames",
           "owned": 15,
           "total": 130,
-          "ils": 9.42,
-          "usd": 2.82
+          "ils": 9.55,
+          "usd": 2.87
         },
         {
           "id": "me03",
           "name": "Perfect Order",
           "owned": 9,
           "total": 124,
-          "ils": 3.77,
+          "ils": 3.75,
           "usd": 1.13
         },
         {
           "id": "mee",
           "name": "Mega Evolution Energy",
-          "owned": 7,
+          "owned": 8,
           "total": 16,
-          "ils": 3.81,
-          "usd": 1.16
+          "ils": 4.67,
+          "usd": 1.4
         },
         {
           "id": "30th",
           "name": "30th Celebration",
-          "owned": 5,
+          "owned": 7,
           "total": 161,
-          "ils": 4.17,
-          "usd": 1.25
+          "ils": 9.27,
+          "usd": 2.78
+        },
+        {
+          "id": "me06",
+          "name": "Delta Reign",
+          "owned": 1,
+          "total": 141,
+          "ils": 0.73,
+          "usd": 0.22
+        },
+        {
+          "id": "sv09",
+          "name": "Journey Together",
+          "owned": 1,
+          "total": 190,
+          "ils": 2.8,
+          "usd": 0.84
         }
-      ]
+      ],
+      "note": "Old loose-box videos authoritative; reshoot used only for additions"
+    },
+    {
+      "date": "2026-11-26",
+      "captured_at": "2026-11-26T20:33:47+02:00",
+      "ils": 155.32,
+      "usd": 46.24,
+      "unique": 174,
+      "copies": 219,
+      "priced_copies": 219,
+      "fx": {
+        "usd_ils": 3.334,
+        "eur_ils": 3.6594,
+        "usd_date": "2026-11-26",
+        "source": "Bank of Israel"
+      },
+      "missing_ils": 54438.13,
+      "missing_usd": 16328.21,
+      "sets": [
+        {
+          "id": "M6",
+          "name": "Storm Emeralda",
+          "owned": 75,
+          "total": 113,
+          "ils": 80.9,
+          "usd": 23.9
+        },
+        {
+          "id": "me04",
+          "name": "Chaos Rising",
+          "owned": 32,
+          "total": 122,
+          "ils": 19.29,
+          "usd": 5.79
+        },
+        {
+          "id": "me05",
+          "name": "Pitch Black",
+          "owned": 26,
+          "total": 120,
+          "ils": 24.36,
+          "usd": 7.31
+        },
+        {
+          "id": "me02",
+          "name": "Phantasmal Flames",
+          "owned": 15,
+          "total": 130,
+          "ils": 9.55,
+          "usd": 2.87
+        },
+        {
+          "id": "me03",
+          "name": "Perfect Order",
+          "owned": 9,
+          "total": 124,
+          "ils": 3.75,
+          "usd": 1.13
+        },
+        {
+          "id": "mee",
+          "name": "Mega Evolution Energy",
+          "owned": 8,
+          "total": 16,
+          "ils": 4.67,
+          "usd": 1.4
+        },
+        {
+          "id": "30th",
+          "name": "30th Celebration",
+          "owned": 7,
+          "total": 161,
+          "ils": 9.27,
+          "usd": 2.78
+        },
+        {
+          "id": "me06",
+          "name": "Delta Reign",
+          "owned": 1,
+          "total": 141,
+          "ils": 0.73,
+          "usd": 0.22
+        },
+        {
+          "id": "sv09",
+          "name": "Journey Together",
+          "owned": 1,
+          "total": 190,
+          "ils": 2.8,
+          "usd": 0.84
+        }
+      ],
+      "note": "Old loose-box videos authoritative; reshoot used only for additions"
+    },
+    {
+      "date": "2026-11-26",
+      "captured_at": "2026-11-26T20:43:21+02:00",
+      "ils": 161.28,
+      "usd": 48.03,
+      "unique": 186,
+      "copies": 233,
+      "priced_copies": 233,
+      "fx": {
+        "usd_ils": 3.334,
+        "eur_ils": 3.6594,
+        "usd_date": "2026-11-26",
+        "source": "Bank of Israel"
+      },
+      "missing_ils": 54432.9,
+      "missing_usd": 16326.64,
+      "sets": [
+        {
+          "id": "M6",
+          "name": "Storm Emeralda",
+          "owned": 75,
+          "total": 113,
+          "ils": 80.9,
+          "usd": 23.9
+        },
+        {
+          "id": "me04",
+          "name": "Chaos Rising",
+          "owned": 32,
+          "total": 122,
+          "ils": 19.29,
+          "usd": 5.79
+        },
+        {
+          "id": "me05",
+          "name": "Pitch Black",
+          "owned": 26,
+          "total": 120,
+          "ils": 24.36,
+          "usd": 7.31
+        },
+        {
+          "id": "me02",
+          "name": "Phantasmal Flames",
+          "owned": 15,
+          "total": 130,
+          "ils": 9.55,
+          "usd": 2.87
+        },
+        {
+          "id": "me03",
+          "name": "Perfect Order",
+          "owned": 9,
+          "total": 124,
+          "ils": 3.75,
+          "usd": 1.13
+        },
+        {
+          "id": "mee",
+          "name": "Mega Evolution Energy",
+          "owned": 8,
+          "total": 16,
+          "ils": 5.0,
+          "usd": 1.5
+        },
+        {
+          "id": "me06",
+          "name": "Delta Reign",
+          "owned": 7,
+          "total": 141,
+          "ils": 2.83,
+          "usd": 0.85
+        },
+        {
+          "id": "30th",
+          "name": "30th Celebration",
+          "owned": 7,
+          "total": 161,
+          "ils": 9.27,
+          "usd": 2.78
+        },
+        {
+          "id": "sv09",
+          "name": "Journey Together",
+          "owned": 7,
+          "total": 190,
+          "ils": 6.33,
+          "usd": 1.9
+        }
+      ],
+      "note": "Old loose-box videos authoritative; reshoot used only for additions"
     }
   ]
 }
