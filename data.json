@@ -60348,10 +60348,10 @@
   "physical": {
     "binder": {
       "pockets_per_side": 12,
-      "columns": 3,
-      "rows": 4,
-      "source_he": "הבינדר שנקנה באמזון (הגיע ב־22 בנובמבר 2026): 12 כיסים בכל צד של דף, 3 עמודות × 4 שורות. הכיסים מתאימים לקלף עם סליב; טופלואדר לא נכנס.",
-      "source_en": "The Amazon binder delivered 22 November 2026: 12 pockets per page side, 3 columns × 4 rows. Pockets fit a sleeved card; a toploader does not."
+      "columns": 4,
+      "rows": 3,
+      "source_he": "הבינדר שנקנה באמזון (הגיע ב־22 בנובמבר 2026): 12 כיסים בכל צד של דף, 4 קלפים בשורה × 3 שורות. הכיסים מתאימים לקלף עם סליב; טופלואדר לא נכנס.",
+      "source_en": "The Amazon binder delivered 22 November 2026: 12 pockets per page side, 4 cards per row × 3 rows. Pockets fit a sleeved card; a toploader does not."
     },
     "sleeve_rule": {
       "min_usd": 0.25,

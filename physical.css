@@ -45,7 +45,7 @@ html.physical-html body.physical-page{
   color:var(--muted);font-size:14px;letter-spacing:.08em;text-transform:uppercase;text-align:center}
 .phys-side-label{display:flex;justify-content:space-between;gap:8px;align-items:baseline;margin-bottom:8px;color:var(--gold2);font-size:12px;letter-spacing:.04em}
 .phys-side-label .set{color:var(--ink);font-size:13px;letter-spacing:0}
-.phys-grid{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(4,1fr);gap:6px}
+.phys-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(3,auto);gap:6px;direction:ltr}
 .pocket{background:#0c0807;border:1px dashed #ffffff22;border-radius:8px;min-height:0;aspect-ratio:63/88;position:relative;overflow:hidden}
 .pocket.filled{border-style:solid;border-color:#ffffff22}
 .pocket img{width:100%;height:100%;object-fit:cover;display:block}
@@ -61,6 +61,18 @@ html.physical-html body.physical-page{
   .phys-spread{grid-template-columns:1fr;gap:14px}
   .phys-rings{display:none}
   .phys-main{padding-inline:10px}
+  .phys-side{padding:8px}
+  .phys-grid{gap:4px}
+  .pocket .cap{font-size:8px;padding:8px 3px 3px}
+  .pocket .cap b{font-size:9px}
+  .pocket .badge{font-size:8px;padding:1px 4px;top:3px;right:3px}
+  .pocket .copy{top:3px;left:3px;font-size:8px}
+}
+/* If a side is still wider than the viewport, scroll the spread sideways
+   only — never the whole page — so vertical document scroll stays free. */
+@media (max-width:420px){
+  .phys-spread-host{overflow-x:auto;overflow-y:visible;-webkit-overflow-scrolling:touch;touch-action:pan-x pan-y;overscroll-behavior-x:contain}
+  .phys-spread{min-width:100%}
 }
 
 .phys-end{margin:24px 0 8px;text-align:center;color:var(--muted);font-size:12px;letter-spacing:.08em}
