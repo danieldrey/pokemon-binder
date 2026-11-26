@@ -20,6 +20,7 @@
       $("hudMeta").innerHTML = `<b>${counts.sheets || 0}</b> דפים · <b>${counts.binder_copies || 0}</b> קלפים בבינדר`;
     }
     if ($("binderNote")) $("binderNote").textContent = (P.binder && P.binder.source_he) || "";
+    if ($("layoutRule")) $("layoutRule").textContent = (P.binder && P.binder.layout_he) || "";
     if ($("sleeveRule")) $("sleeveRule").textContent = (P.sleeve_rule && P.sleeve_rule.text_he) || "";
     if ($("stats")) {
       $("stats").innerHTML = [
@@ -29,7 +30,8 @@
         ["צדדי דף", counts.sides],
         ["דפי קלסר", counts.sheets],
         ["כיסים ריקים בגבולות סט", counts.empty_pockets],
-        ["עותקי טופלואדר", counts.toploader_copies],
+        ["עותקי טופלואדר", counts.toploader_unique ?? counts.toploader_copies],
+        ["כפולים באחסון", counts.storage_copies],
       ].map(([k, v]) => `<span class="phys-stat">${esc(k)}: <b>${esc(v)}</b></span>`).join("");
     }
   }
@@ -49,6 +51,35 @@
       const usd = c.usd != null ? ` · $${Number(c.usd).toFixed(2)}` : "";
       return `<article class="tl-card">${img}<p class="tl-name">${esc(c.name)}</p>
         <p class="tl-meta">${esc(c.set_name || c.set_id || "")} ${num}${usd}</p>${qty}</article>`;
+    }).join("");
+  }
+
+
+  function renderStorage() {
+    const grid = $("storageGrid");
+    const list = P.storage || [];
+    const lead = $("storageLead");
+    const section = $("storageSection");
+    if (!grid) return;
+    const extras = counts.storage_copies || 0;
+    const unique = counts.storage_unique || list.length;
+    if (lead) {
+      lead.textContent = extras
+        ? `${extras} עותקים עודפים של ${unique} קלפים. עותק אחד מכל מספר נשאר בבינדר או בטופלואדר, והשאר בקופסת האחסון.`
+        : "אין כרגע עותקים כפולים להעביר לקופסת האחסון.";
+    }
+    if (!list.length) {
+      grid.innerHTML = "";
+      return;
+    }
+    grid.innerHTML = list.map((c) => {
+      const img = c.art ? `<img src="${esc(c.art)}" alt="${esc(c.name)}" loading="lazy" decoding="async">` : "";
+      const qty = `<div class="tl-qty">×${c.extra_copies || c.quantity || 1}</div>`;
+      const num = c.number ? `#${esc(c.number)}` : "";
+      const kept = c.kept_label_he || (c.kept_in === "toploader" ? "בקופסת הטופלואדרים" : "בבינדר");
+      return `<article class="tl-card storage-card">${img}<p class="tl-name">${esc(c.name)}</p>
+        <p class="tl-meta">${esc(c.set_name || c.set_id || "")} ${num}</p>
+        <p class="tl-meta">עותק נבחר: ${esc(kept)}</p>${qty}</article>`;
     }).join("");
   }
 
@@ -123,6 +154,7 @@
 
   renderMeta();
   renderToploaders();
+  renderStorage();
   renderJump();
   bind();
   show(0);

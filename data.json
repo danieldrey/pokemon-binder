@@ -60351,7 +60351,9 @@
       "columns": 4,
       "rows": 3,
       "source_he": "הבינדר שנקנה באמזון (הגיע ב־22 בנובמבר 2026): 12 כיסים בכל צד של דף, 4 קלפים בשורה × 3 שורות. הכיסים מתאימים לקלף עם סליב; טופלואדר לא נכנס.",
-      "source_en": "The Amazon binder delivered 22 November 2026: 12 pockets per page side, 4 cards per row × 3 rows. Pockets fit a sleeved card; a toploader does not."
+      "source_en": "The Amazon binder delivered 22 November 2026: 12 pockets per page side, 4 cards per row × 3 rows. Pockets fit a sleeved card; a toploader does not.",
+      "layout_he": "סידור לפי סט, עותק אחד מכל מספר בסט. הדפסות שונות של אותו פוקימון, עם מספרים שונים, מקבלות כיס לכל אחת. עותקים זהים לגמרי (אותו סט ואותו מספר) עוברים לקופסת הכפולים. קלפים בטופלואדר נשארים בקופסת הטופלואדרים ולא תופסים כיס.",
+      "layout_en": "Sorted by set, one copy of each set number. Different prints of the same Pokémon (different numbers) each get their own pocket. Only exact duplicate copies (same set and number) go to the extras box. Toploader cards stay in the toploader box and do not take a pocket."
     },
     "sleeve_rule": {
       "min_usd": 0.25,
@@ -60359,15 +60361,17 @@
       "text_en": "Sleeve a card if its rarity is Rare or higher (including Double Rare, Illustration Rare, Ultra Rare, Pikachu Rare), or its market value is at least $0.25, or it is a holofoil / reverse holo. Cheap Commons and Uncommons go in unsleeved. Toploaders do not fit these pockets and stay in the toploader box."
     },
     "counts": {
-      "binder_copies": 214,
-      "sleeved": 26,
-      "unsleeved": 188,
-      "toploader_copies": 19,
+      "binder_copies": 168,
+      "sleeved": 25,
+      "unsleeved": 143,
+      "toploader_copies": 18,
       "toploader_unique": 18,
-      "sides": 22,
-      "sheets": 11,
-      "spreads": 12,
-      "empty_pockets": 50,
+      "storage_copies": 47,
+      "storage_unique": 38,
+      "sides": 18,
+      "sheets": 9,
+      "spreads": 10,
+      "empty_pockets": 48,
       "sets": 9
     },
     "toploaders": [
@@ -60393,7 +60397,7 @@
         "art": "art/M6-018.jpg",
         "art_high": "art/M6-018.jpg",
         "usd": 0.05,
-        "quantity": 2
+        "quantity": 1
       },
       {
         "id": "M6-021",
@@ -60588,6 +60592,578 @@
         "quantity": 1
       }
     ],
+    "storage": [
+      {
+        "id": "M6-003",
+        "name": "Masquerain",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "003",
+        "rarity": "Common",
+        "art": "art/M6-003.jpg",
+        "art_high": "art/M6-003.jpg",
+        "usd": 0.05,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-007",
+        "name": "Vespiquen",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "007",
+        "rarity": "Common",
+        "art": "art/M6-007.jpg",
+        "art_high": "art/M6-007.jpg",
+        "usd": 0.03,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-012",
+        "name": "Magmar",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "012",
+        "rarity": "Common",
+        "art": "art/M6-012.jpg",
+        "art_high": "art/M6-012.jpg",
+        "usd": 0.04,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-014",
+        "name": "Torkoal",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "014",
+        "rarity": "Common",
+        "art": "art/M6-014.jpg",
+        "art_high": "art/M6-014.jpg",
+        "usd": 0.04,
+        "quantity": 2,
+        "extra_copies": 2,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-016",
+        "name": "Heatmor",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "016",
+        "rarity": "Common",
+        "art": "art/M6-016.jpg",
+        "art_high": "art/M6-016.jpg",
+        "usd": 0.03,
+        "quantity": 2,
+        "extra_copies": 2,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-017",
+        "name": "Mantine",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "017",
+        "rarity": "Common",
+        "art": "art/M6-017.jpg",
+        "art_high": "art/M6-017.jpg",
+        "usd": 0.04,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-018",
+        "name": "Kyogre",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "018",
+        "rarity": "Rare",
+        "art": "art/M6-018.jpg",
+        "art_high": "art/M6-018.jpg",
+        "usd": 0.05,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "toploader",
+        "kept_label_he": "בקופסת הטופלואדרים"
+      },
+      {
+        "id": "M6-019",
+        "name": "Frillish",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "019",
+        "rarity": "Common",
+        "art": "art/M6-019.jpg",
+        "art_high": "art/M6-019.jpg",
+        "usd": 0.02,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-028",
+        "name": "Kilowattrel",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "028",
+        "rarity": "Uncommon",
+        "art": "art/M6-028.jpg",
+        "art_high": "art/M6-028.jpg",
+        "usd": 0.03,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-030",
+        "name": "Hypno",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "030",
+        "rarity": "Common",
+        "art": "art/M6-030.jpg",
+        "art_high": "art/M6-030.jpg",
+        "usd": 0.05,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-032",
+        "name": "Golett",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "032",
+        "rarity": "Common",
+        "art": "art/M6-032.jpg",
+        "art_high": "art/M6-032.jpg",
+        "usd": 0.03,
+        "quantity": 3,
+        "extra_copies": 3,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-034",
+        "name": "Enamorus",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "034",
+        "rarity": "Uncommon",
+        "art": "art/M6-034.jpg",
+        "art_high": "art/M6-034.jpg",
+        "usd": 0.05,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-035",
+        "name": "Sandshrew",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "035",
+        "rarity": "Common",
+        "art": "art/M6-035.jpg",
+        "art_high": "art/M6-035.jpg",
+        "usd": 0.03,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-037",
+        "name": "Onix",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "037",
+        "rarity": "Common",
+        "art": "art/M6-037.jpg",
+        "art_high": "art/M6-037.jpg",
+        "usd": 0.04,
+        "quantity": 2,
+        "extra_copies": 2,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-041",
+        "name": "Nidoran♀",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "041",
+        "rarity": "Common",
+        "art": "art/M6-041.jpg",
+        "art_high": "art/M6-041.jpg",
+        "usd": 0.09,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-044",
+        "name": "Spinarak",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "044",
+        "rarity": "Common",
+        "art": "art/M6-044.jpg",
+        "art_high": "art/M6-044.jpg",
+        "usd": 0.03,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-045",
+        "name": "Ariados",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "045",
+        "rarity": "Common",
+        "art": "art/M6-045.jpg",
+        "art_high": "art/M6-045.jpg",
+        "usd": 0.03,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-046",
+        "name": "Sableye",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "046",
+        "rarity": "Common",
+        "art": "art/M6-046.jpg",
+        "art_high": "art/M6-046.jpg",
+        "usd": 0.05,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-047",
+        "name": "Inkay",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "047",
+        "rarity": "Common",
+        "art": "art/M6-047.jpg",
+        "art_high": "art/M6-047.jpg",
+        "usd": 0.04,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-049",
+        "name": "Druddigon",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "049",
+        "rarity": "Uncommon",
+        "art": "art/M6-049.jpg",
+        "art_high": "art/M6-049.jpg",
+        "usd": 0.03,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-051",
+        "name": "Hakamo-o",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "051",
+        "rarity": "Common",
+        "art": "art/M6-051.jpg",
+        "art_high": "art/M6-051.jpg",
+        "usd": 0.05,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-054",
+        "name": "Azurill",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "054",
+        "rarity": "Common",
+        "art": "art/M6-054.jpg",
+        "art_high": "art/M6-054.jpg",
+        "usd": 0.04,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-059",
+        "name": "Tornadus",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "059",
+        "rarity": "Uncommon",
+        "art": "art/M6-059.jpg",
+        "art_high": "art/M6-059.jpg",
+        "usd": 0.03,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-060",
+        "name": "Fletchling",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "060",
+        "rarity": "Common",
+        "art": "art/M6-060.jpg",
+        "art_high": "art/M6-060.jpg",
+        "usd": 0.04,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-061",
+        "name": "Fletchinder",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "061",
+        "rarity": "Common",
+        "art": "art/M6-061.jpg",
+        "art_high": "art/M6-061.jpg",
+        "usd": 0.04,
+        "quantity": 3,
+        "extra_copies": 3,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "M6-067",
+        "name": "Emcee's Hype",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "number": "067",
+        "rarity": "Common",
+        "art": "art/M6-067.jpg",
+        "art_high": "art/M6-067.jpg",
+        "usd": 0.04,
+        "quantity": 2,
+        "extra_copies": 2,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "me04-024",
+        "name": "Avalugg",
+        "set_id": "me04",
+        "set_name": "Chaos Rising",
+        "number": "024",
+        "rarity": "Uncommon",
+        "art": "art/me04-024.webp",
+        "art_high": "https://assets.tcgdex.net/en/me/me04/024/high.webp",
+        "usd": 0.11,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "me04-027",
+        "name": "Mareep",
+        "set_id": "me04",
+        "set_name": "Chaos Rising",
+        "number": "027",
+        "rarity": "Common",
+        "art": "art/me04-027.webp",
+        "art_high": "https://assets.tcgdex.net/en/me/me04/027/high.webp",
+        "usd": 0.13,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "me04-032",
+        "name": "Deoxys",
+        "set_id": "me04",
+        "set_name": "Chaos Rising",
+        "number": "032",
+        "rarity": "Uncommon",
+        "art": "art/me04-032.webp",
+        "art_high": "https://assets.tcgdex.net/en/me/me04/032/high.webp",
+        "usd": 0.13,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "me04-039",
+        "name": "Trevenant",
+        "set_id": "me04",
+        "set_name": "Chaos Rising",
+        "number": "039",
+        "rarity": "Rare",
+        "art": "art/me04-039.webp",
+        "art_high": "https://assets.tcgdex.net/en/me/me04/039/high.webp",
+        "usd": 0.15,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "me04-063",
+        "name": "Ferrothorn",
+        "set_id": "me04",
+        "set_name": "Chaos Rising",
+        "number": "063",
+        "rarity": "Uncommon",
+        "art": "art/me04-063.webp",
+        "art_high": "https://assets.tcgdex.net/en/me/me04/063/high.webp",
+        "usd": 0.08,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "me02-012",
+        "name": "Charmeleon",
+        "set_id": "me02",
+        "set_name": "Phantasmal Flames",
+        "number": "012",
+        "rarity": "Common",
+        "art": "art/me02-012.webp",
+        "art_high": "https://assets.tcgdex.net/en/me/me02/012/high.webp",
+        "usd": 0.18,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "mee-009",
+        "name": "Basic Grass Energy",
+        "set_id": "mee",
+        "set_name": "Mega Evolution Energy",
+        "number": "009",
+        "rarity": "Common",
+        "art": "art/mee-009.jpg",
+        "art_high": "art/mee-009.jpg",
+        "usd": 0.1,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "mee-010",
+        "name": "Basic Fire Energy",
+        "set_id": "mee",
+        "set_name": "Mega Evolution Energy",
+        "number": "010",
+        "rarity": "Common",
+        "art": "art/mee-010.jpg",
+        "art_high": "art/mee-010.jpg",
+        "usd": 0.11,
+        "quantity": 2,
+        "extra_copies": 2,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "mee-011",
+        "name": "Basic Water Energy",
+        "set_id": "mee",
+        "set_name": "Mega Evolution Energy",
+        "number": "011",
+        "rarity": "Common",
+        "art": "art/mee-011.jpg",
+        "art_high": "art/mee-011.jpg",
+        "usd": 0.12,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "mee-015",
+        "name": "Basic Darkness Energy",
+        "set_id": "mee",
+        "set_name": "Mega Evolution Energy",
+        "number": "015",
+        "rarity": "Common",
+        "art": "art/mee-015.jpg",
+        "art_high": "art/mee-015.jpg",
+        "usd": 0.1,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "mee-016",
+        "name": "Basic Metal Energy",
+        "set_id": "mee",
+        "set_name": "Mega Evolution Energy",
+        "number": "016",
+        "rarity": "Common",
+        "art": "art/mee-016.jpg",
+        "art_high": "art/mee-016.jpg",
+        "usd": 0.1,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      },
+      {
+        "id": "sv09-109",
+        "name": "Cufant",
+        "set_id": "sv09",
+        "set_name": "Journey Together",
+        "number": "109",
+        "rarity": "Common",
+        "art": "art/sv09-109.webp",
+        "art_high": "https://assets.tcgdex.net/en/sv/sv09/109/high.webp",
+        "usd": 0.12,
+        "quantity": 1,
+        "extra_copies": 1,
+        "kept_in": "binder",
+        "kept_label_he": "בבינדר"
+      }
+    ],
     "sides": [
       {
         "side_index": 1,
@@ -60642,22 +61218,7 @@
             "usd": 0.05,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-003",
-            "name": "Masquerain",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "003",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-003.jpg",
-            "art_high": "art/M6-003.jpg",
-            "usd": 0.05,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "M6-004",
@@ -60717,22 +61278,7 @@
             "usd": 0.03,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-007",
-            "name": "Vespiquen",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "007",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-007.jpg",
-            "art_high": "art/M6-007.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "M6-008",
@@ -60778,33 +61324,6 @@
             "sleeved": true,
             "copy": 1,
             "copies": 1
-          }
-        ]
-      },
-      {
-        "side_index": 2,
-        "sheet": 1,
-        "face": "back",
-        "hand": "left",
-        "label_he": "דף 1 · צד אחורי (שמאל)",
-        "label_en": "Sheet 1 · back (left)",
-        "set_id": "M6",
-        "set_name": "Storm Emeralda",
-        "pockets": [
-          {
-            "id": "M6-012",
-            "name": "Magmar",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "012",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-012.jpg",
-            "art_high": "art/M6-012.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 1,
-            "copies": 2
           },
           {
             "id": "M6-012",
@@ -60818,8 +61337,8 @@
             "art_high": "art/M6-012.jpg",
             "usd": 0.04,
             "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copy": 1,
+            "copies": 1
           },
           {
             "id": "M6-013",
@@ -60835,154 +61354,64 @@
             "sleeved": false,
             "copy": 1,
             "copies": 1
-          },
-          {
-            "id": "M6-014",
-            "name": "Torkoal",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "014",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-014.jpg",
-            "art_high": "art/M6-014.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 1,
-            "copies": 3
-          },
-          {
-            "id": "M6-014",
-            "name": "Torkoal",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "014",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-014.jpg",
-            "art_high": "art/M6-014.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 3
-          },
-          {
-            "id": "M6-014",
-            "name": "Torkoal",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "014",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-014.jpg",
-            "art_high": "art/M6-014.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 3,
-            "copies": 3
-          },
-          {
-            "id": "M6-016",
-            "name": "Heatmor",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "016",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-016.jpg",
-            "art_high": "art/M6-016.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 1,
-            "copies": 3
-          },
-          {
-            "id": "M6-016",
-            "name": "Heatmor",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "016",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-016.jpg",
-            "art_high": "art/M6-016.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 3
-          },
-          {
-            "id": "M6-016",
-            "name": "Heatmor",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "016",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-016.jpg",
-            "art_high": "art/M6-016.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 3,
-            "copies": 3
-          },
-          {
-            "id": "M6-017",
-            "name": "Mantine",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "017",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-017.jpg",
-            "art_high": "art/M6-017.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-017",
-            "name": "Mantine",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "017",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-017.jpg",
-            "art_high": "art/M6-017.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
-          },
-          {
-            "id": "M6-019",
-            "name": "Frillish",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "019",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-019.jpg",
-            "art_high": "art/M6-019.jpg",
-            "usd": 0.02,
-            "sleeved": false,
-            "copy": 1,
-            "copies": 2
           }
         ]
       },
       {
-        "side_index": 3,
-        "sheet": 2,
-        "face": "front",
-        "hand": "right",
-        "label_he": "דף 2 · צד קדמי (ימין)",
-        "label_en": "Sheet 2 · front (right)",
+        "side_index": 2,
+        "sheet": 1,
+        "face": "back",
+        "hand": "left",
+        "label_he": "דף 1 · צד אחורי (שמאל)",
+        "label_en": "Sheet 1 · back (left)",
         "set_id": "M6",
         "set_name": "Storm Emeralda",
         "pockets": [
+          {
+            "id": "M6-014",
+            "name": "Torkoal",
+            "set_id": "M6",
+            "set_name": "Storm Emeralda",
+            "number": "014",
+            "rarity": "Common",
+            "lang": "ja",
+            "art": "art/M6-014.jpg",
+            "art_high": "art/M6-014.jpg",
+            "usd": 0.04,
+            "sleeved": false,
+            "copy": 1,
+            "copies": 1
+          },
+          {
+            "id": "M6-016",
+            "name": "Heatmor",
+            "set_id": "M6",
+            "set_name": "Storm Emeralda",
+            "number": "016",
+            "rarity": "Common",
+            "lang": "ja",
+            "art": "art/M6-016.jpg",
+            "art_high": "art/M6-016.jpg",
+            "usd": 0.03,
+            "sleeved": false,
+            "copy": 1,
+            "copies": 1
+          },
+          {
+            "id": "M6-017",
+            "name": "Mantine",
+            "set_id": "M6",
+            "set_name": "Storm Emeralda",
+            "number": "017",
+            "rarity": "Common",
+            "lang": "ja",
+            "art": "art/M6-017.jpg",
+            "art_high": "art/M6-017.jpg",
+            "usd": 0.04,
+            "sleeved": false,
+            "copy": 1,
+            "copies": 1
+          },
           {
             "id": "M6-019",
             "name": "Frillish",
@@ -60995,8 +61424,8 @@
             "art_high": "art/M6-019.jpg",
             "usd": 0.02,
             "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copy": 1,
+            "copies": 1
           },
           {
             "id": "M6-020",
@@ -61101,22 +61530,7 @@
             "usd": 0.03,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-028",
-            "name": "Kilowattrel",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "028",
-            "rarity": "Uncommon",
-            "lang": "ja",
-            "art": "art/M6-028.jpg",
-            "art_high": "art/M6-028.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "M6-029",
@@ -61132,50 +61546,35 @@
             "sleeved": false,
             "copy": 1,
             "copies": 1
-          },
-          {
-            "id": "M6-030",
-            "name": "Hypno",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "030",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-030.jpg",
-            "art_high": "art/M6-030.jpg",
-            "usd": 0.05,
-            "sleeved": false,
-            "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-030",
-            "name": "Hypno",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "030",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-030.jpg",
-            "art_high": "art/M6-030.jpg",
-            "usd": 0.05,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
           }
         ]
       },
       {
-        "side_index": 4,
+        "side_index": 3,
         "sheet": 2,
-        "face": "back",
-        "hand": "left",
-        "label_he": "דף 2 · צד אחורי (שמאל)",
-        "label_en": "Sheet 2 · back (left)",
+        "face": "front",
+        "hand": "right",
+        "label_he": "דף 2 · צד קדמי (ימין)",
+        "label_en": "Sheet 2 · front (right)",
         "set_id": "M6",
         "set_name": "Storm Emeralda",
         "pockets": [
           {
+            "id": "M6-030",
+            "name": "Hypno",
+            "set_id": "M6",
+            "set_name": "Storm Emeralda",
+            "number": "030",
+            "rarity": "Common",
+            "lang": "ja",
+            "art": "art/M6-030.jpg",
+            "art_high": "art/M6-030.jpg",
+            "usd": 0.05,
+            "sleeved": false,
+            "copy": 1,
+            "copies": 1
+          },
+          {
             "id": "M6-032",
             "name": "Golett",
             "set_id": "M6",
@@ -61188,52 +61587,7 @@
             "usd": 0.03,
             "sleeved": false,
             "copy": 1,
-            "copies": 4
-          },
-          {
-            "id": "M6-032",
-            "name": "Golett",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "032",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-032.jpg",
-            "art_high": "art/M6-032.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 4
-          },
-          {
-            "id": "M6-032",
-            "name": "Golett",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "032",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-032.jpg",
-            "art_high": "art/M6-032.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 3,
-            "copies": 4
-          },
-          {
-            "id": "M6-032",
-            "name": "Golett",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "032",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-032.jpg",
-            "art_high": "art/M6-032.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 4,
-            "copies": 4
+            "copies": 1
           },
           {
             "id": "M6-034",
@@ -61248,22 +61602,7 @@
             "usd": 0.05,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-034",
-            "name": "Enamorus",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "034",
-            "rarity": "Uncommon",
-            "lang": "ja",
-            "art": "art/M6-034.jpg",
-            "art_high": "art/M6-034.jpg",
-            "usd": 0.05,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "M6-035",
@@ -61278,22 +61617,7 @@
             "usd": 0.03,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-035",
-            "name": "Sandshrew",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "035",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-035.jpg",
-            "art_high": "art/M6-035.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "M6-036",
@@ -61323,50 +61647,8 @@
             "usd": 0.04,
             "sleeved": false,
             "copy": 1,
-            "copies": 3
+            "copies": 1
           },
-          {
-            "id": "M6-037",
-            "name": "Onix",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "037",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-037.jpg",
-            "art_high": "art/M6-037.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 3
-          },
-          {
-            "id": "M6-037",
-            "name": "Onix",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "037",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-037.jpg",
-            "art_high": "art/M6-037.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 3,
-            "copies": 3
-          }
-        ]
-      },
-      {
-        "side_index": 5,
-        "sheet": 3,
-        "face": "front",
-        "hand": "right",
-        "label_he": "דף 3 · צד קדמי (ימין)",
-        "label_en": "Sheet 3 · front (right)",
-        "set_id": "M6",
-        "set_name": "Storm Emeralda",
-        "pockets": [
           {
             "id": "M6-038",
             "name": "Steelix",
@@ -61425,22 +61707,7 @@
             "usd": 0.09,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-041",
-            "name": "Nidoran♀",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "041",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-041.jpg",
-            "art_high": "art/M6-041.jpg",
-            "usd": 0.09,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "M6-042",
@@ -61471,94 +61738,49 @@
             "sleeved": true,
             "copy": 1,
             "copies": 1
-          },
-          {
-            "id": "M6-044",
-            "name": "Spinarak",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "044",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-044.jpg",
-            "art_high": "art/M6-044.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-044",
-            "name": "Spinarak",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "044",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-044.jpg",
-            "art_high": "art/M6-044.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
-          },
-          {
-            "id": "M6-045",
-            "name": "Ariados",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "045",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-045.jpg",
-            "art_high": "art/M6-045.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-045",
-            "name": "Ariados",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "045",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-045.jpg",
-            "art_high": "art/M6-045.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
-          },
-          {
-            "id": "M6-046",
-            "name": "Sableye",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "046",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-046.jpg",
-            "art_high": "art/M6-046.jpg",
-            "usd": 0.05,
-            "sleeved": false,
-            "copy": 1,
-            "copies": 2
           }
         ]
       },
       {
-        "side_index": 6,
-        "sheet": 3,
+        "side_index": 4,
+        "sheet": 2,
         "face": "back",
         "hand": "left",
-        "label_he": "דף 3 · צד אחורי (שמאל)",
-        "label_en": "Sheet 3 · back (left)",
+        "label_he": "דף 2 · צד אחורי (שמאל)",
+        "label_en": "Sheet 2 · back (left)",
         "set_id": "M6",
         "set_name": "Storm Emeralda",
         "pockets": [
+          {
+            "id": "M6-044",
+            "name": "Spinarak",
+            "set_id": "M6",
+            "set_name": "Storm Emeralda",
+            "number": "044",
+            "rarity": "Common",
+            "lang": "ja",
+            "art": "art/M6-044.jpg",
+            "art_high": "art/M6-044.jpg",
+            "usd": 0.03,
+            "sleeved": false,
+            "copy": 1,
+            "copies": 1
+          },
+          {
+            "id": "M6-045",
+            "name": "Ariados",
+            "set_id": "M6",
+            "set_name": "Storm Emeralda",
+            "number": "045",
+            "rarity": "Common",
+            "lang": "ja",
+            "art": "art/M6-045.jpg",
+            "art_high": "art/M6-045.jpg",
+            "usd": 0.03,
+            "sleeved": false,
+            "copy": 1,
+            "copies": 1
+          },
           {
             "id": "M6-046",
             "name": "Sableye",
@@ -61571,8 +61793,8 @@
             "art_high": "art/M6-046.jpg",
             "usd": 0.05,
             "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copy": 1,
+            "copies": 1
           },
           {
             "id": "M6-047",
@@ -61587,22 +61809,7 @@
             "usd": 0.04,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-047",
-            "name": "Inkay",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "047",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-047.jpg",
-            "art_high": "art/M6-047.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "M6-049",
@@ -61617,22 +61824,7 @@
             "usd": 0.03,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-049",
-            "name": "Druddigon",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "049",
-            "rarity": "Uncommon",
-            "lang": "ja",
-            "art": "art/M6-049.jpg",
-            "art_high": "art/M6-049.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "M6-050",
@@ -61662,22 +61854,7 @@
             "usd": 0.05,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-051",
-            "name": "Hakamo-o",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "051",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-051.jpg",
-            "art_high": "art/M6-051.jpg",
-            "usd": 0.05,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "M6-052",
@@ -61722,35 +61899,8 @@
             "usd": 0.04,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
+            "copies": 1
           },
-          {
-            "id": "M6-054",
-            "name": "Azurill",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "054",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-054.jpg",
-            "art_high": "art/M6-054.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
-          }
-        ]
-      },
-      {
-        "side_index": 7,
-        "sheet": 4,
-        "face": "front",
-        "hand": "right",
-        "label_he": "דף 4 · צד קדמי (ימין)",
-        "label_en": "Sheet 4 · front (right)",
-        "set_id": "M6",
-        "set_name": "Storm Emeralda",
-        "pockets": [
           {
             "id": "M6-055",
             "name": "Swablu",
@@ -61780,7 +61930,19 @@
             "sleeved": true,
             "copy": 1,
             "copies": 1
-          },
+          }
+        ]
+      },
+      {
+        "side_index": 5,
+        "sheet": 3,
+        "face": "front",
+        "hand": "right",
+        "label_he": "דף 3 · צד קדמי (ימין)",
+        "label_en": "Sheet 3 · front (right)",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "pockets": [
           {
             "id": "M6-057",
             "name": "Kecleon",
@@ -61809,22 +61971,7 @@
             "usd": 0.03,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-059",
-            "name": "Tornadus",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "059",
-            "rarity": "Uncommon",
-            "lang": "ja",
-            "art": "art/M6-059.jpg",
-            "art_high": "art/M6-059.jpg",
-            "usd": 0.03,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "M6-060",
@@ -61839,22 +61986,7 @@
             "usd": 0.04,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "M6-060",
-            "name": "Fletchling",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "060",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-060.jpg",
-            "art_high": "art/M6-060.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "M6-061",
@@ -61869,52 +62001,7 @@
             "usd": 0.04,
             "sleeved": false,
             "copy": 1,
-            "copies": 4
-          },
-          {
-            "id": "M6-061",
-            "name": "Fletchinder",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "061",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-061.jpg",
-            "art_high": "art/M6-061.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 4
-          },
-          {
-            "id": "M6-061",
-            "name": "Fletchinder",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "061",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-061.jpg",
-            "art_high": "art/M6-061.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 3,
-            "copies": 4
-          },
-          {
-            "id": "M6-061",
-            "name": "Fletchinder",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "061",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-061.jpg",
-            "art_high": "art/M6-061.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 4,
-            "copies": 4
+            "copies": 1
           },
           {
             "id": "M6-063",
@@ -61930,19 +62017,7 @@
             "sleeved": false,
             "copy": 1,
             "copies": 1
-          }
-        ]
-      },
-      {
-        "side_index": 8,
-        "sheet": 4,
-        "face": "back",
-        "hand": "left",
-        "label_he": "דף 4 · צד אחורי (שמאל)",
-        "label_en": "Sheet 4 · back (left)",
-        "set_id": "M6",
-        "set_name": "Storm Emeralda",
-        "pockets": [
+          },
           {
             "id": "M6-064",
             "name": "Adventuring Lantern",
@@ -61986,37 +62061,7 @@
             "usd": 0.04,
             "sleeved": false,
             "copy": 1,
-            "copies": 3
-          },
-          {
-            "id": "M6-067",
-            "name": "Emcee's Hype",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "067",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-067.jpg",
-            "art_high": "art/M6-067.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 3
-          },
-          {
-            "id": "M6-067",
-            "name": "Emcee's Hype",
-            "set_id": "M6",
-            "set_name": "Storm Emeralda",
-            "number": "067",
-            "rarity": "Common",
-            "lang": "ja",
-            "art": "art/M6-067.jpg",
-            "art_high": "art/M6-067.jpg",
-            "usd": 0.04,
-            "sleeved": false,
-            "copy": 3,
-            "copies": 3
+            "copies": 1
           },
           {
             "id": "M6-068",
@@ -62077,7 +62122,19 @@
             "sleeved": false,
             "copy": 1,
             "copies": 1
-          },
+          }
+        ]
+      },
+      {
+        "side_index": 6,
+        "sheet": 3,
+        "face": "back",
+        "hand": "left",
+        "label_he": "דף 3 · צד אחורי (שמאל)",
+        "label_en": "Sheet 3 · back (left)",
+        "set_id": "M6",
+        "set_name": "Storm Emeralda",
+        "pockets": [
           {
             "id": "M6-072",
             "name": "Legendary Marine Trench",
@@ -62122,19 +62179,7 @@
             "sleeved": false,
             "copy": 1,
             "copies": 1
-          }
-        ]
-      },
-      {
-        "side_index": 9,
-        "sheet": 5,
-        "face": "front",
-        "hand": "right",
-        "label_he": "דף 5 · צד קדמי (ימין)",
-        "label_en": "Sheet 5 · front (right)",
-        "set_id": "M6",
-        "set_name": "Storm Emeralda",
-        "pockets": [
+          },
           {
             "id": "M6-076",
             "name": "Legendary Lava Tube",
@@ -62199,20 +62244,17 @@
           null,
           null,
           null,
-          null,
-          null,
-          null,
           null
         ],
-        "empty": 8
+        "empty": 5
       },
       {
-        "side_index": 10,
-        "sheet": 5,
-        "face": "back",
-        "hand": "left",
-        "label_he": "דף 5 · צד אחורי (שמאל)",
-        "label_en": "Sheet 5 · back (left)",
+        "side_index": 7,
+        "sheet": 4,
+        "face": "front",
+        "hand": "right",
+        "label_he": "דף 4 · צד קדמי (ימין)",
+        "label_en": "Sheet 4 · front (right)",
         "set_id": "me04",
         "set_name": "Chaos Rising",
         "pockets": [
@@ -62349,22 +62391,7 @@
             "usd": 0.11,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "me04-024",
-            "name": "Avalugg",
-            "set_id": "me04",
-            "set_name": "Chaos Rising",
-            "number": "024",
-            "rarity": "Uncommon",
-            "lang": "en",
-            "art": "art/me04-024.webp",
-            "art_high": "https://assets.tcgdex.net/en/me/me04/024/high.webp",
-            "usd": 0.11,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "me04-025",
@@ -62394,34 +62421,7 @@
             "usd": 0.13,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          }
-        ]
-      },
-      {
-        "side_index": 11,
-        "sheet": 6,
-        "face": "front",
-        "hand": "right",
-        "label_he": "דף 6 · צד קדמי (ימין)",
-        "label_en": "Sheet 6 · front (right)",
-        "set_id": "me04",
-        "set_name": "Chaos Rising",
-        "pockets": [
-          {
-            "id": "me04-027",
-            "name": "Mareep",
-            "set_id": "me04",
-            "set_name": "Chaos Rising",
-            "number": "027",
-            "rarity": "Common",
-            "lang": "en",
-            "art": "art/me04-027.webp",
-            "art_high": "https://assets.tcgdex.net/en/me/me04/027/high.webp",
-            "usd": 0.13,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "me04-029",
@@ -62437,7 +62437,19 @@
             "sleeved": true,
             "copy": 1,
             "copies": 1
-          },
+          }
+        ]
+      },
+      {
+        "side_index": 8,
+        "sheet": 4,
+        "face": "back",
+        "hand": "left",
+        "label_he": "דף 4 · צד אחורי (שמאל)",
+        "label_en": "Sheet 4 · back (left)",
+        "set_id": "me04",
+        "set_name": "Chaos Rising",
+        "pockets": [
           {
             "id": "me04-030",
             "name": "Emolga",
@@ -62481,22 +62493,7 @@
             "usd": 0.13,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "me04-032",
-            "name": "Deoxys",
-            "set_id": "me04",
-            "set_name": "Chaos Rising",
-            "number": "032",
-            "rarity": "Uncommon",
-            "lang": "en",
-            "art": "art/me04-032.webp",
-            "art_high": "https://assets.tcgdex.net/en/me/me04/032/high.webp",
-            "usd": 0.13,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "me04-034",
@@ -62526,22 +62523,7 @@
             "usd": 0.15,
             "sleeved": true,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "me04-039",
-            "name": "Trevenant",
-            "set_id": "me04",
-            "set_name": "Chaos Rising",
-            "number": "039",
-            "rarity": "Rare",
-            "lang": "en",
-            "art": "art/me04-039.webp",
-            "art_high": "https://assets.tcgdex.net/en/me/me04/039/high.webp",
-            "usd": 0.15,
-            "sleeved": true,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "me04-040",
@@ -62587,19 +62569,7 @@
             "sleeved": false,
             "copy": 1,
             "copies": 1
-          }
-        ]
-      },
-      {
-        "side_index": 12,
-        "sheet": 6,
-        "face": "back",
-        "hand": "left",
-        "label_he": "דף 6 · צד אחורי (שמאל)",
-        "label_en": "Sheet 6 · back (left)",
-        "set_id": "me04",
-        "set_name": "Chaos Rising",
-        "pockets": [
+          },
           {
             "id": "me04-047",
             "name": "Claydol",
@@ -62659,7 +62629,19 @@
             "sleeved": false,
             "copy": 1,
             "copies": 1
-          },
+          }
+        ]
+      },
+      {
+        "side_index": 9,
+        "sheet": 5,
+        "face": "front",
+        "hand": "right",
+        "label_he": "דף 5 · צד קדמי (ימין)",
+        "label_en": "Sheet 5 · front (right)",
+        "set_id": "me04",
+        "set_name": "Chaos Rising",
+        "pockets": [
           {
             "id": "me04-058",
             "name": "Skrelp",
@@ -62688,22 +62670,7 @@
             "usd": 0.08,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "me04-063",
-            "name": "Ferrothorn",
-            "set_id": "me04",
-            "set_name": "Chaos Rising",
-            "number": "063",
-            "rarity": "Uncommon",
-            "lang": "en",
-            "art": "art/me04-063.webp",
-            "art_high": "https://assets.tcgdex.net/en/me/me04/063/high.webp",
-            "usd": 0.08,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "me04-066",
@@ -62765,17 +62732,22 @@
             "copy": 1,
             "copies": 1
           },
+          null,
+          null,
+          null,
+          null,
+          null,
           null
         ],
-        "empty": 1
+        "empty": 6
       },
       {
-        "side_index": 13,
-        "sheet": 7,
-        "face": "front",
-        "hand": "right",
-        "label_he": "דף 7 · צד קדמי (ימין)",
-        "label_en": "Sheet 7 · front (right)",
+        "side_index": 10,
+        "sheet": 5,
+        "face": "back",
+        "hand": "left",
+        "label_he": "דף 5 · צד אחורי (שמאל)",
+        "label_en": "Sheet 5 · back (left)",
         "set_id": "me05",
         "set_name": "Pitch Black",
         "pockets": [
@@ -62962,12 +62934,12 @@
         ]
       },
       {
-        "side_index": 14,
-        "sheet": 7,
-        "face": "back",
-        "hand": "left",
-        "label_he": "דף 7 · צד אחורי (שמאל)",
-        "label_en": "Sheet 7 · back (left)",
+        "side_index": 11,
+        "sheet": 6,
+        "face": "front",
+        "hand": "right",
+        "label_he": "דף 6 · צד קדמי (ימין)",
+        "label_en": "Sheet 6 · front (right)",
         "set_id": "me05",
         "set_name": "Pitch Black",
         "pockets": [
@@ -63141,12 +63113,12 @@
         "empty": 1
       },
       {
-        "side_index": 15,
-        "sheet": 8,
-        "face": "front",
-        "hand": "right",
-        "label_he": "דף 8 · צד קדמי (ימין)",
-        "label_en": "Sheet 8 · front (right)",
+        "side_index": 12,
+        "sheet": 6,
+        "face": "back",
+        "hand": "left",
+        "label_he": "דף 6 · צד אחורי (שמאל)",
+        "label_en": "Sheet 6 · back (left)",
         "set_id": "me02",
         "set_name": "Phantasmal Flames",
         "pockets": [
@@ -63193,22 +63165,7 @@
             "usd": 0.18,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "me02-012",
-            "name": "Charmeleon",
-            "set_id": "me02",
-            "set_name": "Phantasmal Flames",
-            "number": "012",
-            "rarity": "Common",
-            "lang": "en",
-            "art": "art/me02-012.webp",
-            "art_high": "https://assets.tcgdex.net/en/me/me02/012/high.webp",
-            "usd": 0.18,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "me02-023",
@@ -63329,19 +63286,7 @@
             "sleeved": false,
             "copy": 1,
             "copies": 1
-          }
-        ]
-      },
-      {
-        "side_index": 16,
-        "sheet": 8,
-        "face": "back",
-        "hand": "left",
-        "label_he": "דף 8 · צד אחורי (שמאל)",
-        "label_en": "Sheet 8 · back (left)",
-        "set_id": "me02",
-        "set_name": "Phantasmal Flames",
-        "pockets": [
+          },
           {
             "id": "me02-067",
             "name": "Toxel",
@@ -63356,7 +63301,19 @@
             "sleeved": false,
             "copy": 1,
             "copies": 1
-          },
+          }
+        ]
+      },
+      {
+        "side_index": 13,
+        "sheet": 7,
+        "face": "front",
+        "hand": "right",
+        "label_he": "דף 7 · צד קדמי (ימין)",
+        "label_en": "Sheet 7 · front (right)",
+        "set_id": "me02",
+        "set_name": "Phantasmal Flames",
+        "pockets": [
           {
             "id": "me02-073",
             "name": "Togedemaru",
@@ -63395,17 +63352,18 @@
           null,
           null,
           null,
+          null,
           null
         ],
-        "empty": 9
+        "empty": 10
       },
       {
-        "side_index": 17,
-        "sheet": 9,
-        "face": "front",
-        "hand": "right",
-        "label_he": "דף 9 · צד קדמי (ימין)",
-        "label_en": "Sheet 9 · front (right)",
+        "side_index": 14,
+        "sheet": 7,
+        "face": "back",
+        "hand": "left",
+        "label_he": "דף 7 · צד אחורי (שמאל)",
+        "label_en": "Sheet 7 · back (left)",
         "set_id": "me03",
         "set_name": "Perfect Order",
         "pockets": [
@@ -63551,12 +63509,12 @@
         "empty": 3
       },
       {
-        "side_index": 18,
-        "sheet": 9,
-        "face": "back",
-        "hand": "left",
-        "label_he": "דף 9 · צד אחורי (שמאל)",
-        "label_en": "Sheet 9 · back (left)",
+        "side_index": 15,
+        "sheet": 8,
+        "face": "front",
+        "hand": "right",
+        "label_he": "דף 8 · צד קדמי (ימין)",
+        "label_en": "Sheet 8 · front (right)",
         "set_id": "mee",
         "set_name": "Mega Evolution Energy",
         "pockets": [
@@ -63573,22 +63531,7 @@
             "usd": 0.1,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "mee-009",
-            "name": "Basic Grass Energy",
-            "set_id": "mee",
-            "set_name": "Mega Evolution Energy",
-            "number": "009",
-            "rarity": "Common",
-            "lang": "en",
-            "art": "art/mee-009.jpg",
-            "art_high": "art/mee-009.jpg",
-            "usd": 0.1,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "mee-010",
@@ -63603,37 +63546,7 @@
             "usd": 0.11,
             "sleeved": false,
             "copy": 1,
-            "copies": 3
-          },
-          {
-            "id": "mee-010",
-            "name": "Basic Fire Energy",
-            "set_id": "mee",
-            "set_name": "Mega Evolution Energy",
-            "number": "010",
-            "rarity": "Common",
-            "lang": "en",
-            "art": "art/mee-010.jpg",
-            "art_high": "art/mee-010.jpg",
-            "usd": 0.11,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 3
-          },
-          {
-            "id": "mee-010",
-            "name": "Basic Fire Energy",
-            "set_id": "mee",
-            "set_name": "Mega Evolution Energy",
-            "number": "010",
-            "rarity": "Common",
-            "lang": "en",
-            "art": "art/mee-010.jpg",
-            "art_high": "art/mee-010.jpg",
-            "usd": 0.11,
-            "sleeved": false,
-            "copy": 3,
-            "copies": 3
+            "copies": 1
           },
           {
             "id": "mee-011",
@@ -63648,22 +63561,7 @@
             "usd": 0.12,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "mee-011",
-            "name": "Basic Water Energy",
-            "set_id": "mee",
-            "set_name": "Mega Evolution Energy",
-            "number": "011",
-            "rarity": "Common",
-            "lang": "en",
-            "art": "art/mee-011.jpg",
-            "art_high": "art/mee-011.jpg",
-            "usd": 0.12,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "mee-012",
@@ -63723,35 +63621,8 @@
             "usd": 0.1,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
+            "copies": 1
           },
-          {
-            "id": "mee-015",
-            "name": "Basic Darkness Energy",
-            "set_id": "mee",
-            "set_name": "Mega Evolution Energy",
-            "number": "015",
-            "rarity": "Common",
-            "lang": "en",
-            "art": "art/mee-015.jpg",
-            "art_high": "art/mee-015.jpg",
-            "usd": 0.1,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
-          }
-        ]
-      },
-      {
-        "side_index": 19,
-        "sheet": 10,
-        "face": "front",
-        "hand": "right",
-        "label_he": "דף 10 · צד קדמי (ימין)",
-        "label_en": "Sheet 10 · front (right)",
-        "set_id": "mee",
-        "set_name": "Mega Evolution Energy",
-        "pockets": [
           {
             "id": "mee-016",
             "name": "Basic Metal Energy",
@@ -63765,43 +63636,22 @@
             "usd": 0.1,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
+            "copies": 1
           },
-          {
-            "id": "mee-016",
-            "name": "Basic Metal Energy",
-            "set_id": "mee",
-            "set_name": "Mega Evolution Energy",
-            "number": "016",
-            "rarity": "Common",
-            "lang": "en",
-            "art": "art/mee-016.jpg",
-            "art_high": "art/mee-016.jpg",
-            "usd": 0.1,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
-          },
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
           null,
           null,
           null,
           null
         ],
-        "empty": 10
+        "empty": 4
       },
       {
-        "side_index": 20,
-        "sheet": 10,
+        "side_index": 16,
+        "sheet": 8,
         "face": "back",
         "hand": "left",
-        "label_he": "דף 10 · צד אחורי (שמאל)",
-        "label_en": "Sheet 10 · back (left)",
+        "label_he": "דף 8 · צד אחורי (שמאל)",
+        "label_en": "Sheet 8 · back (left)",
         "set_id": "me06",
         "set_name": "Delta Reign",
         "pockets": [
@@ -63919,12 +63769,12 @@
         "empty": 5
       },
       {
-        "side_index": 21,
-        "sheet": 11,
+        "side_index": 17,
+        "sheet": 9,
         "face": "front",
         "hand": "right",
-        "label_he": "דף 11 · צד קדמי (ימין)",
-        "label_en": "Sheet 11 · front (right)",
+        "label_he": "דף 9 · צד קדמי (ימין)",
+        "label_en": "Sheet 9 · front (right)",
         "set_id": "30th",
         "set_name": "30th Celebration",
         "pockets": [
@@ -64000,12 +63850,12 @@
         "empty": 8
       },
       {
-        "side_index": 22,
-        "sheet": 11,
+        "side_index": 18,
+        "sheet": 9,
         "face": "back",
         "hand": "left",
-        "label_he": "דף 11 · צד אחורי (שמאל)",
-        "label_en": "Sheet 11 · back (left)",
+        "label_he": "דף 9 · צד אחורי (שמאל)",
+        "label_en": "Sheet 9 · back (left)",
         "set_id": "sv09",
         "set_name": "Journey Together",
         "pockets": [
@@ -64067,22 +63917,7 @@
             "usd": 0.12,
             "sleeved": false,
             "copy": 1,
-            "copies": 2
-          },
-          {
-            "id": "sv09-109",
-            "name": "Cufant",
-            "set_id": "sv09",
-            "set_name": "Journey Together",
-            "number": "109",
-            "rarity": "Common",
-            "lang": "en",
-            "art": "art/sv09-109.webp",
-            "art_high": "https://assets.tcgdex.net/en/sv/sv09/109/high.webp",
-            "usd": 0.12,
-            "sleeved": false,
-            "copy": 2,
-            "copies": 2
+            "copies": 1
           },
           {
             "id": "sv09-110",
@@ -64118,9 +63953,10 @@
           null,
           null,
           null,
+          null,
           null
         ],
-        "empty": 5
+        "empty": 6
       }
     ],
     "spreads": [
@@ -64189,23 +64025,9 @@
       },
       {
         "id": "spread-9",
-        "title_he": "מפתח · דף 9–10",
-        "title_en": "Spread · sheet 9–10",
+        "title_he": "מפתח · דף 9 וכיסוי אחורי",
+        "title_en": "Spread · sheet 9 and back cover",
         "left": 18,
-        "right": 19
-      },
-      {
-        "id": "spread-10",
-        "title_he": "מפתח · דף 10–11",
-        "title_en": "Spread · sheet 10–11",
-        "left": 20,
-        "right": 21
-      },
-      {
-        "id": "spread-11",
-        "title_he": "מפתח · דף 11 וכיסוי אחורי",
-        "title_en": "Spread · sheet 11 and back cover",
-        "left": 22,
         "right": null
       }
     ]
