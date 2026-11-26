@@ -43,7 +43,7 @@
       return;
     }
     grid.innerHTML = list.map((c) => {
-      const img = c.art ? `<img src="${esc(c.art)}" alt="${esc(c.name)}">` : "";
+      const img = c.art ? `<img src="${esc(c.art)}" alt="${esc(c.name)}" loading="lazy" decoding="async">` : "";
       const qty = (c.quantity || 1) > 1 ? `<div class="tl-qty">×${c.quantity}</div>` : "";
       const num = c.number ? `#${esc(c.number)}` : "";
       const usd = c.usd != null ? ` · $${Number(c.usd).toFixed(2)}` : "";
@@ -74,7 +74,7 @@
       ? `<span class="badge sleeve">סליב</span>`
       : `<span class="badge bare">בלי סליב</span>`;
     const copy = p.copies > 1 ? `<span class="copy">${p.copy}/${p.copies}</span>` : "";
-    const img = p.art ? `<img src="${esc(p.art)}" alt="${esc(p.name)}">` : "";
+    const img = p.art ? `<img src="${esc(p.art)}" alt="${esc(p.name)}" loading="lazy" decoding="async">` : "";
     const num = p.number ? `#${esc(p.number)}` : "";
     return `<div class="pocket filled">
       ${img}${badge}${copy}

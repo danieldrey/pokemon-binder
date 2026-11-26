@@ -427,6 +427,7 @@ body.focus-lock{overflow:hidden;position:fixed;left:0;right:0;width:100%;touch-a
 
 /* Standalone shareable trade page */
 body.trade-page{overflow:auto;height:auto;min-height:100dvh}
+html.physical-html,body.physical-page{overflow:auto;height:auto;max-height:none;min-height:100dvh;-webkit-overflow-scrolling:touch}
 .trade-page .room{position:fixed;inset:0}
 .trade-hud{position:sticky;top:0;z-index:8;background:linear-gradient(180deg,#0b0706ee,#0b0706cc 70%,#0b070600);
   backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
