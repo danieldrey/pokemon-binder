@@ -21,6 +21,7 @@
     }
     if ($("binderNote")) $("binderNote").textContent = (P.binder && P.binder.source_he) || "";
     if ($("layoutRule")) $("layoutRule").textContent = (P.binder && P.binder.layout_he) || "";
+    if ($("capacityNote")) $("capacityNote").textContent = (P.binder && P.binder.capacity_he) || "";
     if ($("sleeveRule")) $("sleeveRule").textContent = (P.sleeve_rule && P.sleeve_rule.text_he) || "";
     if ($("stats")) {
       $("stats").innerHTML = [
@@ -31,6 +32,8 @@
         ["דפי קלסר", counts.sheets],
         ["כיסים ריקים בגבולות סט", counts.empty_pockets],
         ["עותקי טופלואדר", counts.toploader_unique ?? counts.toploader_copies],
+        ["כיסים שמורים לחסרים", counts.placeholders_missing],
+        ["כיסים שמורים לטופלואדר", counts.placeholders_toploader],
         ["כפולים באחסון", counts.storage_copies],
       ].map(([k, v]) => `<span class="phys-stat">${esc(k)}: <b>${esc(v)}</b></span>`).join("");
     }
@@ -83,6 +86,31 @@
     }).join("");
   }
 
+
+  function pct(share) {
+    if (share == null) return "";
+    return `${Math.round(Number(share) * 1000) / 10}%`;
+  }
+
+  function renderSetTable() {
+    const table = $("setTable");
+    if (!table) return;
+    const body = table.querySelector("tbody");
+    if (!body) return;
+    const rows = P.set_summaries || [];
+    body.innerHTML = rows.map((s) => {
+      const mode = s.expanded ? "מורחב, כל המספרים" : "צפוף, רק מה שיש";
+      const reserved = s.expanded ? (s.reserved ?? ((s.placeholders_missing || 0) + (s.placeholders_toploader || 0))) : "—";
+      return `<tr class="${s.expanded ? "expanded" : "compact"}">
+        <td>${esc(s.set_name || s.set_id)}</td>
+        <td>${esc(s.owned_unique)} <span class="share">${esc(pct(s.share))}</span></td>
+        <td>${esc(s.set_size)}</td>
+        <td>${esc(reserved)}</td>
+        <td>${mode}</td>
+      </tr>`;
+    }).join("");
+  }
+
   function renderJump() {
     const host = $("setJump");
     if (!host) return;
@@ -101,12 +129,25 @@
 
   function pocketHtml(p, i) {
     if (!p) return `<div class="pocket empty" aria-label="כיס ריק ${i + 1}"></div>`;
+    const kind = p.kind || "owned";
+    const img = p.art ? `<img src="${esc(p.art)}" alt="${esc(p.name)}" loading="lazy" decoding="async">` : "";
+    const num = p.number ? `#${esc(p.number)}` : "";
+    if (kind === "missing") {
+      return `<div class="pocket missing" aria-label="חסר ${esc(p.name)} ${num}">
+        ${img}<span class="badge wait">חסר</span>
+        <div class="cap"><b>${esc(p.name)}</b>${num}</div>
+      </div>`;
+    }
+    if (kind === "toploader") {
+      return `<div class="pocket toploader-slot" aria-label="${esc(p.name)} בטופלואדר">
+        ${img}<span class="badge tl">בטופלואדר</span>
+        <div class="cap"><b>${esc(p.name)}</b>${num}</div>
+      </div>`;
+    }
     const badge = p.sleeved
       ? `<span class="badge sleeve">סליב</span>`
       : `<span class="badge bare">בלי סליב</span>`;
     const copy = p.copies > 1 ? `<span class="copy">${p.copy}/${p.copies}</span>` : "";
-    const img = p.art ? `<img src="${esc(p.art)}" alt="${esc(p.name)}" loading="lazy" decoding="async">` : "";
-    const num = p.number ? `#${esc(p.number)}` : "";
     return `<div class="pocket filled">
       ${img}${badge}${copy}
       <div class="cap"><b>${esc(p.name)}</b>${num}</div>
@@ -153,6 +194,7 @@
   }
 
   renderMeta();
+  renderSetTable();
   renderToploaders();
   renderStorage();
   renderJump();

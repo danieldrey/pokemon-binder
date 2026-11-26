@@ -77,3 +77,15 @@ html.physical-html body.physical-page{
 }
 
 .phys-end{margin:24px 0 8px;text-align:center;color:var(--muted);font-size:12px;letter-spacing:.08em}
+
+.phys-capacity{margin:14px 0 0;color:var(--muted);line-height:1.55;font-size:14px}
+.phys-set-table-wrap{overflow-x:auto;margin-top:14px;-webkit-overflow-scrolling:touch}
+.phys-set-table{width:100%;border-collapse:collapse;font-size:13px}
+.phys-set-table th,.phys-set-table td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:start}
+.phys-set-table th{color:var(--gold2);font-weight:600;font-size:12px;letter-spacing:.04em}
+.phys-set-table .share{color:var(--muted);font-size:11px;margin-inline-start:4px}
+.phys-set-table tr.expanded td:last-child{color:var(--gold2)}
+.pocket.missing,.pocket.toploader-slot{border-style:dashed}
+.pocket.missing img,.pocket.toploader-slot img{opacity:.38;filter:grayscale(25%)}
+.pocket .badge.wait{background:#ffffffcc;color:#1a120c}
+.pocket .badge.tl{background:#e8c36add;color:#1a120c}
